@@ -1,0 +1,14 @@
+.info-item {
+  display: flex;
+  align-items: center;
+}
+.img-item {
+  width: 100px;
+  height: 80px;
+}
+.name-item {
+  font-size: 18px;
+  color: var(--text-color);
+  margin-left: 12px;
+  font-family: var(--font-primary);
+}

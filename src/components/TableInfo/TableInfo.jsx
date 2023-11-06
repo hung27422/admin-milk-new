@@ -6,6 +6,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import ItemOrders from "../InformationOrders/ItemsOrders/ItemsOrders";
+import PriceOrders from "../InformationOrders/PriceOrders/PriceOrders";
+import TotalOrders from "../InformationOrders/TotalOrders/TotalOrders";
+import QuantityOrders from "../InformationOrders/QuantityOrders/QuantityOrders";
+import ActionOrders from "../InformationOrders/ActionOrders/ActionOrders";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,22 +38,38 @@ export default function TableInfo() {
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Items</StyledTableCell>
-            <StyledTableCell align="right">Price</StyledTableCell>
-            <StyledTableCell align="right">Quantity</StyledTableCell>
-            <StyledTableCell align="right">Total</StyledTableCell>
-            <StyledTableCell align="right">Action</StyledTableCell>
+            <StyledTableCell width={"30%"}>Items</StyledTableCell>
+            <StyledTableCell width={"20%"} align="center">
+              Price
+            </StyledTableCell>
+            <StyledTableCell width={"15%"} align="center">
+              Quantity
+            </StyledTableCell>
+            <StyledTableCell width={"15%"} align="center">
+              Total
+            </StyledTableCell>
+            <StyledTableCell width={"20%"} align="center">
+              Action
+            </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           <StyledTableRow>
             <StyledTableCell component="th" scope="row">
-              1
+              <ItemOrders />
             </StyledTableCell>
-            <StyledTableCell align="right">2</StyledTableCell>
-            <StyledTableCell align="right">3</StyledTableCell>
-            <StyledTableCell align="right">4</StyledTableCell>
-            <StyledTableCell align="right">5</StyledTableCell>
+            <StyledTableCell align="center">
+              <PriceOrders />
+            </StyledTableCell>
+            <StyledTableCell align="center">
+              <QuantityOrders />
+            </StyledTableCell>
+            <StyledTableCell align="center">
+              <TotalOrders />
+            </StyledTableCell>
+            <StyledTableCell align="center">
+              <ActionOrders />
+            </StyledTableCell>
           </StyledTableRow>
         </TableBody>
       </Table>
