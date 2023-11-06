@@ -1,0 +1,18 @@
+.wrapper {
+  width: 300px;
+  height: 100vh;
+  background-color: var(--white);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.logo {
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  .img-logo {
+    width: 200px;
+    height: 70px;
+  }
+}
+.container {
+  margin-top: 12px;
+}

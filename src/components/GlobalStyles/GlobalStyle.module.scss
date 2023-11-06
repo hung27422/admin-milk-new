@@ -1,0 +1,30 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+:root {
+  --background-primary: #f5f5f5;
+  --primary: #2cbeffe0;
+  --secondary: #0c68ddd1;
+  --white: #fff;
+  --black: #000;
+  --text-color: #103a71;
+  --font-primary: FontPrimary, sans-serif;
+  --font-size-primary: 16px;
+}
+html {
+  background-color: var(--background-primary);
+  user-select: none;
+}
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-primary);
+  text-rendering: optimizeSpeed;
+}
+a {
+  text-decoration: none;
+}
+@font-face {
+  font-family: FontPrimary;
+  src: url("/src/assets/Fonts/DINRoundOT.otf");
+}
