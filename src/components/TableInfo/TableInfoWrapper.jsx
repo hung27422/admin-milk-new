@@ -1,6 +1,7 @@
 import TableInfo from "./TableInfo";
 import PropTypes from "prop-types";
 
+//Chưa xác nhận
 function TableInfoUnconfirmed({ unconfirmed, status }) {
   if (Array.isArray(status)) {
     const createdStatusUnconfirmed = unconfirmed?.filter(
@@ -23,6 +24,7 @@ function TableInfoUnconfirmed({ unconfirmed, status }) {
     return <p>Không có dữ liệu để hiển thị.</p>;
   }
 }
+//Đã xác nhận
 function TableInfoConfirmed({ confirmed, status }) {
   if (Array.isArray(status)) {
     const createdStatusConfirmed = confirmed?.filter(
@@ -36,7 +38,6 @@ function TableInfoConfirmed({ confirmed, status }) {
         <TableInfo
           data={createdStatusConfirmed.map((i) => i.items).flat()}
           isShowButton={"2"}
-          confirm={confirmed}
         />
       );
     }
@@ -44,7 +45,26 @@ function TableInfoConfirmed({ confirmed, status }) {
   // Trả về một phần tử khác hoặc thông báo không có dữ liệu nếu không có item nào thỏa mãn điều kiện
   return <p>Không có dữ liệu để hiển thị.</p>;
 }
-
+//Giao hàng
+function TableInfoShipment({ shipment, status }) {
+  if (Array.isArray(status)) {
+    const createdStatusShipment = shipment?.filter(
+      (item) => item.status === "SHIPPING"
+    );
+    if (
+      Array.isArray(createdStatusShipment) &&
+      createdStatusShipment.length > 0
+    ) {
+      return (
+        <TableInfo
+          data={createdStatusShipment.map((i) => i.items).flat()}
+          isShowButton={"3"}
+        />
+      );
+    }
+  }
+  return <p>Không có dữ liệu để hiển thị.</p>;
+}
 TableInfoUnconfirmed.propTypes = {
   unconfirmed: PropTypes.array,
   status: PropTypes.array,
@@ -53,4 +73,8 @@ TableInfoConfirmed.propTypes = {
   confirmed: PropTypes.array,
   status: PropTypes.array,
 };
-export { TableInfoUnconfirmed, TableInfoConfirmed };
+TableInfoShipment.propTypes = {
+  shipment: PropTypes.array,
+  status: PropTypes.array,
+};
+export { TableInfoUnconfirmed, TableInfoConfirmed, TableInfoShipment };
