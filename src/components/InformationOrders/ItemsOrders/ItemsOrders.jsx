@@ -1,7 +1,8 @@
 import classNames from "classnames/bind";
 import styles from "./ItemsOrders.module.scss";
+import PropTypes from "prop-types";
 const cx = classNames.bind(styles);
-function ItemOrders() {
+function ItemOrders({ data }) {
   return (
     <div className={cx("wrapper")}>
       <div className={cx("info-item")}>
@@ -10,10 +11,12 @@ function ItemOrders() {
           alt=""
           className={cx("img-item")}
         />
-        <h3 className={cx("name-item")}>Sữa TH Milk tiệt trùng 120ml</h3>
+        <h3 className={cx("name-item")}>{data?.name}</h3>
       </div>
     </div>
   );
 }
-
+ItemOrders.propTypes = {
+  data: PropTypes.object,
+};
 export default ItemOrders;

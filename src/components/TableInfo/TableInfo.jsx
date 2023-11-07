@@ -11,7 +11,7 @@ import PriceOrders from "../InformationOrders/PriceOrders/PriceOrders";
 import TotalOrders from "../InformationOrders/TotalOrders/TotalOrders";
 import QuantityOrders from "../InformationOrders/QuantityOrders/QuantityOrders";
 import ActionOrders from "../InformationOrders/ActionOrders/ActionOrders";
-
+import PropTypes from "prop-types";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -32,7 +32,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function TableInfo() {
+export default function TableInfo({ data }) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -54,25 +54,32 @@ export default function TableInfo() {
           </TableRow>
         </TableHead>
         <TableBody>
-          <StyledTableRow>
-            <StyledTableCell component="th" scope="row">
-              <ItemOrders />
-            </StyledTableCell>
-            <StyledTableCell align="center">
-              <PriceOrders />
-            </StyledTableCell>
-            <StyledTableCell align="center">
-              <QuantityOrders />
-            </StyledTableCell>
-            <StyledTableCell align="center">
-              <TotalOrders />
-            </StyledTableCell>
-            <StyledTableCell align="center">
-              <ActionOrders />
-            </StyledTableCell>
-          </StyledTableRow>
+          {data?.map((item) => {
+            return (
+              <StyledTableRow key={item.id}>
+                <StyledTableCell component="th" scope="row">
+                  <ItemOrders data={item} />
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  <PriceOrders data={item} />
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  <QuantityOrders data={item} />
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  <TotalOrders data={item} />
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  <ActionOrders data={item} />
+                </StyledTableCell>
+              </StyledTableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </TableContainer>
   );
 }
+TableInfo.propTypes = {
+  data: PropTypes.array,
+};
