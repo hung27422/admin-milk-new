@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { TableInfoUnconfirmed } from "../../../components/TableInfo/TableInfoWrapper";
 import { useEffect } from "react";
+// import { useEffect } from "react";
 function Unconfirmed() {
   const { data } = useQuery(
     gql`
@@ -26,7 +27,7 @@ function Unconfirmed() {
       }
     `,
     {
-      variables: { amount: 3, page: 1 },
+      variables: { amount: 10, page: 1 },
       context: {
         headers: {
           authorization: `Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiLCJuYW1lIjoibnVsbCIsImp0aSI6IjAwMDAwMDAwLTAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAwMCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNjk5NTg4NTYzLCJpc3MiOiJJZldoYXQiLCJhdWQiOiJJZldoYXRDbGllbnQifQ.-CPSL6LvcH6h3EfYnE15reqBQ0qJxckC1nJ2-FR0ZckA2pl34pftHPqP_oT0yk5lakZcTY7vUo9BrTKRsakqDw`,
@@ -35,7 +36,7 @@ function Unconfirmed() {
     }
   );
   useEffect(() => {
-    console.log(data?.orders[0].status);
+    console.log(data);
   }, [data]);
   return (
     <div>

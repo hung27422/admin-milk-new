@@ -10,8 +10,9 @@ import ItemOrders from "../InformationOrders/ItemsOrders/ItemsOrders";
 import PriceOrders from "../InformationOrders/PriceOrders/PriceOrders";
 import TotalOrders from "../InformationOrders/TotalOrders/TotalOrders";
 import QuantityOrders from "../InformationOrders/QuantityOrders/QuantityOrders";
-import ActionOrders from "../InformationOrders/ActionOrders/ActionOrders";
+import ButtonConfirm from "../InformationOrders/ButtonConfirm/ButtonConfirm";
 import PropTypes from "prop-types";
+import ButtonShipment from "../InformationOrders/ButtonShipment/ButtonShipment";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -32,7 +33,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function TableInfo({ data }) {
+export default function TableInfo({ data, isShowButton }) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -69,8 +70,10 @@ export default function TableInfo({ data }) {
                 <StyledTableCell align="center">
                   <TotalOrders data={item} />
                 </StyledTableCell>
+
                 <StyledTableCell align="center">
-                  <ActionOrders data={item} />
+                  {isShowButton === "1" && <ButtonConfirm data={item} />}
+                  {isShowButton === "2" && <ButtonShipment data={item} />}
                 </StyledTableCell>
               </StyledTableRow>
             );
@@ -82,4 +85,6 @@ export default function TableInfo({ data }) {
 }
 TableInfo.propTypes = {
   data: PropTypes.array,
+  id: PropTypes.array,
+  isShowButton: PropTypes.string,
 };
