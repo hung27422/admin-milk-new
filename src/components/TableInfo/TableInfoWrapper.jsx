@@ -65,6 +65,22 @@ function TableInfoShipment({ shipment, status }) {
   }
   return <p>Không có dữ liệu để hiển thị.</p>;
 }
+function TableInfoComplete({ complete, status }) {
+  if (Array.isArray(status)) {
+    const createdStatusComplete = complete?.filter(
+      (item) => item.status === "DELIVERED"
+    );
+    if (
+      Array.isArray(createdStatusComplete) &&
+      createdStatusComplete.length > 0
+    ) {
+      return (
+        <TableInfo data={createdStatusComplete.map((i) => i.items).flat()} />
+      );
+    }
+  }
+  return <p>Không có dữ liệu để hiển thị.</p>;
+}
 TableInfoUnconfirmed.propTypes = {
   unconfirmed: PropTypes.array,
   status: PropTypes.array,
@@ -77,4 +93,13 @@ TableInfoShipment.propTypes = {
   shipment: PropTypes.array,
   status: PropTypes.array,
 };
-export { TableInfoUnconfirmed, TableInfoConfirmed, TableInfoShipment };
+TableInfoComplete.propTypes = {
+  complete: PropTypes.array,
+  status: PropTypes.array,
+};
+export {
+  TableInfoUnconfirmed,
+  TableInfoConfirmed,
+  TableInfoShipment,
+  TableInfoComplete,
+};
