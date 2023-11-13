@@ -35,7 +35,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function TableInfo({ data, isShowButton }) {
+export default function TableInfo({ isShowButton, results }) {
+  console.log("results", results);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -57,27 +58,29 @@ export default function TableInfo({ data, isShowButton }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data?.map((item) => {
+          {results?.map((items, index) => {
             return (
-              <StyledTableRow key={item.id}>
+              <StyledTableRow key={index}>
                 <StyledTableCell component="th" scope="row">
-                  <ItemOrders data={item} />
+                  <ItemOrders data={items.items} />
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  <PriceOrders data={item} />
+                  <PriceOrders data={items.items} />
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  <QuantityOrders data={item} />
+                  <QuantityOrders data={items.items} />
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  <TotalOrders data={item} />
+                  <TotalOrders data={items.items} />
                 </StyledTableCell>
 
                 <StyledTableCell align="center">
-                  {isShowButton === "1" && <ButtonConfirm data={item} />}
-                  {isShowButton === "2" && <ButtonShipment data={item} />}
-                  {isShowButton === "3" && <ButtonDelivered data={item} />}
-                  {isShowButton === "4" && <ButtonReceived data={item} />}
+                  {isShowButton === "1" && <ButtonConfirm data={items} />}
+                  {isShowButton === "2" && <ButtonShipment data={items} />}
+                  {isShowButton === "3" && <ButtonDelivered data={items} />}
+                  {isShowButton === "4" && (
+                    <ButtonReceived data={items.items} />
+                  )}
                 </StyledTableCell>
               </StyledTableRow>
             );
@@ -91,4 +94,5 @@ TableInfo.propTypes = {
   data: PropTypes.array,
   id: PropTypes.array,
   isShowButton: PropTypes.string,
+  results: PropTypes.array,
 };

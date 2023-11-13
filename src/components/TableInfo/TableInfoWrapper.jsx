@@ -7,14 +7,13 @@ function TableInfoUnconfirmed({ unconfirmed, status }) {
     const createdStatusUnconfirmed = unconfirmed?.filter(
       (item) => item.status === "CREATED"
     );
-
     if (
       Array.isArray(createdStatusUnconfirmed) &&
       createdStatusUnconfirmed.length > 0
     ) {
       return (
         <TableInfo
-          data={createdStatusUnconfirmed.map((i) => i.items).flat()}
+          results={createdStatusUnconfirmed.map((i) => i).flat()}
           isShowButton={"1"}
         />
       );
@@ -36,7 +35,7 @@ function TableInfoConfirmed({ confirmed, status }) {
     ) {
       return (
         <TableInfo
-          data={createdStatusConfirmed.map((i) => i.items).flat()}
+          results={createdStatusConfirmed.map((i) => i).flat()}
           isShowButton={"2"}
         />
       );
@@ -57,7 +56,7 @@ function TableInfoShipment({ shipment, status }) {
     ) {
       return (
         <TableInfo
-          data={createdStatusShipment.map((i) => i.items).flat()}
+          results={createdStatusShipment.map((i) => i).flat()}
           isShowButton={"3"}
         />
       );
@@ -76,7 +75,7 @@ function TableInfoComplete({ complete, status }) {
     ) {
       return (
         <TableInfo
-          data={createdStatusComplete.map((i) => i.items).flat()}
+          results={createdStatusComplete.map((i) => i).flat()}
           isShowButton={"4"}
         />
       );

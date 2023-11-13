@@ -6,11 +6,15 @@ const cx = classNames.bind(styles);
 function TotalOrders({ data }) {
   return (
     <div className={cx("wrapper")}>
-      <h3 className={cx("total-item")}>{data.quantity * data.price} VNĐ</h3>
+      {data?.map((item) => (
+        <h3 key={item?.id} className={cx("total-item")}>
+          {item.quantity * item.price} VNĐ
+        </h3>
+      ))}
     </div>
   );
 }
 TotalOrders.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
 };
 export default TotalOrders;
