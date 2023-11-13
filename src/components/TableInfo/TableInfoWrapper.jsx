@@ -75,7 +75,10 @@ function TableInfoComplete({ complete, status }) {
       createdStatusComplete.length > 0
     ) {
       return (
-        <TableInfo data={createdStatusComplete.map((i) => i.items).flat()} />
+        <TableInfo
+          data={createdStatusComplete.map((i) => i.items).flat()}
+          isShowButton={"4"}
+        />
       );
     }
   }

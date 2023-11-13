@@ -21,6 +21,8 @@ import shipDone from "./images/shipdone.png";
 import evaluate from "./images/evaluate.png";
 import user from "./images/user.png";
 import location from "./images/location.png";
+import desktop from "./images/desktop.png";
+import phone from "./images/phone.png";
 const images = {
   logo,
   menusidebar,
@@ -45,5 +47,7 @@ const images = {
   evaluate,
   location,
   user,
+  desktop,
+  phone,
 };
 export default images;

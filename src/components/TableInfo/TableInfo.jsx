@@ -13,7 +13,8 @@ import QuantityOrders from "../InformationOrders/QuantityOrders/QuantityOrders";
 import ButtonConfirm from "../InformationOrders/ButtonConfirm/ButtonConfirm";
 import PropTypes from "prop-types";
 import ButtonShipment from "../InformationOrders/ButtonShipment/ButtonShipment";
-import ButtonDone from "../InformationOrders/ButtonDone/ButtonDone";
+import ButtonDelivered from "../InformationOrders/ButtonDelivered/ButtonDelivered";
+import ButtonReceived from "../InformationOrders/ButtonReceived/ButtonReceived";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -75,7 +76,8 @@ export default function TableInfo({ data, isShowButton }) {
                 <StyledTableCell align="center">
                   {isShowButton === "1" && <ButtonConfirm data={item} />}
                   {isShowButton === "2" && <ButtonShipment data={item} />}
-                  {isShowButton === "3" && <ButtonDone data={item} />}
+                  {isShowButton === "3" && <ButtonDelivered data={item} />}
+                  {isShowButton === "4" && <ButtonReceived data={item} />}
                 </StyledTableCell>
               </StyledTableRow>
             );

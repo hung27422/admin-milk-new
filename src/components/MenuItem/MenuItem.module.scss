@@ -40,3 +40,47 @@
   font-size: 14px;
   background-color: var(--primary);
 }
+.now {
+  display: flex;
+  align-items: center;
+}
+.icon-desktop {
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+}
+.icon-phone {
+  display: none;
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+}
+@media all and (max-width: 1024px) {
+  .icon-desktop {
+    display: none;
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+  }
+  .icon-phone {
+    display: block;
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+  }
+}
+@media all and (max-width: 768px) {
+  .icon-desktop {
+    display: none;
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+  }
+  .icon-phone {
+    display: block;
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+  }
+}

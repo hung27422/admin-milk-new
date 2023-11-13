@@ -2,7 +2,7 @@ import { client, gql } from "../../../apollo";
 import Button from "../../Button/Button";
 import PropTypes from "prop-types";
 
-function ButtonDone({ data }) {
+function ButtonDelivered({ data }) {
   const UPDATE_ORDER = gql`
     mutation UpdateOrder($updateOrderId: Int!, $input: orderUpdateOrderInput!) {
       updateOrder(id: $updateOrderId, input: $input) {
@@ -42,11 +42,11 @@ function ButtonDone({ data }) {
   };
   return (
     <Button action onClick={handleComplete}>
-      Thành công
+      Đã giao
     </Button>
   );
 }
-ButtonDone.propTypes = {
+ButtonDelivered.propTypes = {
   data: PropTypes.object,
 };
-export default ButtonDone;
+export default ButtonDelivered;
