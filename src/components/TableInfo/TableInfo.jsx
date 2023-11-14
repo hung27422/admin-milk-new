@@ -42,7 +42,7 @@ export default function TableInfo({ isShowButton, results }) {
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell width={"30%"}>Items</StyledTableCell>
+            <StyledTableCell width={"30%"}>ID User</StyledTableCell>
             <StyledTableCell width={"20%"} align="center">
               Price
             </StyledTableCell>
