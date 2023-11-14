@@ -1,18 +1,23 @@
-import Dashboard from "../pages/Dashboard/Dashboard";
-import AdminOrders from "../pages/AdminOrders/AdminOrders";
-import AdminProduct from "../pages/AdminProducts/AdminProduct";
+import Dashboard from '../pages/Dashboard/Dashboard';
+import AdminOrders from '../pages/AdminOrders/AdminOrders';
+import AdminProduct from '../pages/AdminProducts/AdminProduct';
+import AdminUser from '../pages/AdminUsers/AdminUser';
 const publicRouter = [
   {
-    path: "/",
+    path: '/',
     component: Dashboard,
   },
   {
-    path: "/AdminOrders",
+    path: '/AdminOrders',
     component: AdminOrders,
   },
   {
-    path: "/AdminProduct",
+    path: '/AdminProducts',
     component: AdminProduct,
+  },
+  {
+    path: '/AdminUsers',
+    component: AdminUser,
   },
 ];
 export { publicRouter };
