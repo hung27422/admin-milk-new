@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { TableInfoComplete } from "../../../components/TableInfo/TableInfoWrapper";
+import { TableInfoComplete } from "../../../components/TableInfoOrders/TableInfoOrdersWrapper";
 import { useEffect } from "react";
 
 function CompleteOrders() {

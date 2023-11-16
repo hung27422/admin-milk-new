@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { TableInfoShipment } from "../../../components/TableInfo/TableInfoWrapper";
+import { TableInfoShipment } from "../../../components/TableInfoOrders/TableInfoOrdersWrapper";
 import { useEffect } from "react";
 // import { useEffect } from "react";
 function Shipment() {

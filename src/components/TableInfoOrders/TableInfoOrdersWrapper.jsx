@@ -1,4 +1,4 @@
-import TableInfo from "./TableInfo";
+import TableInfo from "./TableInfoOrders";
 import PropTypes from "prop-types";
 
 //Chưa xác nhận

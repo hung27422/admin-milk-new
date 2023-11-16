@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { TableInfoConfirmed } from "../../../components/TableInfo/TableInfoWrapper";
+import { TableInfoConfirmed } from "../../../components/TableInfoOrders/TableInfoOrdersWrapper";
 import { useEffect } from "react";
 
 function Confirmed() {

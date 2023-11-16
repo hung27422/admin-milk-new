@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { TableInfoUnconfirmed } from "../../../components/TableInfo/TableInfoWrapper";
+import { TableInfoUnconfirmed } from "../../../components/TableInfoOrders/TableInfoOrdersWrapper";
 import { useEffect } from "react";
 // import { useEffect } from "react";
 // import { useEffect } from "react";
