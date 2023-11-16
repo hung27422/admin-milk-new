@@ -12,6 +12,8 @@ import ItemProducts from "../../pages/AdminProducts/ItemProducts/ItemProducts";
 import PriceProducts from "../../pages/AdminProducts/PriceProducts/PriceProducts";
 import SkuProducts from "../../pages/AdminProducts/SkuProducts/SkuProducts";
 import CategoryProducts from "../../pages/AdminProducts/CategoryProducts/CategoryProducts";
+import ButtonDeleteProduct from "../../pages/AdminProducts/ButtonDeleteProduct/ButtonDeleteProduct";
+import ButtonUpdateProduct from "../../pages/AdminProducts/ButtonUpdateProduct/ButtonUpdateProduct";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -40,10 +42,10 @@ export default function TableInfoProduct({ data }) {
         <TableHead>
           <TableRow>
             <StyledTableCell width={"10%"}>ID</StyledTableCell>
-            <StyledTableCell width={"40%"} align="center">
+            <StyledTableCell width={"25%"} align="center">
               Items
             </StyledTableCell>
-            <StyledTableCell width={"20%"} align="center">
+            <StyledTableCell width={"15%"} align="center">
               Price
             </StyledTableCell>
             <StyledTableCell width={"15%"} align="center">
@@ -51,6 +53,9 @@ export default function TableInfoProduct({ data }) {
             </StyledTableCell>
             <StyledTableCell width={"15%"} align="center">
               Category
+            </StyledTableCell>
+            <StyledTableCell width={"20%"} align="center">
+              Action
             </StyledTableCell>
           </TableRow>
         </TableHead>
@@ -61,10 +66,10 @@ export default function TableInfoProduct({ data }) {
                 <StyledTableCell width={"10%"} component="th" scope="row">
                   <IDProduct data={item} />
                 </StyledTableCell>
-                <StyledTableCell width={"40%"} align="center">
+                <StyledTableCell width={"25%"} align="center">
                   <ItemProducts data={item} />
                 </StyledTableCell>
-                <StyledTableCell width={"20%"} align="center">
+                <StyledTableCell width={"15%"} align="center">
                   <PriceProducts data={item} />
                 </StyledTableCell>
                 <StyledTableCell width={"15%"} align="center">
@@ -72,6 +77,10 @@ export default function TableInfoProduct({ data }) {
                 </StyledTableCell>
                 <StyledTableCell width={"15%"} align="center">
                   <CategoryProducts data={item} />
+                </StyledTableCell>
+                <StyledTableCell width={"20%"} align="center">
+                  <ButtonUpdateProduct />
+                  <ButtonDeleteProduct />
                 </StyledTableCell>
               </StyledTableRow>
             );
