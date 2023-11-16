@@ -1,22 +1,22 @@
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import ItemOrders from '../InformationOrders/ItemsOrders/ItemsOrders';
-import PriceOrders from '../InformationOrders/PriceOrders/PriceOrders';
-import TotalOrders from '../InformationOrders/TotalOrders/TotalOrders';
-import QuantityOrders from '../InformationOrders/QuantityOrders/QuantityOrders';
-import ButtonConfirm from '../InformationOrders/ButtonConfirm/ButtonConfirm';
-import PropTypes from 'prop-types';
-import ButtonShipment from '../InformationOrders/ButtonShipment/ButtonShipment';
-import ButtonDelivered from '../InformationOrders/ButtonDelivered/ButtonDelivered';
-import ButtonReceived from '../InformationOrders/ButtonReceived/ButtonReceived';
-import { TablePagination } from '@mui/material';
-import React from 'react';
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import ButtonConfirm from "../InformationOrders/ButtonConfirm/ButtonConfirm";
+import PropTypes from "prop-types";
+import ButtonShipment from "../InformationOrders/ButtonShipment/ButtonShipment";
+import ButtonDelivered from "../InformationOrders/ButtonDelivered/ButtonDelivered";
+import ButtonReceived from "../InformationOrders/ButtonReceived/ButtonReceived";
+import { TablePagination } from "@mui/material";
+import React from "react";
+import IDUserOrders from "../InformationOrders/IDUserOrders/IDUserOrders";
+import NameUerOrders from "../InformationOrders/NameUerOrders/NameUerOrders";
+import PhoneUserOrders from "../InformationOrders/PhoneUserOrders/PhoneUserOrders";
+import AddressUserOrders from "../InformationOrders/AddressUserOrders/AddressUserOrders";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -28,11 +28,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
+  "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
   // hide last border
-  '&:last-child td, &:last-child th': {
+  "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
@@ -49,24 +49,24 @@ export default function TableInfo({ isShowButton, results }) {
     setPage(0);
   };
 
-  console.log('results', results);
+  console.log("results", results);
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+    <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <TableContainer sx={{ maxHeight: 800 }}>
         <Table sx={{ minWidth: 700 }} stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <StyledTableCell width={'30%'}>Items</StyledTableCell>
-              <StyledTableCell width={'20%'} align="center">
-                Price
+              <StyledTableCell width={"15%"}>ID USER</StyledTableCell>
+              <StyledTableCell width={"20%"} align="center">
+                NAME
               </StyledTableCell>
-              <StyledTableCell width={'15%'} align="center">
-                Quantity
+              <StyledTableCell width={"15%"} align="center">
+                PHONE NUMBER
               </StyledTableCell>
-              <StyledTableCell width={'15%'} align="center">
-                Total
+              <StyledTableCell width={"25%"} align="center">
+                Address
               </StyledTableCell>
-              <StyledTableCell width={'20%'} align="center">
+              <StyledTableCell width={"25%"} align="center">
                 Action
               </StyledTableCell>
             </TableRow>
@@ -78,23 +78,23 @@ export default function TableInfo({ isShowButton, results }) {
                 return (
                   <StyledTableRow key={index}>
                     <StyledTableCell component="th" scope="row">
-                      <ItemOrders data={items.items} />
+                      <IDUserOrders data={items} />
                     </StyledTableCell>
                     <StyledTableCell align="center">
-                      <PriceOrders data={items.items} />
+                      <NameUerOrders data={items} />
                     </StyledTableCell>
                     <StyledTableCell align="center">
-                      <QuantityOrders data={items.items} />
+                      <PhoneUserOrders data={items} />
                     </StyledTableCell>
                     <StyledTableCell align="center">
-                      <TotalOrders data={items.items} />
+                      <AddressUserOrders data={items} />
                     </StyledTableCell>
 
                     <StyledTableCell align="center">
-                      {isShowButton === '1' && <ButtonConfirm data={items} />}
-                      {isShowButton === '2' && <ButtonShipment data={items} />}
-                      {isShowButton === '3' && <ButtonDelivered data={items} />}
-                      {isShowButton === '4' && (
+                      {isShowButton === "1" && <ButtonConfirm data={items} />}
+                      {isShowButton === "2" && <ButtonShipment data={items} />}
+                      {isShowButton === "3" && <ButtonDelivered data={items} />}
+                      {isShowButton === "4" && (
                         <ButtonReceived data={items.items} />
                       )}
                     </StyledTableCell>

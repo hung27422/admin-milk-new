@@ -4,7 +4,7 @@ import { useEffect } from "react";
 // import { useEffect } from "react";
 // import { useEffect } from "react";
 function Unconfirmed() {
-  const { data } = useQuery(
+  const { data, error } = useQuery(
     gql`
       query Orders($amount: Int!, $page: Int!) {
         orders(amount: $amount, page: $page) {
@@ -34,14 +34,18 @@ function Unconfirmed() {
       variables: { amount: 50, page: 1 },
       context: {
         headers: {
-          authorization: `Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiI0MzgxMzVlOC1lNDgwLTQ5NGQtOTRhNy1kNWJkY2ZkMDdlNmUiLCJuYW1lIjoiTWFjIiwianRpIjoiNDM4MTM1RTgtRTQ4MC00OTRELTk0QTctRDVCRENGRDA3RTZFIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3MDAxMjIwNzYsImlzcyI6IklmV2hhdCIsImF1ZCI6IklmV2hhdENsaWVudCJ9.CrLN44kEsNkqYTm61eiB6lhgz4jHzjgOI_irWGAY-M7hiVibCc7RU8TJ6ub0ZEK3SpMwkUxpavOFzTj4CyXA8A`,
+          authorization: `Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiI0MzgxMzVlOC1lNDgwLTQ5NGQtOTRhNy1kNWJkY2ZkMDdlNmUiLCJuYW1lIjoiTWFjIiwianRpIjoiNDM4MTM1RTgtRTQ4MC00OTRELTk0QTctRDVCRENGRDA3RTZFIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3MDAzODY1MDYsImlzcyI6IklmV2hhdCIsImF1ZCI6IklmV2hhdENsaWVudCJ9.JKWzPcwZIjmehF8A-7QuaVE_hOhP_WkwRTIUXFpHE_vVqQZNzhPYwbynRy1DqbfQPo9BDYwP0fbHbYIsIPnYkg`,
         },
       },
     }
   );
   useEffect(() => {
-    console.log("Chưa xác nhận", data?.orders);
-  }, [data]);
+    if (error) {
+      console.log("Lỗi", error);
+    } else if (data) {
+      console.log("Chưa xác nhận", data?.orders);
+    }
+  }, [data, error]);
   return (
     <div>
       <h2>Unconfirmed</h2>
