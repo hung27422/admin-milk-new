@@ -1,8 +1,12 @@
 .wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 300px;
   height: 100vh;
   background-color: var(--white);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  z-index: 99;
 }
 .logo {
   text-align: center;
