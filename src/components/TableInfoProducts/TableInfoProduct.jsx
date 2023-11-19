@@ -12,8 +12,8 @@ import ItemProducts from "../../pages/AdminProducts/ItemProducts/ItemProducts";
 import PriceProducts from "../../pages/AdminProducts/PriceProducts/PriceProducts";
 import SkuProducts from "../../pages/AdminProducts/SkuProducts/SkuProducts";
 import CategoryProducts from "../../pages/AdminProducts/CategoryProducts/CategoryProducts";
-import ButtonDeleteProduct from "../../pages/AdminProducts/ButtonDeleteProduct/ButtonDeleteProduct";
-import ButtonUpdateProduct from "../../pages/AdminProducts/ButtonUpdateProduct/ButtonUpdateProduct";
+import ButtonDeleteProduct from "../../pages/AdminProducts/ButtonActions/ButtonDeleteProduct/ButtonDeleteProduct";
+import ButtonUpdateProduct from "../../pages/AdminProducts/ButtonActions/ButtonUpdateProduct/ButtonUpdateProduct";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -35,7 +35,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function TableInfoProduct({ data }) {
-  console.log(data);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -79,8 +78,16 @@ export default function TableInfoProduct({ data }) {
                   <CategoryProducts data={item} />
                 </StyledTableCell>
                 <StyledTableCell width={"20%"} align="center">
-                  <ButtonUpdateProduct />
-                  <ButtonDeleteProduct />
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-around",
+                    }}
+                  >
+                    <ButtonUpdateProduct data={item} />
+                    <ButtonDeleteProduct data={item} />
+                  </div>
                 </StyledTableCell>
               </StyledTableRow>
             );

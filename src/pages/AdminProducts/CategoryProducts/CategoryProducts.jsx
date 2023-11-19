@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import UseCategory from "../../../hooks/useQuerryCategory";
 function CategoryProducts({ data }) {
   const [category, error] = UseCategory();
-  console.log(category);
   if (error) {
     console.log("Lỗi query category: ", error);
   }
@@ -14,8 +13,7 @@ function CategoryProducts({ data }) {
             color: "var(--text-color)",
             fontFamily: "var(--font-primary)",
             fontSize: "18px",
-            fontWeight:"600"
-
+            fontWeight: "600",
           }}
         >
           {category?.category?.name}
