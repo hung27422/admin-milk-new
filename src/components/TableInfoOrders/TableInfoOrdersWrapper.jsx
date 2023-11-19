@@ -64,7 +64,7 @@ function TableInfoShipment({ shipment, status }) {
   }
   return <p>Không có dữ liệu để hiển thị.</p>;
 }
-function TableInfoComplete({ complete, status }) {
+function TableInfoDelivered({ complete, status }) {
   if (Array.isArray(status)) {
     const createdStatusComplete = complete?.filter(
       (item) => item.status === "DELIVERED"
@@ -77,6 +77,25 @@ function TableInfoComplete({ complete, status }) {
         <TableInfo
           results={createdStatusComplete.map((i) => i).flat()}
           isShowButton={"4"}
+        />
+      );
+    }
+  }
+  return <p>Không có dữ liệu để hiển thị.</p>;
+}
+function TableInfoComplete({ complete, status }) {
+  if (Array.isArray(status)) {
+    const createdStatusComplete = complete?.filter(
+      (item) => item.status === "DONE"
+    );
+    if (
+      Array.isArray(createdStatusComplete) &&
+      createdStatusComplete.length > 0
+    ) {
+      return (
+        <TableInfo
+          results={createdStatusComplete.map((i) => i).flat()}
+          isShowButton={"5"}
         />
       );
     }
@@ -96,6 +115,10 @@ TableInfoShipment.propTypes = {
   shipment: PropTypes.array,
   status: PropTypes.array,
 };
+TableInfoDelivered.propTypes = {
+  complete: PropTypes.array,
+  status: PropTypes.array,
+};
 TableInfoComplete.propTypes = {
   complete: PropTypes.array,
   status: PropTypes.array,
@@ -105,4 +128,5 @@ export {
   TableInfoConfirmed,
   TableInfoShipment,
   TableInfoComplete,
+  TableInfoDelivered,
 };

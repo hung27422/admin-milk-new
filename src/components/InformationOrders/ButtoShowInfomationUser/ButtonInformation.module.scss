@@ -16,8 +16,16 @@
 .box-product {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 12px 0;
   border: 1px solid #ccc;
+  margin-bottom: 8px;
+  padding: 0 12px;
+}
+.box-info-product {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
   margin-bottom: 8px;
 }
 .img-product {
@@ -50,5 +58,10 @@
   text-align: right;
   font-size: 25px;
   font-weight: 700;
+  color: var(--text-color);
+}
+.id-item {
+  font-size: 20px;
+  font-weight: 600;
   color: var(--text-color);
 }

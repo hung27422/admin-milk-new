@@ -8,15 +8,13 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import ButtonConfirm from "../InformationOrders/ButtonConfirm/ButtonConfirm";
 import PropTypes from "prop-types";
-import ButtonShipment from "../InformationOrders/ButtonShipment/ButtonShipment";
-import ButtonDelivered from "../InformationOrders/ButtonDelivered/ButtonDelivered";
-import ButtonReceived from "../InformationOrders/ButtonReceived/ButtonReceived";
 import { TablePagination } from "@mui/material";
 import React from "react";
 import IDUserOrders from "../InformationOrders/IDUserOrders/IDUserOrders";
 import NameUerOrders from "../InformationOrders/NameUerOrders/NameUerOrders";
 import PhoneUserOrders from "../InformationOrders/PhoneUserOrders/PhoneUserOrders";
 import AddressUserOrders from "../InformationOrders/AddressUserOrders/AddressUserOrders";
+import ButtonInformation from "../InformationOrders/ButtoShowInfomationUser/ButtonInformation";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -91,11 +89,10 @@ export default function TableInfo({ isShowButton, results }) {
                     </StyledTableCell>
 
                     <StyledTableCell align="center">
-                      {isShowButton === "1" && <ButtonConfirm data={items} />}
-                      {isShowButton === "2" && <ButtonShipment data={items} />}
-                      {isShowButton === "3" && <ButtonDelivered data={items} />}
-                      {isShowButton === "4" && (
-                        <ButtonReceived data={items.items} />
+                      {isShowButton === "1" ? (
+                        <ButtonConfirm data={items} />
+                      ) : (
+                        <ButtonInformation data={items} />
                       )}
                     </StyledTableCell>
                   </StyledTableRow>

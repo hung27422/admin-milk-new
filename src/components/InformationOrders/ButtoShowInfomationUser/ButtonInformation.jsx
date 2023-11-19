@@ -53,20 +53,31 @@ export default function ButtonInformation({ data }) {
             {data?.status === "SHIPPING" && (
               <h3 className={cx("status")}>Đang giao</h3>
             )}
+            {data?.status === "DELIVERED" && (
+              <h3 className={cx("status")}>Đã giao</h3>
+            )}
+            {data?.status === "DONE" && (
+              <h3 className={cx("status")}>Hoàn thành</h3>
+            )}
           </div>
           {data?.items?.map((item, i) => (
             <div key={item?.id + i} className={cx("box-product")}>
-              <img
-                className={cx("img-product")}
-                src="https://www.thmilk.vn/wp-content/uploads/2019/11/UHT-180-socola-800x800-2-1.png"
-                alt=""
-              />
-              <div className={cx("info-product")}>
-                <span className={cx("name-product")}>{item?.name}</span>
-                <span className={cx("quantity-product")}>
-                  x {item?.quantity}
-                </span>
-                <span className={cx("price-product")}>{item?.price} VNĐ</span>
+              <div className={cx("box-info-product")}>
+                <img
+                  className={cx("img-product")}
+                  src="https://www.thmilk.vn/wp-content/uploads/2019/11/UHT-180-socola-800x800-2-1.png"
+                  alt=""
+                />
+                <div className={cx("info-product")}>
+                  <span className={cx("name-product")}>{item?.name}</span>
+                  <span className={cx("quantity-product")}>
+                    x {item?.quantity}
+                  </span>
+                  <span className={cx("price-product")}>{item?.price} VNĐ</span>
+                </div>
+              </div>
+              <div className={cx("id-item")}>
+                <span>Mã đơn hàng: {item?.id}</span>
               </div>
             </div>
           ))}

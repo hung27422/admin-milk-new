@@ -5,7 +5,8 @@ import { useState } from "react";
 import Unconfirmed from "./Unconfirmed/Unconfirmed";
 import Confirmed from "./Confirmed/Confirmed";
 import Shipment from "./Shipment/Shipment";
-import Complete from "./CompleteOrders/CompleteOrders";
+import CompleteOrders from "./CompleteOrders/CompleteOrders";
+import DeliveredOrders from "./DeliveredOrders/DeliveredOrders";
 const cx = classNames.bind(styles);
 function AdminOrders() {
   const [activeId, setActiveId] = useState("1");
@@ -37,6 +38,12 @@ function AdminOrders() {
         <MenuAdminOrder
           id={"4"}
           active={activeId}
+          title={"Đã giao"}
+          onClick={(e) => handleActivePage(e.currentTarget.id)}
+        />
+        <MenuAdminOrder
+          id={"5"}
+          active={activeId}
           title={"Hoàn thành"}
           onClick={(e) => handleActivePage(e.currentTarget.id)}
         />
@@ -45,7 +52,8 @@ function AdminOrders() {
         {activeId === "1" && <Unconfirmed />}
         {activeId === "2" && <Confirmed />}
         {activeId === "3" && <Shipment />}
-        {activeId === "4" && <Complete />}
+        {activeId === "4" && <DeliveredOrders />}
+        {activeId === "5" && <CompleteOrders />}
       </div>
     </div>
   );
