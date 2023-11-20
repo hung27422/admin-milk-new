@@ -8,6 +8,9 @@ function App() {
         <Routes>
           {publicRouter.map((router, index) => {
             let Layout = DefaultLayout;
+            if (router.layout) {
+              Layout = router.layout;
+            }
             let Page = router.component;
             return (
               <Route
