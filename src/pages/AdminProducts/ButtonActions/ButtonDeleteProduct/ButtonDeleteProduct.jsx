@@ -4,6 +4,8 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { gql, useMutation } from "@apollo/client";
 import PropTypes from "prop-types";
+import UseQueryProduct from "../../../../hooks/useQuerryProduct";
+// import UseQueryProduct from "../../../../hooks/useQuerryProduct";
 const style = {
   position: "absolute",
   top: "50%",
@@ -27,6 +29,8 @@ const DELETE_PRODUCT = gql`
 export default function ButtonDeleteProduct({ data }) {
   const [open, setOpen] = React.useState(false);
   const [deleteProduct, { error }] = useMutation(DELETE_PRODUCT);
+  const [refetch] = UseQueryProduct();
+
   if (error) console.log("Lỗi xóa product: ", error);
 
   const handleDeleteProduct = async () => {
@@ -47,6 +51,7 @@ export default function ButtonDeleteProduct({ data }) {
     });
     console.log("Xóa product thành công: ", result);
     setOpen(false);
+    refetch;
   };
   return (
     <div>

@@ -47,7 +47,6 @@ export default function TableInfo({ isShowButton, results }) {
     setPage(0);
   };
 
-  console.log("results", results);
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <TableContainer sx={{ maxHeight: 800 }}>

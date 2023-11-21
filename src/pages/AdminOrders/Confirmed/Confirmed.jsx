@@ -1,6 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
 import { TableInfoConfirmed } from "../../../components/TableInfoOrders/TableInfoOrdersWrapper";
-import { useEffect } from "react";
 
 function Confirmed() {
   const { data } = useQuery(
@@ -38,9 +37,9 @@ function Confirmed() {
       },
     }
   );
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  // useEffect(() => {
+  //   console.log(data);
+  // }, [data]);
   return (
     <div>
       <h2>Confirmed</h2>

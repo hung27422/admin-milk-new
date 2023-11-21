@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import images from "../../../assets/Images/Image";
 import MenuItem from "../../../components/MenuItem/MenuItem";
 import styles from "./Sidebar.module.scss";
@@ -8,9 +8,7 @@ import { AdminMilkContext } from "../../../components/AdminContextMilk/AdminCont
 const cx = classNames.bind(styles);
 function Sidebar() {
   const { roleName } = useContext(AdminMilkContext);
-  // useEffect(() => {
-  //   console.log(roleName);
-  // });
+
   return (
     <div className={cx("wrapper")}>
       <div className={cx("logo")}>

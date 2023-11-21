@@ -2,23 +2,17 @@ import TableInfoProduct from "../../components/TableInfoProducts/TableInfoProduc
 import classNames from "classnames/bind";
 import styles from "./AdminProduct.module.scss";
 import UseQueryProduct from "../../hooks/useQuerryProduct";
-import { useEffect } from "react";
+
 import { TextField } from "@mui/material";
 import ButtonAddProduct from "./ButtonActions/ButtonAddProduct/ButtonAddProduct";
 
 const cx = classNames.bind(styles);
 function AdminProduct() {
-  const [data, error, refetch] = UseQueryProduct();
+  const [data, error] = UseQueryProduct();
   if (error) {
-    console.log(error);
+    console.log("Lỗi ở useQuerryProduct", error);
   }
-  useEffect(() => {
-    setInterval(() => {
-      refetch();
-    }, [5000]);
-    return () => clearInterval();
-  });
-  // console.log("UseQueryProduct", data);
+
   return (
     <div className={cx("wrapper")}>
       <h2 className={cx("title")}>Information Product</h2>

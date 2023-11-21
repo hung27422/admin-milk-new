@@ -22,7 +22,8 @@ function UseQueryProduct() {
       },
     }
   );
-  return [data, error, refetch];
+
+  return [data, error, refetch()];
 }
 
 export default UseQueryProduct;

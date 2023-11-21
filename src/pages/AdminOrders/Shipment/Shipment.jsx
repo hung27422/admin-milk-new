@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { TableInfoShipment } from "../../../components/TableInfoOrders/TableInfoOrdersWrapper";
-import { useEffect } from "react";
+
 // import { useEffect } from "react";
 function Shipment() {
   const { data } = useQuery(
@@ -38,9 +38,9 @@ function Shipment() {
       },
     }
   );
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  // useEffect(() => {
+  //   console.log(data);
+  // }, [data]);
   return (
     <div>
       <h2>Shipment</h2>
