@@ -1,5 +1,14 @@
+import { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import { AdminMilkContext } from "../../components/AdminContextMilk/AdminContextMilk";
+
 function Dashboard() {
-  return <h2>Dashboard</h2>;
+  const { roleName } = useContext(AdminMilkContext);
+  if (roleName?.name === "nvbh")
+    return <Navigate to="/AdminOrders" replace={true} />;
+  else {
+    return <div className="">Dashboard</div>;
+  }
 }
 
 export default Dashboard;

@@ -12,8 +12,8 @@
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  width: 500px;
-  height: 260px;
+  width: 400px;
+  height: 100px;
   .input-value {
     margin-bottom: 15px;
   }
@@ -28,5 +28,7 @@
   text-align: center;
 }
 .btn-login {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

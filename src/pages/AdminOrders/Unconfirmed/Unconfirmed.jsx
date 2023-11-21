@@ -1,8 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { TableInfoUnconfirmed } from "../../../components/TableInfoOrders/TableInfoOrdersWrapper";
-import { useEffect } from "react";
-// import { useEffect } from "react";
-// import { useEffect } from "react";
+
 function Unconfirmed() {
   const { data, error } = useQuery(
     gql`
@@ -39,13 +37,7 @@ function Unconfirmed() {
       },
     }
   );
-  useEffect(() => {
-    if (error) {
-      console.log("Lỗi", error);
-    } else if (data) {
-      console.log("Chưa xác nhận", data?.orders);
-    }
-  }, [data, error]);
+  if (error) console.log(error);
   return (
     <div>
       <h2>Unconfirmed</h2>

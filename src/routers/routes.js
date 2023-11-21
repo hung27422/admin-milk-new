@@ -7,6 +7,11 @@ import LayoutLogin from "../layouts/LayoutLogin/LayoutLogin";
 const publicRouter = [
   {
     path: "/",
+    component: LoginAdmin,
+    layout: LayoutLogin,
+  },
+  {
+    path: "/DashboardAdmin",
     component: Dashboard,
   },
   {
@@ -20,11 +25,6 @@ const publicRouter = [
   {
     path: "/AdminUsers",
     component: AdminUser,
-  },
-  {
-    path: "/LoginAdmin",
-    component: LoginAdmin,
-    layout: LayoutLogin,
   },
 ];
 export { publicRouter };
