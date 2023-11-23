@@ -3,6 +3,7 @@ import styles from "./ActionOrders.module.scss";
 import Button from "../../Button/Button";
 import PropTypes from "prop-types";
 import { gql, useMutation } from "@apollo/client";
+import ButtonInformation from "../ButtoShowInfomationUser/ButtonInformation";
 // import { client } from "../../../apollo";
 const cx = classNames.bind(styles);
 function ButtonConfirm({ data }) {
@@ -37,7 +38,7 @@ function ButtonConfirm({ data }) {
         const result = update_order({
           context: {
             headers: {
-              authorization: `Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiI0MzgxMzVlOC1lNDgwLTQ5NGQtOTRhNy1kNWJkY2ZkMDdlNmUiLCJuYW1lIjoiTWFjIiwianRpIjoiNDM4MTM1RTgtRTQ4MC00OTRELTk0QTctRDVCRENGRDA3RTZFIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE3MDAxMjQ3NDIsImlzcyI6IklmV2hhdCIsImF1ZCI6IklmV2hhdENsaWVudCJ9.Xy4STsZ2DtBb0qhBG7FaCwHh8poBtPiMoDQsaBN9PJUPbDTYD7hrRASDlHVxSpQ4KKyMGFZA3AY2k-fWxZrOag`,
+              authorization: `Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiI5ZmFkYWI2Ni02YzlmLTQ3MzgtOTU1NC04OTUwYTg2Mzg5ODEiLCJuYW1lIjoiYWRtaW4iLCJqdGkiOiI5RkFEQUI2Ni02QzlGLTQ3MzgtOTU1NC04OTUwQTg2Mzg5ODEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTcwMDczODA5NiwiaXNzIjoiSWZXaGF0IiwiYXVkIjoiSWZXaGF0Q2xpZW50In0._JL6OR_9ll0F34MzHyLU64TMpBIQkwrXZpviB96qeiQjqn4xpINoDVffawc7KvWfculfcW_fHiGV4tJRIkgL8g`,
             },
           },
           variables: {
@@ -53,6 +54,7 @@ function ButtonConfirm({ data }) {
   };
   return (
     <div className={cx("wrapper")}>
+      <ButtonInformation data={data} />
       <Button action onClick={handleUpdateOrder}>
         Xác nhận
       </Button>

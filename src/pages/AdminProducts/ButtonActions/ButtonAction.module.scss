@@ -1,0 +1,27 @@
+.title {
+  font-size: 25px;
+  color: var(--text-color);
+  margin-bottom: 20px;
+  text-align: center;
+}
+.form-input {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: center;
+  label {
+    padding: 0 10px;
+    margin-bottom: 20px;
+    input {
+      width: 350px;
+    }
+  }
+}
+.btn-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  Button {
+    width: 200px;
+    margin: 0 10px;
+  }
+}
