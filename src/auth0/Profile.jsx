@@ -10,6 +10,7 @@ import useGetUserRoles from "../hooks/useGetUserRoles";
 
 import { useEffect } from "react";
 import { AdminMilkContext } from "../components/AdminContextMilk/AdminContextMilk";
+import { NavLink } from "react-router-dom";
 const cx = classNames.bind(styles);
 
 const HtmlTooltip = styled(({ className, ...props }) => (
@@ -29,7 +30,7 @@ const HtmlTooltip = styled(({ className, ...props }) => (
 export default function Profile() {
   const { user, logout } = useAuth0();
   const { fetchRoles } = useGetUserRoles();
-  const { roleName, setRoleName } = React.useContext(AdminMilkContext);
+  const { setRoleName } = React.useContext(AdminMilkContext);
 
   const logoutWithRedirect = () =>
     logout({
@@ -45,25 +46,24 @@ export default function Profile() {
       if (!result) {
         return;
       }
-      // console.log(result);
       result?.map((item) => {
         return setRoleName(item);
       });
     });
   }, [user]);
-  const handleLogRole = () => {
-    console.log(roleName?.name);
-  };
+
   return (
     <div>
       <HtmlTooltip
         title={
           <React.Fragment>
             <div className={cx("box-item")}>
-              <div onClick={handleLogout}>Logout</div>
+              <NavLink to={"/PageInfoUser"} className={cx("account")}>
+                Tài khoản của tôi
+              </NavLink>
             </div>
-            <div>
-              <div onClick={handleLogRole}>Log</div>
+            <div className={cx("box-item")}>
+              <div onClick={handleLogout}>Logout</div>
             </div>
           </React.Fragment>
         }

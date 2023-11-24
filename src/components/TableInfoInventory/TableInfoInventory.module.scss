@@ -1,0 +1,33 @@
+.info-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+// .id-product {
+//   width: 100%;
+//   text-align: center;
+// }
+.img-item {
+  width: 90px;
+  height: 80px;
+}
+.name-item {
+  font-size: 18px;
+  color: var(--text-color);
+  margin-left: 12px;
+}
+.form-input {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.title {
+  font-size: 25px;
+  color: var(--text-color);
+  margin-bottom: 20px;
+  text-align: center;
+}
+.input-value {
+  width: 300px;
+  margin-bottom: 12px;
+}

@@ -9,6 +9,7 @@ import classNames from "classnames/bind";
 import styles from "../ButtonAction.module.scss";
 import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
+import UseQueryProduct from "../../../../hooks/useQuerryProduct";
 const cx = classNames.bind(styles);
 
 const style = {
@@ -24,12 +25,11 @@ const style = {
 };
 const UPDATE_PRODUCT = gql`
   mutation UpdateProduct(
-    $input: productUpdateProductInput!
     $updateProductId: Int!
+    $input: productUpdateProductInput!
   ) {
-    updateProduct(input: $input, id: $updateProductId) {
+    updateProduct(id: $updateProductId, input: $input) {
       productUpdatedPayload {
-        apiToken
         message
       }
     }
@@ -38,6 +38,7 @@ const UPDATE_PRODUCT = gql`
 export default function ButtonUpdateProduct({ data }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = useState({});
+  const { refetch } = UseQueryProduct();
   const [updateProduct, { error }] = useMutation(UPDATE_PRODUCT);
   if (error) console.log(error);
   const handleValueInput = (id, value) => {
@@ -61,7 +62,7 @@ export default function ButtonUpdateProduct({ data }) {
     const result = await updateProduct({
       context: {
         headers: {
-          authorization: `Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiI5ZmFkYWI2Ni02YzlmLTQ3MzgtOTU1NC04OTUwYTg2Mzg5ODEiLCJuYW1lIjoiYWRtaW4iLCJqdGkiOiI5RkFEQUI2Ni02QzlGLTQ3MzgtOTU1NC04OTUwQTg2Mzg5ODEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTcwMDczODA5NiwiaXNzIjoiSWZXaGF0IiwiYXVkIjoiSWZXaGF0Q2xpZW50In0._JL6OR_9ll0F34MzHyLU64TMpBIQkwrXZpviB96qeiQjqn4xpINoDVffawc7KvWfculfcW_fHiGV4tJRIkgL8g`,
+          authorization: `Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiI3MWE5NTM0NS03YmYwLTQwMDYtYjBhNi05YmYwODdiZTA4Y2YiLCJuYW1lIjoiSOG7kyBU4bqlbiBIw7luZyIsImp0aSI6IjcxQTk1MzQ1LTdCRjAtNDAwNi1CMEE2LTlCRjA4N0JFMDhDRiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzAxMDU0NjMxLCJpc3MiOiJJZldoYXQiLCJhdWQiOiJJZldoYXRDbGllbnQifQ.b8bvU_whCazN5PktrXMXiitOD-ggE7bXqB7xag_7E2QwNP2qnk_fv9eTSCVmEUY1EiyNlNcXMsjm8QSA74Hr0g`,
         },
       },
       variables: {
@@ -71,6 +72,7 @@ export default function ButtonUpdateProduct({ data }) {
     });
     console.log("Cập nhật product thành công: ", result);
     setOpen(false);
+    refetch;
   };
   return (
     <div>

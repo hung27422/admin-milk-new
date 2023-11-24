@@ -14,6 +14,9 @@ import SkuProducts from "../../pages/AdminProducts/SkuProducts/SkuProducts";
 import CategoryProducts from "../../pages/AdminProducts/CategoryProducts/CategoryProducts";
 import ButtonDeleteProduct from "../../pages/AdminProducts/ButtonActions/ButtonDeleteProduct/ButtonDeleteProduct";
 import ButtonUpdateProduct from "../../pages/AdminProducts/ButtonActions/ButtonUpdateProduct/ButtonUpdateProduct";
+import ButtonAddInventory from "../TableInfoInventory/ButtonAddInventory/ButtonAddInventory";
+import { useContext } from "react";
+import { AdminMilkContext } from "../AdminContextMilk/AdminContextMilk";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -35,6 +38,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function TableInfoProduct({ data }) {
+  const { roleName } = useContext(AdminMilkContext);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -85,8 +90,17 @@ export default function TableInfoProduct({ data }) {
                       justifyContent: "space-around",
                     }}
                   >
-                    <ButtonUpdateProduct data={item} />
-                    <ButtonDeleteProduct data={item} />
+                    {roleName?.name === "nvbh" &&
+                      roleName?.name === "Admin" && (
+                        <>
+                          <ButtonUpdateProduct data={item} />
+                          <ButtonDeleteProduct data={item} />
+                        </>
+                      )}
+
+                    {roleName?.name === "nvk" && (
+                      <ButtonAddInventory data={item} />
+                    )}
                   </div>
                 </StyledTableCell>
               </StyledTableRow>

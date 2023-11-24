@@ -1,0 +1,37 @@
+.wrapper {
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.title {
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+  margin: 20px 0;
+  color: var(--primary);
+}
+.img-user {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.email-user {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: var(--font-primary);
+}
+.phone-user {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: var(--font-primary);
+}
+.name-user {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: var(--font-primary);
+}
+.role-user {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: var(--font-primary);
+}

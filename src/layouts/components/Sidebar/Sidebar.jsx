@@ -29,6 +29,15 @@ function Sidebar() {
             <MenuItem to={"/AdminUsers"} title={"User Management"} />
           </div>
         )}
+        {roleName?.name === "nvk" && (
+          <div className={cx("menu")}>
+            <MenuItem to={"/AdminInventory"} title={"Admin Inventory"} />
+            <MenuItem to={"/AdminProducts"} title={"Product Management"} />
+          </div>
+        )}
+        <div className={cx("menu")}>
+          <MenuItem to={"/PageInfoUser"} title={"My Account"} />
+        </div>
       </div>
     </div>
   );

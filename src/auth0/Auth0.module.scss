@@ -21,7 +21,18 @@
 .box-item {
   padding: 0 12px;
   cursor: pointer;
+  padding: 6px 12px;
+  font-size: 18px;
+  color: var(--black);
   &:hover {
+    color: var(--text-color);
+    background-color: #fafafa;
+  }
+}
+.account {
+  color: var(--black);
+  &:hover {
+    color: var(--text-color);
     background-color: #fafafa;
   }
 }

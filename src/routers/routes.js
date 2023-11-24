@@ -4,6 +4,8 @@ import AdminProduct from "../pages/AdminProducts/AdminProduct";
 import AdminUser from "../pages/AdminUsers/AdminUser";
 import LoginAdmin from "../pages/LoginAdmin/LoginAdmin";
 import LayoutLogin from "../layouts/LayoutLogin/LayoutLogin";
+import PageInfoUser from "../pages/AdminUsers/PageInfoUser/PageInfoUser";
+import AdminInventory from "../pages/AdminInventory/AdminInventory";
 const publicRouter = [
   {
     path: "/",
@@ -25,6 +27,14 @@ const publicRouter = [
   {
     path: "/AdminUsers",
     component: AdminUser,
+  },
+  {
+    path: "/PageInfoUser",
+    component: PageInfoUser,
+  },
+  {
+    path: "/AdminInventory",
+    component: AdminInventory,
   },
 ];
 export { publicRouter };

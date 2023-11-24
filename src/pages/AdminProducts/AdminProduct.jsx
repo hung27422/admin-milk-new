@@ -8,7 +8,7 @@ import ButtonAddProduct from "./ButtonActions/ButtonAddProduct/ButtonAddProduct"
 
 const cx = classNames.bind(styles);
 function AdminProduct() {
-  const [data, error] = UseQueryProduct();
+  const { data, error } = UseQueryProduct();
   if (error) {
     console.log("Lỗi ở useQuerryProduct", error);
   }
