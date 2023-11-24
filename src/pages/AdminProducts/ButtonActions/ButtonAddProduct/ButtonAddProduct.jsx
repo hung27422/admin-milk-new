@@ -69,6 +69,7 @@ export default function ButtonAddProduct() {
     } catch (error) {
       console.error("Lỗi khi tạo product:", error);
     } finally {
+      setOpen(false);
       refetch();
     }
   };

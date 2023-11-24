@@ -90,13 +90,8 @@ export default function TableInfoProduct({ data }) {
                       justifyContent: "space-around",
                     }}
                   >
-                    {roleName?.name === "nvbh" &&
-                      roleName?.name === "Admin" && (
-                        <>
-                          <ButtonUpdateProduct data={item} />
-                          <ButtonDeleteProduct data={item} />
-                        </>
-                      )}
+                    <ButtonUpdateProduct data={item} />
+                    <ButtonDeleteProduct data={item} />
 
                     {roleName?.name === "nvk" && (
                       <ButtonAddInventory data={item} />
