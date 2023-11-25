@@ -15,6 +15,10 @@ import NameUerOrders from "../InformationOrders/NameUerOrders/NameUerOrders";
 import PhoneUserOrders from "../InformationOrders/PhoneUserOrders/PhoneUserOrders";
 import AddressUserOrders from "../InformationOrders/AddressUserOrders/AddressUserOrders";
 import ButtonInformation from "../InformationOrders/ButtoShowInfomationUser/ButtonInformation";
+import ButtonShipping from "../../pages/AdminShipping/ButtonAction/ButtonShipping/ButtonShipping";
+import ButtonDoneShip from "../../pages/AdminShipping/ButtonAction/ButtonDoneShip/ButtonDoneShip";
+import ButtonCancelShip from "../../pages/AdminShipping/ButtonAction/ButtonCancelShip/ButtonCancelShip";
+// import { AdminMilkContext } from "../AdminContextMilk/AdminContextMilk";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -38,6 +42,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function TableInfo({ isShowButton, results }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  // const { roleName, setRoleName } = React.useContext(AdminMilkContext);
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -88,9 +94,36 @@ export default function TableInfo({ isShowButton, results }) {
                     </StyledTableCell>
 
                     <StyledTableCell align="center">
-                      {isShowButton === "1" ? (
-                        <ButtonConfirm data={items} />
-                      ) : (
+                      {isShowButton === "1" && <ButtonConfirm data={items} />}
+                      {isShowButton === "2" && (
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-around",
+                          }}
+                        >
+                          <ButtonInformation data={items} />
+                          <ButtonShipping data={items} />
+                        </div>
+                      )}
+                      {isShowButton === "3" && (
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-around",
+                          }}
+                        >
+                          <ButtonInformation data={items} />
+                          <ButtonDoneShip data={items} />
+                          <ButtonCancelShip data={items} />
+                        </div>
+                      )}
+                      {isShowButton === "4" && (
+                        <ButtonInformation data={items} />
+                      )}
+                      {isShowButton === "5" && (
                         <ButtonInformation data={items} />
                       )}
                     </StyledTableCell>

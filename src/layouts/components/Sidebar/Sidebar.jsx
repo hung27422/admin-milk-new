@@ -35,7 +35,9 @@ function Sidebar() {
             <MenuItem to={"/AdminProducts"} title={"Product Management"} />
           </div>
         )}
+
         <div className={cx("menu")}>
+          <MenuItem to={"/AdminShipping"} title={"Admin Shipping"} />
           <MenuItem to={"/PageInfoUser"} title={"My Account"} />
         </div>
       </div>

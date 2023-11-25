@@ -1,8 +1,8 @@
 import classNames from "classnames/bind";
-import styles from "./MenuAdminOrder.module.scss";
+import styles from "./MenuAdmin.module.scss";
 import PropTypes from "prop-types";
 const cx = classNames.bind(styles);
-function MenuAdminOrder({ title, id, onClick, active }) {
+function MenuAdmin({ title, id, onClick, active }) {
   return (
     <div
       className={cx("wrapper", active === id ? "active" : "")}
@@ -15,10 +15,10 @@ function MenuAdminOrder({ title, id, onClick, active }) {
     </div>
   );
 }
-MenuAdminOrder.propTypes = {
+MenuAdmin.propTypes = {
   title: PropTypes.string,
   id: PropTypes.string,
   onClick: PropTypes.func,
   active: PropTypes.string,
 };
-export default MenuAdminOrder;
+export default MenuAdmin;

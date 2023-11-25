@@ -50,7 +50,7 @@ export default function ButtonEditRole({ data: dataUser }) {
   const handleChangRoles = async (id) => {
     const userSetUserRoleInput = {
       input: {
-        roleId: id,
+        roleId: parseInt(id),
         userId: dataUser?.id,
       },
     };

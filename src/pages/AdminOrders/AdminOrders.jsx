@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./AdminOrders.module.scss";
-import MenuAdminOrder from "./MenuAdminOrder/MenuAdminOrder";
+import MenuAdmin from "../../layouts/components/MenuAdmin/MenuAdmin";
 import { useState } from "react";
 import Unconfirmed from "./Unconfirmed/Unconfirmed";
 import Confirmed from "./Confirmed/Confirmed";
@@ -17,31 +17,31 @@ function AdminOrders() {
     <div className={cx("wrapper")}>
       <h2 className={cx("title")}>Information Order</h2>
       <div className={cx("menu")}>
-        <MenuAdminOrder
+        <MenuAdmin
           id={"1"}
           active={activeId}
           title={"Chưa xác nhận"}
           onClick={(e) => handleActivePage(e.currentTarget.id)}
         />
-        <MenuAdminOrder
+        <MenuAdmin
           id={"2"}
           active={activeId}
           title={"Đã xác nhận"}
           onClick={(e) => handleActivePage(e.currentTarget.id)}
         />
-        <MenuAdminOrder
+        <MenuAdmin
           id={"3"}
           active={activeId}
           title={"Giao hàng"}
           onClick={(e) => handleActivePage(e.currentTarget.id)}
         />
-        <MenuAdminOrder
+        <MenuAdmin
           id={"4"}
           active={activeId}
           title={"Đã giao"}
           onClick={(e) => handleActivePage(e.currentTarget.id)}
         />
-        <MenuAdminOrder
+        <MenuAdmin
           id={"5"}
           active={activeId}
           title={"Hoàn thành"}

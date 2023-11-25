@@ -6,6 +6,7 @@ import LoginAdmin from "../pages/LoginAdmin/LoginAdmin";
 import LayoutLogin from "../layouts/LayoutLogin/LayoutLogin";
 import PageInfoUser from "../pages/AdminUsers/PageInfoUser/PageInfoUser";
 import AdminInventory from "../pages/AdminInventory/AdminInventory";
+import AdminShipping from "../pages/AdminShipping/AdminShipping";
 const publicRouter = [
   {
     path: "/",
@@ -35,6 +36,10 @@ const publicRouter = [
   {
     path: "/AdminInventory",
     component: AdminInventory,
+  },
+  {
+    path: "/AdminShipping",
+    component: AdminShipping,
   },
 ];
 export { publicRouter };
