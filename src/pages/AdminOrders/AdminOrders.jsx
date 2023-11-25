@@ -7,6 +7,7 @@ import Confirmed from "./Confirmed/Confirmed";
 import Shipment from "./Shipment/Shipment";
 import CompleteOrders from "./CompleteOrders/CompleteOrders";
 import DeliveredOrders from "./DeliveredOrders/DeliveredOrders";
+import CancelOrders from "./CancelOrders/CancelOrders";
 const cx = classNames.bind(styles);
 function AdminOrders() {
   const [activeId, setActiveId] = useState("1");
@@ -47,6 +48,12 @@ function AdminOrders() {
           title={"Hoàn thành"}
           onClick={(e) => handleActivePage(e.currentTarget.id)}
         />
+        <MenuAdmin
+          id={"6"}
+          active={activeId}
+          title={"Đã hủy"}
+          onClick={(e) => handleActivePage(e.currentTarget.id)}
+        />
       </div>
       <div>
         {activeId === "1" && <Unconfirmed />}
@@ -54,6 +61,7 @@ function AdminOrders() {
         {activeId === "3" && <Shipment />}
         {activeId === "4" && <DeliveredOrders />}
         {activeId === "5" && <CompleteOrders />}
+        {activeId === "6" && <CancelOrders />}
       </div>
     </div>
   );

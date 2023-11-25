@@ -64,9 +64,9 @@ function TableInfoShipment({ shipment, status }) {
   }
   return <p>Không có dữ liệu để hiển thị.</p>;
 }
-function TableInfoDelivered({ complete, status }) {
+function TableInfoDelivered({ delivered, status }) {
   if (Array.isArray(status)) {
-    const createdStatusComplete = complete?.filter(
+    const createdStatusComplete = delivered?.filter(
       (item) => item.status === "DELIVERED"
     );
     if (
@@ -102,6 +102,25 @@ function TableInfoComplete({ complete, status }) {
   }
   return <p>Không có dữ liệu để hiển thị.</p>;
 }
+function TableInfoCancel({ cancel, status }) {
+  if (Array.isArray(status)) {
+    const createdStatusComplete = cancel?.filter(
+      (item) => item.status === "CANCELLED"
+    );
+    if (
+      Array.isArray(createdStatusComplete) &&
+      createdStatusComplete.length > 0
+    ) {
+      return (
+        <TableInfo
+          results={createdStatusComplete.map((i) => i).flat()}
+          isShowButton={"5"}
+        />
+      );
+    }
+  }
+  return <p>Không có dữ liệu để hiển thị.</p>;
+}
 // Hello 123
 TableInfoUnconfirmed.propTypes = {
   unconfirmed: PropTypes.array,
@@ -116,11 +135,15 @@ TableInfoShipment.propTypes = {
   status: PropTypes.array,
 };
 TableInfoDelivered.propTypes = {
-  complete: PropTypes.array,
+  delivered: PropTypes.array,
   status: PropTypes.array,
 };
 TableInfoComplete.propTypes = {
   complete: PropTypes.array,
+  status: PropTypes.array,
+};
+TableInfoCancel.propTypes = {
+  cancel: PropTypes.array,
   status: PropTypes.array,
 };
 export {
@@ -129,4 +152,5 @@ export {
   TableInfoShipment,
   TableInfoComplete,
   TableInfoDelivered,
+  TableInfoCancel,
 };

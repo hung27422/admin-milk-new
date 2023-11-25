@@ -75,11 +75,22 @@ export default function ButtonCancelShip({ data }) {
       },
     });
     console.log("Hủy đơn hàng thành công: ", result);
+    setOpen(false);
     refetch();
   };
   return (
     <div>
-      <Button onClick={handleOpen}>Hủy đơn</Button>
+      <Button
+        style={{
+          backgroundColor: "var(--secondary)",
+          color: "var(--white)",
+          marginTop: "10px",
+          width: "100px",
+        }}
+        onClick={handleOpen}
+      >
+        Hủy đơn
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -88,7 +99,7 @@ export default function ButtonCancelShip({ data }) {
       >
         <Box sx={style}>
           <h2 className={cx("title")}>Hủy đơn hàng</h2>
-          <div>
+          <div style={{ textAlign: "center" }}>
             {cancelReason.map((item) => {
               return (
                 <div key={item.id} className={cx("box-cancel")}>
@@ -109,7 +120,16 @@ export default function ButtonCancelShip({ data }) {
                 </div>
               );
             })}
-            <Button onClick={handleCancelOrders}>Hủy đơn hàng</Button>
+            <Button
+              style={{
+                backgroundColor: "var(--secondary)",
+                color: "var(--white)",
+                marginTop: "20px",
+              }}
+              onClick={handleCancelOrders}
+            >
+              Hủy đơn hàng
+            </Button>
           </div>
         </Box>
       </Modal>

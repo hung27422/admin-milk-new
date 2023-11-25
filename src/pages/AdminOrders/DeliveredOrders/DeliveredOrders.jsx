@@ -44,7 +44,7 @@ function DeliveredOrders() {
     <div>
       <h2>Delivered</h2>
       <TableInfoDelivered
-        complete={data?.orders}
+        delivered={data?.orders}
         status={data?.orders.map((i) => i.status).flat()}
       />
     </div>

@@ -65,3 +65,15 @@
   font-weight: 600;
   color: var(--text-color);
 }
+.reason-cancel {
+  width: 300px;
+  color: red;
+  font-size: 18px;
+  font-family: var(--font-primary);
+}
+.show-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}

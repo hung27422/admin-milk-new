@@ -46,6 +46,7 @@ export default function Profile() {
       if (!result) {
         return;
       }
+      console.log(result);
       result?.map((item) => {
         return setRoleName(item);
       });

@@ -45,7 +45,18 @@ function ButtonDoneShip({ data }) {
     console.log("Update giao đơn hàng thành công: ", result);
     refetch();
   };
-  return <Button onClick={handleUpdateDelivered}>Đã giao</Button>;
+  return (
+    <Button
+      style={{
+        backgroundColor: "var(--secondary)",
+        color: "var(--white)",
+        width: "100px",
+      }}
+      onClick={handleUpdateDelivered}
+    >
+      Đã giao
+    </Button>
+  );
 }
 
 export default ButtonDoneShip;

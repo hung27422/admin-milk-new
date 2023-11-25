@@ -6,6 +6,8 @@ function Dashboard() {
   const { roleName } = useContext(AdminMilkContext);
   if (roleName?.name === "nvbh")
     return <Navigate to="/AdminOrders" replace={true} />;
+  if (roleName?.name === "nvbh")
+    return <Navigate to="/AdminShipping" replace={true} />;
   else {
     return <div className="">Dashboard</div>;
   }

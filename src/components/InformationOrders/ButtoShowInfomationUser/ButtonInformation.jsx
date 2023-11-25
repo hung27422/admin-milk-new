@@ -20,6 +20,7 @@ const style = {
 };
 
 export default function ButtonInformation({ data }) {
+  console.log(data);
   const [open, setOpen] = React.useState(false);
   // const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -30,7 +31,7 @@ export default function ButtonInformation({ data }) {
   return (
     <div>
       <Button
-        style={{ backgroundColor: "var(--primary)", color: "var(--white)" }}
+        style={{ backgroundColor: "var(--secondary)", color: "var(--white)" }}
         onClick={handleIdOrder}
       >
         Xem thông tin
@@ -84,7 +85,14 @@ export default function ButtonInformation({ data }) {
           {data?.items.forEach((element) => {
             total += element.subtotal;
           })}
-          <div className={cx("total-price")}>Tổng tiền: {total} VNĐ</div>
+          <div className={cx("show-info")}>
+            {data?.cancelReason && (
+              <span className={cx("reason-cancel")}>
+                Hủy với lí do: {data?.cancelReason}
+              </span>
+            )}
+            <div className={cx("total-price")}>Tổng tiền: {total} VNĐ</div>
+          </div>
         </Box>
       </Modal>
     </div>

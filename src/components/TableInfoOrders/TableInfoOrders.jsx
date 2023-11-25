@@ -18,7 +18,7 @@ import ButtonInformation from "../InformationOrders/ButtoShowInfomationUser/Butt
 import ButtonShipping from "../../pages/AdminShipping/ButtonAction/ButtonShipping/ButtonShipping";
 import ButtonDoneShip from "../../pages/AdminShipping/ButtonAction/ButtonDoneShip/ButtonDoneShip";
 import ButtonCancelShip from "../../pages/AdminShipping/ButtonAction/ButtonCancelShip/ButtonCancelShip";
-// import { AdminMilkContext } from "../AdminContextMilk/AdminContextMilk";
+import { AdminMilkContext } from "../AdminContextMilk/AdminContextMilk";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -38,11 +38,53 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-
+const renderActionButtons = (isShowButton, items, roleName) => {
+  switch (isShowButton) {
+    case "1":
+      return <ButtonConfirm data={items} />;
+    case "2":
+      return (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-around",
+          }}
+        >
+          <ButtonInformation data={items} />
+          {roleName?.name === "shipper" && <ButtonShipping data={items} />}
+        </div>
+      );
+    case "3":
+      return (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexWrap: "wrap",
+            justifyContent: "space-around",
+          }}
+        >
+          <ButtonInformation data={items} />
+          {roleName?.name === "shipper" && (
+            <>
+              <ButtonDoneShip data={items} />
+              <ButtonCancelShip data={items} />
+            </>
+          )}
+        </div>
+      );
+    case "4":
+    case "5":
+      return <ButtonInformation data={items} />;
+    default:
+      return null;
+  }
+};
 export default function TableInfo({ isShowButton, results }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  // const { roleName, setRoleName } = React.useContext(AdminMilkContext);
+  const { roleName } = React.useContext(AdminMilkContext);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -94,38 +136,7 @@ export default function TableInfo({ isShowButton, results }) {
                     </StyledTableCell>
 
                     <StyledTableCell align="center">
-                      {isShowButton === "1" && <ButtonConfirm data={items} />}
-                      {isShowButton === "2" && (
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-around",
-                          }}
-                        >
-                          <ButtonInformation data={items} />
-                          <ButtonShipping data={items} />
-                        </div>
-                      )}
-                      {isShowButton === "3" && (
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-around",
-                          }}
-                        >
-                          <ButtonInformation data={items} />
-                          <ButtonDoneShip data={items} />
-                          <ButtonCancelShip data={items} />
-                        </div>
-                      )}
-                      {isShowButton === "4" && (
-                        <ButtonInformation data={items} />
-                      )}
-                      {isShowButton === "5" && (
-                        <ButtonInformation data={items} />
-                      )}
+                      {renderActionButtons(isShowButton, items, roleName)}
                     </StyledTableCell>
                   </StyledTableRow>
                 );
