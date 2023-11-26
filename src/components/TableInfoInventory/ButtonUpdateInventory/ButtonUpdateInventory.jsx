@@ -2,81 +2,82 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import { TextField } from "@mui/material";
+
 import classNames from "classnames/bind";
 import styles from "../TableInfoInventory.module.scss";
+import { TextField } from "@mui/material";
 import { gql, useMutation } from "@apollo/client";
-import PropTypes from "prop-types";
 import { useState } from "react";
+import PropTypes from "prop-types";
 import useGetQueryInventory from "../../../hooks/useGetQueryInventory";
-
-// import PropTypes from "prop-types";
 const cx = classNames.bind(styles);
+
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 600,
+  width: 400,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
-const CREATE_INVENTORY = gql`
-  mutation CreateInventory($input: inventoryCreateInventoryInput!) {
-    createInventory(input: $input) {
-      inventoryCreatedPayload {
+const UPDATE_INVENTORY = gql`
+  mutation UpdateInventory(
+    $updateInventoryId: Int!
+    $input: inventoryUpdateInventoryInput!
+  ) {
+    updateInventory(id: $updateInventoryId, input: $input) {
+      inventoryUpdatedPayload {
         message
       }
     }
   }
 `;
-export default function ButtonAddInventory({ data, idIV }) {
+export default function ButtonUpdateInventory({ data }) {
   const [open, setOpen] = React.useState(false);
-  const [createInventory] = useMutation(CREATE_INVENTORY);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [updateInventory] = useMutation(UPDATE_INVENTORY);
   const [quantity, setQuantity] = useState();
   const { refetch } = useGetQueryInventory();
-
-  const isIdInInventory = idIV.includes(data?.id);
-  console.log(isIdInInventory);
-  const handleUpdateQuantity = (value) => {
-    setQuantity(Number(value));
+  const handleChangeQuantity = (value) => {
+    setQuantity(value);
   };
-  const handleCreateInventory = async () => {
-    const inventoryCreateInventoryInput = {
+  const handleUpdateInventory = async () => {
+    const inventoryUpdateInventoryInput = {
+      updateInventoryId: data?.id,
       input: {
         availability: true,
-        productId: data?.id,
-        quantity: quantity,
+        quantity: parseInt(quantity),
       },
     };
-    console.log(inventoryCreateInventoryInput);
-    const result = await createInventory({
+    const result = await updateInventory({
       context: {
         headers: {
           authorization: `Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiI3MWE5NTM0NS03YmYwLTQwMDYtYjBhNi05YmYwODdiZTA4Y2YiLCJuYW1lIjoiSOG7kyBU4bqlbiBIw7luZyIsImp0aSI6IjcxQTk1MzQ1LTdCRjAtNDAwNi1CMEE2LTlCRjA4N0JFMDhDRiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzAxMDU0NjMxLCJpc3MiOiJJZldoYXQiLCJhdWQiOiJJZldoYXRDbGllbnQifQ.b8bvU_whCazN5PktrXMXiitOD-ggE7bXqB7xag_7E2QwNP2qnk_fv9eTSCVmEUY1EiyNlNcXMsjm8QSA74Hr0g`,
         },
       },
-      variables: { input: inventoryCreateInventoryInput.input },
+      variables: {
+        updateInventoryId: inventoryUpdateInventoryInput.updateInventoryId,
+        input: inventoryUpdateInventoryInput.input,
+      },
     });
-    console.log("Tạo inventory thành công: ", result);
-    setOpen(false);
+    console.log("Update số lượng kho thành công ", result);
     refetch();
   };
   return (
     <div>
       <Button
-        disabled={isIdInInventory}
         style={{
-          backgroundColor: isIdInInventory ? "#ccc" : "var(--secondary)",
+          backgroundColor: "var(--secondary)",
           color: "var(--white)",
+          textAlign: "center",
         }}
         onClick={handleOpen}
       >
-        {isIdInInventory ? "Đã có trong kho" : "Add Inventory"}
+        Update
       </Button>
       <Modal
         open={open}
@@ -85,33 +86,31 @@ export default function ButtonAddInventory({ data, idIV }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <h2 className={cx("title")}>Add Inventory</h2>
-          <div className={cx("form-input")}>
+          <h2 className={cx("title")}>Cập nhật số lượng kho</h2>
+          <div className={cx("btn-action")}>
             <TextField
-              className={cx("input-value")}
-              id="outlined-basic"
+              id="update-inventory"
               label="Nhập số lượng"
               variant="outlined"
-              onChange={(e) => handleUpdateQuantity(e.target.value)}
+              onChange={(e) => handleChangeQuantity(e.target.value)}
             />
+            <Button
+              style={{
+                backgroundColor: "var(--secondary)",
+                color: "var(--white)",
+                textAlign: "center",
+                marginLeft: "20px",
+              }}
+              onClick={handleUpdateInventory}
+            >
+              Cập nhật
+            </Button>
           </div>
-          <Button
-            style={{
-              backgroundColor: "var(--secondary)",
-              color: "var(--white)",
-              textAlign: "center",
-              marginTop: "15px",
-            }}
-            onClick={handleCreateInventory}
-          >
-            Tạo
-          </Button>
         </Box>
       </Modal>
     </div>
   );
 }
-ButtonAddInventory.propTypes = {
+ButtonUpdateInventory.propTypes = {
   data: PropTypes.object,
-  idIV: PropTypes.array,
 };

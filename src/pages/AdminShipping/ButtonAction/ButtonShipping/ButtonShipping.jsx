@@ -7,7 +7,7 @@ import useQueryOrders from "../../../../hooks/useQueryOrders";
 const UPDATE_ORDER = gql`
   mutation UpdateOrder($updateOrderId: Int!, $input: orderUpdateOrderInput!) {
     updateOrder(id: $updateOrderId, input: $input) {
-      orderCreatedPayload {
+      orderUpdatedPayload {
         message
       }
     }
@@ -46,7 +46,16 @@ function ButtonShipping({ data }) {
   };
   return (
     <div>
-      <Button onClick={handleUpdateShipping}>Giao hàng</Button>
+      <Button
+        style={{
+          backgroundColor: "var(--secondary)",
+          color: "var(--white)",
+          width: "100px",
+        }}
+        onClick={handleUpdateShipping}
+      >
+        Giao hàng
+      </Button>
     </div>
   );
 }

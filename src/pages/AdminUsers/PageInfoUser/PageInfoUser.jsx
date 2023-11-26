@@ -19,7 +19,9 @@ const UPDATE_USER = gql`
 `;
 function PageInfoUser() {
   const { user } = useAuth0();
-  const { data } = useQueryUser();
+  const { data, error } = useQueryUser();
+  if (error) console.log(error);
+  // console.log(data);
   const [updateUser] = useMutation(UPDATE_USER);
 
   //   const [value, setValue] = useState("");

@@ -31,3 +31,18 @@
   width: 300px;
   margin-bottom: 12px;
 }
+.des-delete-inventory {
+  font-size: 20px;
+  font-family: var(--font-primary);
+}
+.id-item {
+  color: red;
+  font-size: 22px;
+  font-weight: 600;
+}
+.btn-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}

@@ -5,10 +5,12 @@ import UseQueryProduct from "../../hooks/useQuerryProduct";
 
 import { TextField } from "@mui/material";
 import ButtonAddProduct from "./ButtonActions/ButtonAddProduct/ButtonAddProduct";
+import useGetQueryInventory from "../../hooks/useGetQueryInventory";
 
 const cx = classNames.bind(styles);
 function AdminProduct() {
   const { data, error } = UseQueryProduct();
+  const { data: dataInventory } = useGetQueryInventory();
   if (error) {
     console.log("Lỗi ở useQuerryProduct", error);
   }
@@ -29,7 +31,10 @@ function AdminProduct() {
           <ButtonAddProduct />
         </div>
       </div>
-      <TableInfoProduct data={data?.products} />
+      <TableInfoProduct
+        data={data?.products}
+        dataI={dataInventory?.inventories}
+      />
     </div>
   );
 }

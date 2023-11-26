@@ -11,6 +11,8 @@ import IDInventory from "./IDInventory/IDInventory";
 import IDProduct from "./IDProduct/IDProduct";
 import ItemProductInventory from "./ItemProductInventory/ItemProductInventory";
 import QuantityInventory from "./QuantityInventory/QuantityInventory";
+import ButtonDeleteInventory from "./ButtonDeleteInventory/ButtonDeleteInventory";
+import ButtonUpdateInventory from "./ButtonUpdateInventory/ButtonUpdateInventory";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -65,7 +67,18 @@ export default function TableInfoInventory({ data }) {
                 <StyledTableCell align="center">
                   <QuantityInventory data={item} />
                 </StyledTableCell>{" "}
-                <StyledTableCell align="center">Action</StyledTableCell>
+                <StyledTableCell align="center">
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-evenly",
+                    }}
+                  >
+                    <ButtonDeleteInventory data={item} />
+                    <ButtonUpdateInventory data={item} />
+                  </div>
+                </StyledTableCell>
               </StyledTableRow>
             );
             return result;

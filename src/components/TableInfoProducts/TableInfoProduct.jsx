@@ -37,9 +37,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function TableInfoProduct({ data }) {
+export default function TableInfoProduct({ data, dataI }) {
   const { roleName } = useContext(AdminMilkContext);
-
+  console.log("i", dataI, "data", data);
+  const idIV = dataI?.map((id) => {
+    return id?.productId;
+  });
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -90,11 +93,15 @@ export default function TableInfoProduct({ data }) {
                       justifyContent: "space-around",
                     }}
                   >
-                    <ButtonUpdateProduct data={item} />
-                    <ButtonDeleteProduct data={item} />
+                    {roleName?.name === "nvbh" && (
+                      <>
+                        <ButtonUpdateProduct data={item} />
+                        <ButtonDeleteProduct data={item} />
+                      </>
+                    )}
 
                     {roleName?.name === "nvk" && (
-                      <ButtonAddInventory data={item} />
+                      <ButtonAddInventory data={item} idIV={idIV} />
                     )}
                   </div>
                 </StyledTableCell>
@@ -109,4 +116,5 @@ export default function TableInfoProduct({ data }) {
 }
 TableInfoProduct.propTypes = {
   data: PropTypes.array,
+  dataI: PropTypes.array,
 };

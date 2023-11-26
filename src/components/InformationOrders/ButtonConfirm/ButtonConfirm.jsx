@@ -11,7 +11,7 @@ function ButtonConfirm({ data }) {
   const UPDATE_ORDER = gql`
     mutation UpdateOrder($updateOrderId: Int!, $input: orderUpdateOrderInput!) {
       updateOrder(id: $updateOrderId, input: $input) {
-        orderCreatedPayload {
+        orderUpdatedPayload {
           message
         }
       }
