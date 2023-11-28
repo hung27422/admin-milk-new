@@ -22,8 +22,7 @@ const style = {
 export default function ButtonInformation({ data }) {
   console.log(data);
   const [open, setOpen] = React.useState(false);
-  // const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  //
   const handleIdOrder = () => {
     setOpen(true);
   };
@@ -38,7 +37,7 @@ export default function ButtonInformation({ data }) {
       </Button>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClick={() => setOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -78,7 +77,7 @@ export default function ButtonInformation({ data }) {
                 </div>
               </div>
               <div className={cx("id-item")}>
-                <span>Mã đơn hàng: {item?.id}</span>
+                <span>Mã đơn hàng: {data?.id}</span>
               </div>
             </div>
           ))}

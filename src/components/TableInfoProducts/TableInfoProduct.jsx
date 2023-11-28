@@ -39,7 +39,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function TableInfoProduct({ data, dataI }) {
   const { roleName } = useContext(AdminMilkContext);
-  console.log("i", dataI, "data", data);
   const idIV = dataI?.map((id) => {
     return id?.productId;
   });
@@ -61,9 +60,11 @@ export default function TableInfoProduct({ data, dataI }) {
             <StyledTableCell width={"15%"} align="center">
               Category
             </StyledTableCell>
-            <StyledTableCell width={"20%"} align="center">
-              Action
-            </StyledTableCell>
+            {roleName?.name !== "Admin" && (
+              <StyledTableCell width={"20%"} align="center">
+                Action
+              </StyledTableCell>
+            )}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -85,26 +86,28 @@ export default function TableInfoProduct({ data, dataI }) {
                 <StyledTableCell width={"15%"} align="center">
                   <CategoryProducts data={item} />
                 </StyledTableCell>
-                <StyledTableCell width={"20%"} align="center">
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-around",
-                    }}
-                  >
-                    {roleName?.name === "nvbh" && (
-                      <>
-                        <ButtonUpdateProduct data={item} />
-                        <ButtonDeleteProduct data={item} />
-                      </>
-                    )}
+                {roleName?.name !== "Admin" && (
+                  <StyledTableCell width={"20%"} align="center">
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-around",
+                      }}
+                    >
+                      {roleName?.name === "nvbh" && (
+                        <>
+                          <ButtonUpdateProduct data={item} />
+                          <ButtonDeleteProduct data={item} />
+                        </>
+                      )}
 
-                    {roleName?.name === "nvk" && (
-                      <ButtonAddInventory data={item} idIV={idIV} />
-                    )}
-                  </div>
-                </StyledTableCell>
+                      {roleName?.name === "nvk" && (
+                        <ButtonAddInventory data={item} idIV={idIV} />
+                      )}
+                    </div>
+                  </StyledTableCell>
+                )}
               </StyledTableRow>
             );
             return infoProduct;

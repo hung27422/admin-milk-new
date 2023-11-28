@@ -41,7 +41,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const renderActionButtons = (isShowButton, items, roleName) => {
   switch (isShowButton) {
     case "1":
-      return <ButtonConfirm data={items} />;
+      return roleName?.name !== "Admin" ? (
+        <ButtonConfirm data={items} />
+      ) : (
+        <ButtonInformation data={items} />
+      );
     case "2":
       return (
         <div

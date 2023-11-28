@@ -4,8 +4,11 @@ export const AdminMilkContext = createContext();
 
 function AdminContextMilk({ children }) {
   const [roleName, setRoleName] = useState();
+  const [apiTokenAmin, setApiTokenAdmin] = useState();
   return (
-    <AdminMilkContext.Provider value={{ roleName, setRoleName }}>
+    <AdminMilkContext.Provider
+      value={{ roleName, setRoleName, apiTokenAmin, setApiTokenAdmin }}
+    >
       {children}
     </AdminMilkContext.Provider>
   );

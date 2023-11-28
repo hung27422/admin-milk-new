@@ -41,8 +41,7 @@ const UPDATE_ORDER = gql`
 `;
 export default function ButtonCancelShip({ data }) {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const apiTokenLocal = localStorage.getItem("apiToken");
   const [updateOrder] = useMutation(UPDATE_ORDER);
   const { refetch } = useQueryOrders();
 
@@ -66,7 +65,7 @@ export default function ButtonCancelShip({ data }) {
     const result = await updateOrder({
       context: {
         headers: {
-          authorization: `Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiI3MWE5NTM0NS03YmYwLTQwMDYtYjBhNi05YmYwODdiZTA4Y2YiLCJuYW1lIjoiSOG7kyBU4bqlbiBIw7luZyIsImp0aSI6IjcxQTk1MzQ1LTdCRjAtNDAwNi1CMEE2LTlCRjA4N0JFMDhDRiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzAxMDU0NjMxLCJpc3MiOiJJZldoYXQiLCJhdWQiOiJJZldoYXRDbGllbnQifQ.b8bvU_whCazN5PktrXMXiitOD-ggE7bXqB7xag_7E2QwNP2qnk_fv9eTSCVmEUY1EiyNlNcXMsjm8QSA74Hr0g`,
+          authorization: `Bearer ${apiTokenLocal}`,
         },
       },
       variables: {
@@ -87,13 +86,13 @@ export default function ButtonCancelShip({ data }) {
           marginTop: "10px",
           width: "100px",
         }}
-        onClick={handleOpen}
+        onClick={() => setOpen(true)}
       >
         Hủy đơn
       </Button>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClick={() => setOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

@@ -17,10 +17,12 @@ const CREATE_USER = gql`
     }
   }
 `;
+
 function App() {
   const [createUser, { error }] = useMutation(CREATE_USER, {
     fetchPolicy: "network-only",
   });
+ 
   if (error) console.log("Lỗi tạo user: ", error);
   const { user, isAuthenticated } = useAuth0();
   const [idRole, setIdRole] = useState(1);

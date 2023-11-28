@@ -35,12 +35,11 @@ const CREATE_INVENTORY = gql`
 export default function ButtonAddInventory({ data, idIV }) {
   const [open, setOpen] = React.useState(false);
   const [createInventory] = useMutation(CREATE_INVENTORY);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const apiTokenLocal = localStorage.getItem("apiToken");
   const [quantity, setQuantity] = useState();
   const { refetch } = useGetQueryInventory();
 
-  const isIdInInventory = idIV.includes(data?.id);
+  const isIdInInventory = idIV?.includes(data?.id);
   console.log(isIdInInventory);
   const handleUpdateQuantity = (value) => {
     setQuantity(Number(value));
@@ -57,7 +56,7 @@ export default function ButtonAddInventory({ data, idIV }) {
     const result = await createInventory({
       context: {
         headers: {
-          authorization: `Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiI3MWE5NTM0NS03YmYwLTQwMDYtYjBhNi05YmYwODdiZTA4Y2YiLCJuYW1lIjoiSOG7kyBU4bqlbiBIw7luZyIsImp0aSI6IjcxQTk1MzQ1LTdCRjAtNDAwNi1CMEE2LTlCRjA4N0JFMDhDRiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzAxMDU0NjMxLCJpc3MiOiJJZldoYXQiLCJhdWQiOiJJZldoYXRDbGllbnQifQ.b8bvU_whCazN5PktrXMXiitOD-ggE7bXqB7xag_7E2QwNP2qnk_fv9eTSCVmEUY1EiyNlNcXMsjm8QSA74Hr0g`,
+          authorization: `Bearer ${apiTokenLocal}`,
         },
       },
       variables: { input: inventoryCreateInventoryInput.input },
@@ -74,13 +73,13 @@ export default function ButtonAddInventory({ data, idIV }) {
           backgroundColor: isIdInInventory ? "#ccc" : "var(--secondary)",
           color: "var(--white)",
         }}
-        onClick={handleOpen}
+        onClick={() => setOpen(true)}
       >
         {isIdInInventory ? "Đã có trong kho" : "Add Inventory"}
       </Button>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

@@ -6,10 +6,14 @@ import UseQueryProduct from "../../hooks/useQuerryProduct";
 import { TextField } from "@mui/material";
 import ButtonAddProduct from "./ButtonActions/ButtonAddProduct/ButtonAddProduct";
 import useGetQueryInventory from "../../hooks/useGetQueryInventory";
+import { useContext } from "react";
+import { AdminMilkContext } from "../../components/AdminContextMilk/AdminContextMilk";
 
 const cx = classNames.bind(styles);
 function AdminProduct() {
   const { data, error } = UseQueryProduct();
+  const { roleName } = useContext(AdminMilkContext);
+
   const { data: dataInventory } = useGetQueryInventory();
   if (error) {
     console.log("Lỗi ở useQuerryProduct", error);
@@ -28,7 +32,7 @@ function AdminProduct() {
           />
         </div>
         <div className={cx("btn-add-product")}>
-          <ButtonAddProduct />
+          {roleName?.name !== "Admin" && <ButtonAddProduct />}
         </div>
       </div>
       <TableInfoProduct

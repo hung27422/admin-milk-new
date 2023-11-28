@@ -27,10 +27,10 @@
 //   const handleValueInput = (id, value) => {};
 //   return (
 //     <div>
-//       <Button onClick={handleOpen}>Open modal</Button>
+//       <Button  onClick={() => setOpen(true)}>Open modal</Button>
 //       <Modal
 //         open={open}
-//         onClose={handleClose}
+//          onClick={() => setOpen(false)}
 //         aria-labelledby="modal-modal-title"
 //         aria-describedby="modal-modal-description"
 //       >
