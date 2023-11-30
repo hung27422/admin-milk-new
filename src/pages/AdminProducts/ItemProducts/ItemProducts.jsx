@@ -5,11 +5,7 @@ const cx = classNames.bind(styles);
 function ItemProducts({ data }) {
   return (
     <div className={cx("wrapper")}>
-      <img
-        className={cx("img-item")}
-        src="https://www.thmilk.vn/wp-content/uploads/2019/11/UHT-180-ID-457x396.png"
-        alt=""
-      />
+      <img className={cx("img-item")} src={data?.images} alt="" />
       <span className={cx("name-item")}>{data?.name}</span>
     </div>
   );
