@@ -8,6 +8,8 @@ import { TextField } from "@mui/material";
 import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 import UseQueryProduct from "../../../../hooks/useQuerryProduct";
+import useValidate from "../../../../hooks/useValidate";
+
 const cx = classNames.bind(styles);
 
 const style = {
@@ -33,9 +35,11 @@ const CREATE_PRODUCT = gql`
   }
 `;
 export default function ButtonAddProduct() {
+  const { productSchema } = useValidate();
   const [open, setOpen] = React.useState(false);
   const apiTokenLocal = localStorage.getItem("apiToken");
   const [value, setValue] = useState({});
+  const [error, setError] = useState(null);
   const { refetch } = UseQueryProduct();
   const handleValueInput = (id, value) => {
     setValue((prev) => ({
@@ -43,8 +47,20 @@ export default function ButtonAddProduct() {
       [id]: value,
     }));
   };
+
   const [createProduct] = useMutation(CREATE_PRODUCT);
   const hanldeAddProduct = async () => {
+    const validationResult = productSchema.validate(value);
+
+    if (validationResult.error) {
+      // Cập nhật trạng thái lỗi
+      setError(
+        validationResult.error.details
+          .map((detail) => detail.message)
+          .join(", ")
+      );
+      return; // Ngăn chặn thực hiện mutation khi có lỗi
+    }
     const productCreateProductInput = {
       input: {
         categoryId: Number(value.categoryId),
@@ -73,6 +89,10 @@ export default function ButtonAddProduct() {
       setOpen(false);
       refetch();
     }
+  };
+  const handleClose = () => {
+    setOpen(false);
+    setError(null); // Reset lỗi khi đóng modal
   };
   return (
     <div>
@@ -150,7 +170,7 @@ export default function ButtonAddProduct() {
                 color: "var(--white)",
                 backgroundColor: "var(--secondary)",
               }}
-              onClick={() => setOpen(false)}
+              onClick={handleClose}
             >
               Thoát
             </Button>
@@ -164,6 +184,14 @@ export default function ButtonAddProduct() {
               Thêm
             </Button>
           </div>
+          {error && (
+            <div
+              style={{ color: "red", textAlign: "center", marginTop: "20px" }}
+            >
+              {error}
+            </div>
+          )}{" "}
+          {/* Hiển thị lỗi */}
         </Box>
       </Modal>
     </div>

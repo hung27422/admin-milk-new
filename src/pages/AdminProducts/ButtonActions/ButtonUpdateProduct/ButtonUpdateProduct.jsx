@@ -10,6 +10,7 @@ import styles from "../ButtonAction.module.scss";
 import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 import UseQueryProduct from "../../../../hooks/useQuerryProduct";
+import useValidate from "../../../../hooks/useValidate";
 const cx = classNames.bind(styles);
 
 const style = {
@@ -36,12 +37,16 @@ const UPDATE_PRODUCT = gql`
   }
 `;
 export default function ButtonUpdateProduct({ data }) {
+  const { productSchemaUpdate } = useValidate();
+
   const [open, setOpen] = React.useState(false);
   const apiTokenLocal = localStorage.getItem("apiToken");
   const [value, setValue] = useState({});
   const { refetch } = UseQueryProduct();
-  const [updateProduct, { error }] = useMutation(UPDATE_PRODUCT);
-  if (error) console.log(error);
+  const [error, setError] = useState(null);
+  const [updateProduct, { error: errUpdateProduct }] =
+    useMutation(UPDATE_PRODUCT);
+  if (errUpdateProduct) console.log(errUpdateProduct);
   const handleValueInput = (id, value) => {
     setValue((prev) => ({
       ...prev,
@@ -49,6 +54,17 @@ export default function ButtonUpdateProduct({ data }) {
     }));
   };
   const hanldeUpdateProduct = async () => {
+    const validationResult = productSchemaUpdate.validate(value);
+
+    if (validationResult.error) {
+      // Cập nhật trạng thái lỗi
+      setError(
+        validationResult.error.details
+          .map((detail) => detail.message)
+          .join(", ")
+      );
+      return; // Ngăn chặn thực hiện mutation khi có lỗi
+    }
     const productUpdateProductInput = {
       input: {
         categoryId: Number(value?.categoryId) || data?.categoryId,
@@ -73,7 +89,7 @@ export default function ButtonUpdateProduct({ data }) {
     });
     console.log("Cập nhật product thành công: ", result);
     setOpen(false);
-    refetch;
+    refetch();
   };
   return (
     <div>
@@ -162,6 +178,13 @@ export default function ButtonUpdateProduct({ data }) {
               Lưu
             </Button>
           </div>
+          {error && (
+            <div
+              style={{ color: "red", textAlign: "center", marginTop: "20px" }}
+            >
+              {error}
+            </div>
+          )}{" "}
         </Box>
       </Modal>
     </div>

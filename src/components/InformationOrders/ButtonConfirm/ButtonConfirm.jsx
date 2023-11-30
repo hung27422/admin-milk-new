@@ -4,24 +4,27 @@ import Button from "../../Button/Button";
 import PropTypes from "prop-types";
 import { gql, useMutation } from "@apollo/client";
 import ButtonInformation from "../ButtoShowInfomationUser/ButtonInformation";
+import useQueryOrders from "../../../hooks/useQueryOrders";
 // import { client } from "../../../apollo";
+const UPDATE_ORDER = gql`
+  mutation UpdateOrder($updateOrderId: Int!, $input: orderUpdateOrderInput!) {
+    updateOrder(id: $updateOrderId, input: $input) {
+      orderUpdatedPayload {
+        message
+      }
+    }
+  }
+`;
 const cx = classNames.bind(styles);
 function ButtonConfirm({ data }) {
   const apiTokenLocal = localStorage.getItem("apiToken");
   let result = data.items;
-  const UPDATE_ORDER = gql`
-    mutation UpdateOrder($updateOrderId: Int!, $input: orderUpdateOrderInput!) {
-      updateOrder(id: $updateOrderId, input: $input) {
-        orderUpdatedPayload {
-          message
-        }
-      }
-    }
-  `;
+  const { refetch } = useQueryOrders();
   const [update_order, { error }] = useMutation(UPDATE_ORDER);
   if (error) {
     console.log("Lỗi xác nhận đơn hàng: ", error);
   }
+
   // console.log("result Button: ", result);
   const handleUpdateOrder = async () => {
     for (const item of result) {
@@ -50,6 +53,8 @@ function ButtonConfirm({ data }) {
         console.log("Đã update đơn hàng:", result);
       } catch (error) {
         console.error("Lỗi khi update đơn hàng:", error);
+      } finally {
+        refetch();
       }
     }
   };

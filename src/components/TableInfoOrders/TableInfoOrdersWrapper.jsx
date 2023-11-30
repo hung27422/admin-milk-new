@@ -121,6 +121,10 @@ function TableInfoCancel({ cancel, status }) {
   }
   return <p>Không có dữ liệu để hiển thị.</p>;
 }
+// eslint-disable-next-line react/prop-types
+function TableInfoReport({ report }) {
+  return <TableInfo results={report} isShowButton={"1"} />;
+}
 // Hello 123
 TableInfoUnconfirmed.propTypes = {
   unconfirmed: PropTypes.array,
@@ -146,6 +150,9 @@ TableInfoCancel.propTypes = {
   cancel: PropTypes.array,
   status: PropTypes.array,
 };
+TableInfoReport.prototype = {
+  report: PropTypes.array,
+};
 export {
   TableInfoUnconfirmed,
   TableInfoConfirmed,
@@ -153,4 +160,5 @@ export {
   TableInfoComplete,
   TableInfoDelivered,
   TableInfoCancel,
+  TableInfoReport,
 };

@@ -19,6 +19,7 @@ import ButtonShipping from "../../pages/AdminShipping/ButtonAction/ButtonShippin
 import ButtonDoneShip from "../../pages/AdminShipping/ButtonAction/ButtonDoneShip/ButtonDoneShip";
 import ButtonCancelShip from "../../pages/AdminShipping/ButtonAction/ButtonCancelShip/ButtonCancelShip";
 import { AdminMilkContext } from "../AdminContextMilk/AdminContextMilk";
+import DateOrders from "../../pages/AdminOrders/DateOrders/DateOrders";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -115,6 +116,9 @@ export default function TableInfo({ isShowButton, results }) {
               <StyledTableCell width={"25%"} align="center">
                 Address
               </StyledTableCell>
+              <StyledTableCell width={"10%"} align="center">
+                Date
+              </StyledTableCell>
               <StyledTableCell width={"25%"} align="center">
                 Action
               </StyledTableCell>
@@ -138,7 +142,9 @@ export default function TableInfo({ isShowButton, results }) {
                     <StyledTableCell align="center">
                       <AddressUserOrders data={items} />
                     </StyledTableCell>
-
+                    <StyledTableCell align="center">
+                      <DateOrders data={items} />
+                    </StyledTableCell>
                     <StyledTableCell align="center">
                       {renderActionButtons(isShowButton, items, roleName)}
                     </StyledTableCell>
@@ -151,7 +157,7 @@ export default function TableInfo({ isShowButton, results }) {
       <TablePagination
         rowsPerPageOptions={[3, 5, 10]}
         component="div"
-        count={results.length}
+        count={results?.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

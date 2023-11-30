@@ -14,15 +14,21 @@
     "@auth0/auth0-react": "^2.2.3",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.14.16",
+    "@mui/material": "^5.14.19",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.7",
+    "@mui/x-date-pickers": "^6.18.2",
     "classnames": "^2.3.2",
+    "dayjs": "^1.11.10",
     "graphql": "^16.8.1",
+    "joi": "^17.11.0",
+    "moment": "^2.29.4",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.18.0",
     "react-router-dom": "^6.18.0",
-    "sass": "^1.69.5"
+    "sass": "^1.69.5",
+    "styled-components": "^6.1.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

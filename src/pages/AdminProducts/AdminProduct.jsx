@@ -32,7 +32,7 @@ function AdminProduct() {
           />
         </div>
         <div className={cx("btn-add-product")}>
-          {roleName?.name !== "Admin" && <ButtonAddProduct />}
+          {roleName?.name === "nvbh" && <ButtonAddProduct />}
         </div>
       </div>
       <TableInfoProduct
