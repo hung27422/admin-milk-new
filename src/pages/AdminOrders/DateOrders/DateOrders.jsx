@@ -12,7 +12,13 @@ function formatDate(date) {
 function DateOrders({ data }) {
   const dateString = data?.date;
   const newDate = new Date(dateString);
-  return <span>{formatDate(newDate)}</span>;
+  return (
+    <h3
+      style={{ color: "var(--text-color)", fontFamily: "var(--font-primary)" }}
+    >
+      {formatDate(newDate)}
+    </h3>
+  );
 }
 
 export default DateOrders;

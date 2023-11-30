@@ -107,13 +107,13 @@ export default function TableInfo({ isShowButton, results }) {
           <TableHead>
             <TableRow>
               <StyledTableCell width={"15%"}>ID USER</StyledTableCell>
-              <StyledTableCell width={"20%"} align="center">
+              <StyledTableCell width={"15%"} align="center">
                 NAME
               </StyledTableCell>
               <StyledTableCell width={"15%"} align="center">
                 PHONE NUMBER
               </StyledTableCell>
-              <StyledTableCell width={"25%"} align="center">
+              <StyledTableCell width={"20%"} align="center">
                 Address
               </StyledTableCell>
               <StyledTableCell width={"10%"} align="center">
