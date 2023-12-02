@@ -39,7 +39,7 @@ function ButtonConfirm({ data }) {
         },
       };
       try {
-        const result = update_order({
+        const result = await update_order({
           context: {
             headers: {
               authorization: `Bearer ${apiTokenLocal}`,
@@ -51,10 +51,9 @@ function ButtonConfirm({ data }) {
           },
         });
         console.log("Đã update đơn hàng:", result);
+        refetch();
       } catch (error) {
         console.error("Lỗi khi update đơn hàng:", error);
-      } finally {
-        refetch();
       }
     }
   };

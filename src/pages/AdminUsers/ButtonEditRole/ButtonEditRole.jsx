@@ -27,7 +27,10 @@ const style = {
 const SET_USER_ROLE = gql`
   mutation SetUserRole($input: userSetUserRoleInput!) {
     setUserRole(input: $input) {
-      string
+      userUpdatedPayload {
+        apiToken
+        message
+      }
     }
   }
 `;
@@ -62,8 +65,8 @@ export default function ButtonEditRole({ data: dataUser }) {
       },
     });
     console.log("Change Roles Success", result);
-    setOpen(false);
     refetch();
+    setOpen(false);
   };
   return (
     <div>
@@ -79,7 +82,6 @@ export default function ButtonEditRole({ data: dataUser }) {
       </Button>
       <Modal
         open={open}
-        onClick={() => setOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -104,7 +106,36 @@ export default function ButtonEditRole({ data: dataUser }) {
                 </RadioGroup>
               );
             })}
-            <Button onClick={() => handleChangRoles(roleId)}>Thay đổi</Button>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: "10px",
+                textAlign: "center",
+              }}
+            >
+              <Button
+                style={{
+                  backgroundColor: "var(--secondary)",
+                  color: "var(--white)",
+                  marginRight: "5px",
+                }}
+                onClick={() => setOpen(false)}
+              >
+                Trở lại
+              </Button>
+              <Button
+                style={{
+                  backgroundColor: "var(--secondary)",
+                  color: "var(--white)",
+                  marginLeft: "5px",
+                }}
+                onClick={() => handleChangRoles(roleId)}
+              >
+                Thay đổi
+              </Button>
+            </div>
           </FormControl>
         </Box>
       </Modal>

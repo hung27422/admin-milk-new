@@ -92,7 +92,6 @@ export default function ButtonCancelShip({ data }) {
       </Button>
       <Modal
         open={open}
-        onClick={() => setOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -119,6 +118,16 @@ export default function ButtonCancelShip({ data }) {
                 </div>
               );
             })}
+            <Button
+              style={{
+                backgroundColor: "var(--secondary)",
+                color: "var(--white)",
+                marginTop: "20px",
+              }}
+              onClick={() => setOpen(false)}
+            >
+              Trở lại
+            </Button>
             <Button
               style={{
                 backgroundColor: "var(--secondary)",

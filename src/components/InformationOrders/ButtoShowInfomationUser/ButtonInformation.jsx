@@ -20,7 +20,6 @@ const style = {
 };
 
 export default function ButtonInformation({ data }) {
-  console.log(data);
   const [open, setOpen] = React.useState(false);
   //
   const handleIdOrder = () => {
