@@ -19,7 +19,7 @@ function useQueryOrders() {
             quantity
             sku
             subtotal
-          }
+          } 
           status
           total
           userId

@@ -48,7 +48,8 @@ export default function ButtonDeleteUser({ data }) {
         input: userDeleteUserInput.input,
       },
     });
-    refetch;
+    refetch();
+    setOpen(false);
     console.log("Xóa user thành công: ", result);
   };
   return (

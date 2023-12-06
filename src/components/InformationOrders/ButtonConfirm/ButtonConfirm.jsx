@@ -1,10 +1,9 @@
 import classNames from "classnames/bind";
 import styles from "./ActionOrders.module.scss";
-import Button from "../../Button/Button";
 import PropTypes from "prop-types";
 import { gql, useMutation } from "@apollo/client";
-import ButtonInformation from "../ButtoShowInfomationUser/ButtonInformation";
 import useQueryOrders from "../../../hooks/useQueryOrders";
+import { Button } from "@mui/material";
 // import { client } from "../../../apollo";
 const UPDATE_ORDER = gql`
   mutation UpdateOrder($updateOrderId: Int!, $input: orderUpdateOrderInput!) {
@@ -59,8 +58,14 @@ function ButtonConfirm({ data }) {
   };
   return (
     <div className={cx("wrapper")}>
-      <ButtonInformation data={data} />
-      <Button action onClick={handleUpdateOrder}>
+      <Button
+        style={{
+          backgroundColor: "green",
+          color: "var(--white)",
+          marginTop: "10px",
+        }}
+        onClick={handleUpdateOrder}
+      >
         Xác nhận
       </Button>
     </div>

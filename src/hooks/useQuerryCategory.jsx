@@ -1,11 +1,11 @@
 import { gql, useQuery } from "@apollo/client";
 
-function UseCategory() {
+function useCategory() {
   const apiTokenLocal = localStorage.getItem("apiToken");
-  const { data: category, error } = useQuery(
+  const { data, error, refetch } = useQuery(
     gql`
-      query Category($categoryId: Int!) {
-        category(id: $categoryId) {
+      query Categories($amount: Int!, $page: Int!) {
+        categories(amount: $amount, page: $page) {
           description
           id
           name
@@ -14,7 +14,8 @@ function UseCategory() {
     `,
     {
       variables: {
-        categoryId: 1,
+        amount: 50,
+        page: 1,
       },
       context: {
         headers: {
@@ -23,7 +24,7 @@ function UseCategory() {
       },
     }
   );
-  return [category, error];
+  return { data, error, refetch };
 }
 
-export default UseCategory;
+export default useCategory;

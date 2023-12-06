@@ -11,6 +11,7 @@ import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 import UseQueryProduct from "../../../../hooks/useQuerryProduct";
 import useValidate from "../../../../hooks/useValidate";
+import { useEffect } from "react";
 const cx = classNames.bind(styles);
 
 const style = {
@@ -47,9 +48,14 @@ export default function ButtonUpdateProduct({ data }) {
   const [updateProduct, { error: errUpdateProduct }] =
     useMutation(UPDATE_PRODUCT);
   if (errUpdateProduct) console.log(errUpdateProduct);
+  useEffect(() => {
+    if (data) {
+      setValue(data);
+    }
+  }, [data]);
   const handleValueInput = (id, value) => {
-    setValue((prev) => ({
-      ...prev,
+    setValue((prevValue) => ({
+      ...prevValue,
       [id]: value,
     }));
   };
@@ -57,7 +63,6 @@ export default function ButtonUpdateProduct({ data }) {
     const validationResult = productSchemaUpdate.validate(value);
 
     if (validationResult.error) {
-      // Cập nhật trạng thái lỗi
       setError(
         validationResult.error.details
           .map((detail) => detail.message)
@@ -110,15 +115,17 @@ export default function ButtonUpdateProduct({ data }) {
             <label>
               <TextField
                 id="categoryId"
-                label={"categoryId: " + data?.categoryId}
+                label={"CategoryId"}
                 variant="outlined"
+                value={value?.categoryId}
                 onChange={(e) => handleValueInput("categoryId", e.target.value)}
               />
             </label>
             <label>
               <TextField
                 id="description"
-                label={"description: " + data?.description}
+                label={"Description"}
+                value={value?.description}
                 variant="outlined"
                 onChange={(e) =>
                   handleValueInput("description", e.target.value)
@@ -128,7 +135,8 @@ export default function ButtonUpdateProduct({ data }) {
             <label>
               <TextField
                 id="images"
-                label={"images: " + data?.images}
+                label={"Images"}
+                value={value?.images}
                 variant="outlined"
                 onChange={(e) => handleValueInput("images", e.target.value)}
               />
@@ -136,7 +144,8 @@ export default function ButtonUpdateProduct({ data }) {
             <label>
               <TextField
                 id="name"
-                label={"name: " + data?.name}
+                label={"Name"}
+                value={value?.name}
                 variant="outlined"
                 onChange={(e) => handleValueInput("name", e.target.value)}
               />
@@ -144,7 +153,8 @@ export default function ButtonUpdateProduct({ data }) {
             <label>
               <TextField
                 id="price"
-                label={"price: " + data?.price + " VNĐ"}
+                label={"Price"}
+                value={value?.price}
                 variant="outlined"
                 onChange={(e) => handleValueInput("price", e.target.value)}
               />
@@ -152,7 +162,8 @@ export default function ButtonUpdateProduct({ data }) {
             <label>
               <TextField
                 id="sku"
-                label={"sku: " + data?.sku}
+                label={"Sku"}
+                value={value?.sku}
                 variant="outlined"
                 onChange={(e) => handleValueInput("sku", e.target.value)}
               />

@@ -5,6 +5,7 @@ import useQueryUser from "../../../hooks/useQueryUser";
 import { Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { gql, useMutation } from "@apollo/client";
+import useValidate from "../../../hooks/useValidate";
 const cx = classNames.bind(styles);
 // import PropTypes from "prop-types";
 const UPDATE_USER = gql`
@@ -20,8 +21,11 @@ const UPDATE_USER = gql`
 function PageInfoUser() {
   const { user } = useAuth0();
   const apiTokenLocal = localStorage.getItem("apiToken");
-  const { data, error } = useQueryUser();
-  if (error) console.log(error);
+  const { data, error: errorUser } = useQueryUser();
+  const { userSchema } = useValidate();
+  const [error, setError] = useState(null);
+
+  if (errorUser) console.log(errorUser);
   // console.log(data);
   const [updateUser] = useMutation(UPDATE_USER);
 
@@ -43,6 +47,18 @@ function PageInfoUser() {
   };
   // console.log(formValues);
   const handleUpdateUser = async (id, token) => {
+    const validationResult = userSchema.validate(formValues);
+
+    if (validationResult.error) {
+      // Cập nhật trạng thái lỗi
+      setError(
+        validationResult.error.details
+          .map((detail) => detail.message)
+          .join(", ")
+      );
+      return; // Ngăn chặn thực hiện mutation khi có lỗi
+    }
+
     const userUpdateUserInput = {
       updateUserId: `${id}`,
       input: {
@@ -86,7 +102,6 @@ function PageInfoUser() {
                   className={cx("input-data")}
                   id="name"
                   label={"Họ và tên"}
-                  // defaultValue={}
                   placeholder="Nhập tên bạn muốn thay đổi"
                   variant="outlined"
                   value={formValues?.name}
@@ -119,6 +134,17 @@ function PageInfoUser() {
                   // onChange={(e) => handleUpdateInfo("email", e.target.value)}
                 />
               </div>
+              {error && (
+                <span
+                  style={{
+                    color: "red",
+                    textAlign: "center",
+                    marginTop: "10px",
+                  }}
+                >
+                  {error}
+                </span>
+              )}
               <div className={cx("btn-action")}>
                 <Button onClick={() => handleUpdateUser(item?.id, item?.token)}>
                   Lưu thay đổi

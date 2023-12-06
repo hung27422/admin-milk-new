@@ -8,6 +8,8 @@ import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import PropTypes from "prop-types";
 import useQueryOrders from "../../../../hooks/useQueryOrders";
+import { useContext } from "react";
+import { AdminMilkContext } from "../../../../components/AdminContextMilk/AdminContextMilk";
 const cx = classNames.bind(styles);
 const style = {
   position: "absolute",
@@ -20,14 +22,24 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const cancelReason = [
+const cancelReasonShipper = [
   {
     id: 1,
-    name: "Hủy với lí do người nhận không nghe máy",
+    name: "Người nhận không nghe máy",
   },
   {
     id: 2,
-    name: "Hủy với lí do người nhận từ chối nhận hàng",
+    name: "Người nhận từ chối nhận hàng",
+  },
+];
+const cancelReasonNvbh = [
+  {
+    id: 1,
+    name: "Thông tin đặt hàng không hợp lí",
+  },
+  {
+    id: 2,
+    name: "Gọi xác nhận người đặt không thành công",
   },
 ];
 const UPDATE_ORDER = gql`
@@ -43,6 +55,7 @@ export default function ButtonCancelShip({ data }) {
   const [open, setOpen] = React.useState(false);
   const apiTokenLocal = localStorage.getItem("apiToken");
   const [updateOrder] = useMutation(UPDATE_ORDER);
+  const { roleName } = useContext(AdminMilkContext);
   const { refetch } = useQueryOrders();
 
   const [reasonName, setReasonName] = useState();
@@ -81,7 +94,7 @@ export default function ButtonCancelShip({ data }) {
     <div>
       <Button
         style={{
-          backgroundColor: "var(--secondary)",
+          backgroundColor: "red",
           color: "var(--white)",
           marginTop: "10px",
           width: "100px",
@@ -97,48 +110,101 @@ export default function ButtonCancelShip({ data }) {
       >
         <Box sx={style}>
           <h2 className={cx("title")}>Hủy đơn hàng</h2>
-          <div style={{ textAlign: "center" }}>
-            {cancelReason.map((item) => {
-              return (
-                <div key={item.id} className={cx("box-cancel")}>
-                  <div>
-                    <input
-                      className={cx("input-cancel")}
-                      name="name"
-                      type="radio"
-                      id={item.id}
-                      checked={item.id === reasonId}
-                      value={item?.name}
-                      onChange={(e) =>
-                        handleCancelReason(e.target.value, item.id)
-                      }
-                    ></input>
-                    <span className={cx("name-cancel")}>{item?.name}</span>
+          <span style={{ fontSize: "20px", fontWeight: "600" }}>
+            Hủy với lí do:
+          </span>
+          {roleName?.name === "shipper" && (
+            <div style={{ textAlign: "center" }}>
+              {cancelReasonShipper.map((item) => {
+                return (
+                  <div key={item.id} className={cx("box-cancel")}>
+                    <div>
+                      <input
+                        className={cx("input-cancel")}
+                        name="name"
+                        type="radio"
+                        id={item.id}
+                        checked={item.id === reasonId}
+                        value={item?.name}
+                        onChange={(e) =>
+                          handleCancelReason(e.target.value, item.id)
+                        }
+                      ></input>
+                      <span className={cx("name-cancel")}>{item?.name}</span>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-            <Button
-              style={{
-                backgroundColor: "var(--secondary)",
-                color: "var(--white)",
-                marginTop: "20px",
-              }}
-              onClick={() => setOpen(false)}
-            >
-              Trở lại
-            </Button>
-            <Button
-              style={{
-                backgroundColor: "var(--secondary)",
-                color: "var(--white)",
-                marginTop: "20px",
-              }}
-              onClick={handleCancelOrders}
-            >
-              Hủy đơn hàng
-            </Button>
-          </div>
+                );
+              })}
+              <Button
+                style={{
+                  backgroundColor: "var(--secondary)",
+                  color: "var(--white)",
+                  marginTop: "20px",
+                  marginRight: "5px",
+                }}
+                onClick={() => setOpen(false)}
+              >
+                Trở lại
+              </Button>
+              <Button
+                style={{
+                  backgroundColor: "var(--secondary)",
+                  color: "var(--white)",
+                  marginTop: "20px",
+                  marginLeft: "5px",
+                }}
+                onClick={handleCancelOrders}
+              >
+                Hủy đơn hàng
+              </Button>
+            </div>
+          )}
+          {roleName?.name === "nvbh" && (
+            <div style={{ textAlign: "center" }}>
+              {cancelReasonNvbh.map((item) => {
+                return (
+                  <div key={item.id} className={cx("box-cancel")}>
+                    <div>
+                      <input
+                        className={cx("input-cancel")}
+                        name="name"
+                        type="radio"
+                        id={item.id}
+                        checked={item.id === reasonId}
+                        value={item?.name}
+                        onChange={(e) =>
+                          handleCancelReason(e.target.value, item.id)
+                        }
+                      ></input>
+                      <span className={cx("name-cancel")}>{item?.name}</span>
+                    </div>
+                  </div>
+                );
+              })}
+              <Button
+                style={{
+                  backgroundColor: "var(--secondary)",
+                  color: "var(--white)",
+                  marginTop: "20px",
+                  marginRight: "5px",
+                }}
+                onClick={() => setOpen(false)}
+              >
+                Trở lại
+              </Button>
+              <Button
+                style={{
+                  backgroundColor: "var(--secondary)",
+                  color: "var(--white)",
+                  marginTop: "20px",
+                  marginLeft: "5px",
+                }}
+                onClick={handleCancelOrders}
+              >
+                Hủy đơn hàng
+              </Button>
+            </div>
+          )}
         </Box>
       </Modal>
     </div>

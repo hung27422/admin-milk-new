@@ -34,7 +34,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function TableInfoInventory({ data }) {
-  console.log(data?.inventories);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -51,22 +50,18 @@ export default function TableInfoInventory({ data }) {
           {data?.inventories.map((item) => {
             let result = (
               <StyledTableRow key={item?.id}>
-                {/*  */}
                 <StyledTableCell align="center" component="th" scope="row">
                   <IDInventory data={item} />
                 </StyledTableCell>
-                {/*  */}
                 <StyledTableCell align="center">
                   <IDProduct data={item} />
                 </StyledTableCell>
-                {/*  */}
                 <StyledTableCell align="center">
                   <ItemProductInventory data={item} />
                 </StyledTableCell>
-                {/*  */}
                 <StyledTableCell align="center">
                   <QuantityInventory data={item} />
-                </StyledTableCell>{" "}
+                </StyledTableCell>
                 <StyledTableCell align="center">
                   <div
                     style={{

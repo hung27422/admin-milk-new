@@ -7,7 +7,7 @@ function IDUserOrders({ data }) {
   return (
     <div className={cx("wrapper")}>
       <div className={cx("info-item")} key={data?.id}>
-        <h3 className={cx("name-item")}>{data?.userId}</h3>
+        <h3 className={cx("name-item")}>{data?.id}</h3>
       </div>
     </div>
   );

@@ -23,5 +23,5 @@ function DateOrders({ data }) {
 
 export default DateOrders;
 DateOrders.propTypes = {
-  data: PropTypes.string,
+  data: PropTypes.object,
 };

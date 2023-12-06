@@ -43,7 +43,26 @@ const renderActionButtons = (isShowButton, items, roleName) => {
   switch (isShowButton) {
     case "1":
       return roleName?.name !== "Admin" ? (
-        <ButtonConfirm data={items} />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
+          <ButtonInformation data={items} />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              width: "200px",
+              justifyContent: "space-around",
+            }}
+          >
+            <ButtonConfirm data={items} />
+            <ButtonCancelShip data={items} />
+          </div>
+        </div>
       ) : (
         <ButtonInformation data={items} />
       );
@@ -106,7 +125,7 @@ export default function TableInfo({ isShowButton, results }) {
         <Table sx={{ minWidth: 700 }} stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <StyledTableCell width={"15%"}>ID USER</StyledTableCell>
+              <StyledTableCell width={"10%"}>ID ORDERS</StyledTableCell>
               <StyledTableCell width={"15%"} align="center">
                 NAME
               </StyledTableCell>
@@ -119,7 +138,7 @@ export default function TableInfo({ isShowButton, results }) {
               <StyledTableCell width={"10%"} align="center">
                 Date
               </StyledTableCell>
-              <StyledTableCell width={"25%"} align="center">
+              <StyledTableCell width={"30%"} align="center">
                 Action
               </StyledTableCell>
             </TableRow>

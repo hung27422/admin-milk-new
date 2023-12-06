@@ -49,7 +49,7 @@ export default function ButtonAddProduct() {
   };
 
   const [createProduct] = useMutation(CREATE_PRODUCT);
-  const hanldeAddProduct = async () => {
+  const handleAddProduct = async () => {
     const validationResult = productSchema.validate(value);
 
     if (validationResult.error) {
@@ -179,7 +179,7 @@ export default function ButtonAddProduct() {
                 color: "var(--white)",
                 backgroundColor: "var(--secondary)",
               }}
-              onClick={hanldeAddProduct}
+              onClick={handleAddProduct}
             >
               Thêm
             </Button>

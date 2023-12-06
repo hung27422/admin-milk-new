@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
-import UseCategory from "../../../hooks/useQuerryCategory";
+import useCategory from "../../../hooks/useQuerryCategory";
 function CategoryProducts({ data }) {
-  const [category, error] = UseCategory();
+  const { category, error } = useCategory();
   if (error) {
     console.log("Lỗi query category: ", error);
   }

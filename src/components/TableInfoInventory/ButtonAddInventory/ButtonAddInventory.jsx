@@ -40,7 +40,6 @@ export default function ButtonAddInventory({ data, idIV }) {
   const { refetch } = useGetQueryInventory();
 
   const isIdInInventory = idIV?.includes(data?.id);
-  console.log(isIdInInventory);
   const handleUpdateQuantity = (value) => {
     setQuantity(Number(value));
   };
