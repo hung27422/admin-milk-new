@@ -8,6 +8,7 @@ import PageInfoUser from "../pages/AdminUsers/PageInfoUser/PageInfoUser";
 import AdminInventory from "../pages/AdminInventory/AdminInventory";
 import AdminShipping from "../pages/AdminShipping/AdminShipping";
 import AdminCategory from "../pages/AdminCategory/AdminCategory";
+import AdminDiscount from "../pages/AdminDiscount/AdminDiscount";
 const publicRouter = [
   {
     path: "/",
@@ -45,6 +46,10 @@ const publicRouter = [
   {
     path: "/AdminCategory",
     component: AdminCategory,
+  },
+  {
+    path: "/AdminDiscount",
+    component: AdminDiscount,
   },
 ];
 export { publicRouter };

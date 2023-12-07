@@ -28,6 +28,7 @@ function Sidebar() {
             <MenuItem to={"/AdminProducts"} title={"Product Management"} />
             <MenuItem to={"/AdminUsers"} title={"User Management"} />
             <MenuItem to={"/AdminCategory"} title={"Category Management"} />
+            <MenuItem to={"/AdminDiscount"} title={"Discount Management"} />
           </div>
         )}
         {roleName?.name === "nvk" && (

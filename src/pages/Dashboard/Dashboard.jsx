@@ -136,13 +136,6 @@ function Dashboard() {
   useEffect(() => {}, [orderCancelled]);
 
   useEffect(() => {}, [ordersNow]);
-  useEffect(() => {
-    console.log("orders", orders);
-    console.log("ordersItem", ordersItem);
-    console.log("ordersDateNow", ordersNow);
-    console.log("ordersCancelled", orderCancelled);
-  }, [orderCancelled, orders, ordersItem, ordersNow]);
-
   //Lấy total của tất cả đơn hàng
   const totalDate =
     ordersItem?.reduce((accumulator, item) => {
