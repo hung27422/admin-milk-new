@@ -19,7 +19,7 @@ function useQueryOrders() {
             quantity
             sku
             subtotal
-          } 
+          }
           status
           total
           userId
@@ -29,7 +29,7 @@ function useQueryOrders() {
       }
     `,
     {
-      variables: { amount: 50, page: 1 },
+      variables: { amount: 100, page: 1 },
       context: {
         headers: {
           authorization: `Bearer ${apiTokenLocal}`,

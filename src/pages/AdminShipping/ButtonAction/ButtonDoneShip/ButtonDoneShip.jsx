@@ -5,11 +5,9 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 
 const UPDATE_ORDER = gql`
-  mutation UpdateOrder($updateOrderId: Int!, $input: orderUpdateOrderInput!) {
-    updateOrder(id: $updateOrderId, input: $input) {
-      orderUpdatedPayload {
-        message
-      }
+  mutation UpdateOrder($input: orderUpdateOrderInput!) {
+    updateOrder(input: $input) {
+      string
     }
   }
 `;
@@ -23,8 +21,8 @@ function ButtonDoneShip({ data }) {
   }, [data]);
   const handleUpdateDelivered = async () => {
     const orderUpdateOrderInput = {
-      updateOrderId: data?.id,
       input: {
+        id: data?.id,
         cancelReason: null,
         phone: data?.phone,
         shippingAddress: data?.shippingAddress,
@@ -39,7 +37,6 @@ function ButtonDoneShip({ data }) {
         },
       },
       variables: {
-        updateOrderId: orderUpdateOrderInput.updateOrderId,
         input: orderUpdateOrderInput.input,
       },
     });

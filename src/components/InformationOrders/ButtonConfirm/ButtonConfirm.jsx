@@ -6,11 +6,9 @@ import useQueryOrders from "../../../hooks/useQueryOrders";
 import { Button } from "@mui/material";
 // import { client } from "../../../apollo";
 const UPDATE_ORDER = gql`
-  mutation UpdateOrder($updateOrderId: Int!, $input: orderUpdateOrderInput!) {
-    updateOrder(id: $updateOrderId, input: $input) {
-      orderUpdatedPayload {
-        message
-      }
+  mutation UpdateOrder($input: orderUpdateOrderInput!) {
+    updateOrder(input: $input) {
+      string
     }
   }
 `;
@@ -28,9 +26,9 @@ function ButtonConfirm({ data }) {
   const handleUpdateOrder = async () => {
     for (const item of result) {
       const orderUpdateOrderInput = {
-        updateOrderId: item?.orderId,
         input: {
           cancelReason: null,
+          id: item?.orderId,
           phone: data?.phone || "null",
           shippingAddress: data?.shippingAddress || null,
           status: "CONFIRMED",
@@ -45,7 +43,6 @@ function ButtonConfirm({ data }) {
             },
           },
           variables: {
-            updateOrderId: orderUpdateOrderInput.updateOrderId,
             input: orderUpdateOrderInput.input,
           },
         });

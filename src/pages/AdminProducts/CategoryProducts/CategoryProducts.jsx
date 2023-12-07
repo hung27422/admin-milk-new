@@ -1,26 +1,26 @@
 import PropTypes from "prop-types";
 import useCategory from "../../../hooks/useQuerryCategory";
 function CategoryProducts({ data }) {
-  const { category, error } = useCategory();
+  const { data: category, error } = useCategory();
+
   if (error) {
     console.log("Lỗi query category: ", error);
   }
+  const filterCategory = category?.categories.find(
+    (item) => item?.id === data?.categoryId
+  );
   return (
     <div>
-      {category?.category?.id === data.categoryId ? (
-        <span
-          style={{
-            color: "var(--text-color)",
-            fontFamily: "var(--font-primary)",
-            fontSize: "18px",
-            fontWeight: "600",
-          }}
-        >
-          {category?.category?.name}
-        </span>
-      ) : (
-        <span>{data.categoryId}</span>
-      )}
+      <span
+        style={{
+          color: "var(--text-color)",
+          fontFamily: "var(--font-primary)",
+          fontSize: "18px",
+          fontWeight: "600",
+        }}
+      >
+        {filterCategory?.name}
+      </span>
     </div>
   );
 }

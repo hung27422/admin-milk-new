@@ -5,11 +5,9 @@ import PropTypes from "prop-types";
 import useQueryOrders from "../../../../hooks/useQueryOrders";
 
 const UPDATE_ORDER = gql`
-  mutation UpdateOrder($updateOrderId: Int!, $input: orderUpdateOrderInput!) {
-    updateOrder(id: $updateOrderId, input: $input) {
-      orderUpdatedPayload {
-        message
-      }
+  mutation UpdateOrder($input: orderUpdateOrderInput!) {
+    updateOrder(input: $input) {
+      string
     }
   }
 `;
@@ -24,6 +22,7 @@ function ButtonShipping({ data }) {
     const orderUpdateOrderInput = {
       updateOrderId: data?.id,
       input: {
+        id: data?.id,
         cancelReason: null,
         phone: data?.phone,
         shippingAddress: data?.shippingAddress,
@@ -38,7 +37,6 @@ function ButtonShipping({ data }) {
         },
       },
       variables: {
-        updateOrderId: orderUpdateOrderInput.updateOrderId,
         input: orderUpdateOrderInput.input,
       },
     });

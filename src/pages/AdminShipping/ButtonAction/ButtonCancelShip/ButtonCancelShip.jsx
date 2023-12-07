@@ -43,11 +43,9 @@ const cancelReasonNvbh = [
   },
 ];
 const UPDATE_ORDER = gql`
-  mutation UpdateOrder($updateOrderId: Int!, $input: orderUpdateOrderInput!) {
-    updateOrder(id: $updateOrderId, input: $input) {
-      orderUpdatedPayload {
-        message
-      }
+  mutation UpdateOrder($input: orderUpdateOrderInput!) {
+    updateOrder(input: $input) {
+      string
     }
   }
 `;
@@ -66,8 +64,8 @@ export default function ButtonCancelShip({ data }) {
   };
   const handleCancelOrders = async () => {
     const orderUpdateOrderInput = {
-      updateOrderId: data?.id,
       input: {
+        id: data?.id,
         cancelReason: reasonName,
         phone: data?.phone,
         shippingAddress: data?.shippingAddress,
@@ -82,7 +80,6 @@ export default function ButtonCancelShip({ data }) {
         },
       },
       variables: {
-        updateOrderId: orderUpdateOrderInput.updateOrderId,
         input: orderUpdateOrderInput.input,
       },
     });
