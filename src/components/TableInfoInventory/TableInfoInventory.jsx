@@ -34,6 +34,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function TableInfoInventory({ data }) {
+  const storedData = Array.isArray(data)
+    ? [...data].sort((a, b) => a.id - b.id)
+    : [];
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -47,7 +50,7 @@ export default function TableInfoInventory({ data }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data?.inventories.map((item) => {
+          {storedData?.map((item) => {
             let result = (
               <StyledTableRow key={item?.id}>
                 <StyledTableCell align="center" component="th" scope="row">

@@ -17,7 +17,7 @@ function UseQueryProduct() {
     `,
     {
       variables: {
-        amount: 50,
+        amount: 100,
         page: 1,
       },
     }

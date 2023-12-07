@@ -1,12 +1,13 @@
 .info-item {
   display: flex;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
 }
-// .id-product {
-//   width: 100%;
-//   text-align: center;
-// }
+.id-product {
+  width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .img-item {
   width: 90px;
   height: 80px;

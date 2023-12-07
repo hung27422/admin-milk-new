@@ -9,7 +9,7 @@ function AdminInventory() {
   return (
     <div className={cx("wrapper")}>
       <h2 className={cx("title")}>Information Inventory</h2>
-      <TableInfoInventory data={data} />
+      <TableInfoInventory data={data?.inventories} />
     </div>
   );
 }

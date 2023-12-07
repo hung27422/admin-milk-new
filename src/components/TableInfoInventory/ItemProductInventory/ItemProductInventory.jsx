@@ -5,9 +5,9 @@ import PropTypes from "prop-types";
 const cx = classNames.bind(styles);
 function ItemProductInventory({ data: dataInventory }) {
   const { data } = UseQueryProduct();
-//   useEffect(() => {
-//     console.log(data);
-//   }, [data]);
+  //   useEffect(() => {
+  //     console.log(data);
+  //   }, [data]);
   return (
     <div className={cx("id-product")}>
       {data?.products?.map((item) => {

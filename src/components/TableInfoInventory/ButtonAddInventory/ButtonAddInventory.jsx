@@ -51,7 +51,6 @@ export default function ButtonAddInventory({ data, idIV }) {
         quantity: quantity,
       },
     };
-    console.log(inventoryCreateInventoryInput);
     const result = await createInventory({
       context: {
         headers: {
@@ -61,8 +60,8 @@ export default function ButtonAddInventory({ data, idIV }) {
       variables: { input: inventoryCreateInventoryInput.input },
     });
     console.log("Tạo inventory thành công: ", result);
-    setOpen(false);
     refetch();
+    setOpen(false);
   };
   return (
     <div>
