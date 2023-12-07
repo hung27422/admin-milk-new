@@ -42,6 +42,9 @@ export default function TableInfoProduct({ data, dataI }) {
   const idIV = dataI?.map((id) => {
     return id?.productId;
   });
+  const sortedData = Array.isArray(data)
+    ? [...data].sort((a, b) => a.id - b.id)
+    : [];
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -68,7 +71,7 @@ export default function TableInfoProduct({ data, dataI }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data?.map((item) => {
+          {sortedData?.map((item) => {
             let infoProduct = (
               <StyledTableRow key={item?.id}>
                 <StyledTableCell width={"10%"} component="th" scope="row">

@@ -35,7 +35,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function TableInfoUser({ data }) {
-  //   console.log(data);
+  const compareRoles = (a, b) => {
+    const roleOrder = ["Admin", "nvbh", "nvk", "shipper", "User"];
+    return roleOrder.indexOf(a.role.name) - roleOrder.indexOf(b.role.name);
+  };
+  const sortedData = Array.isArray(data) ? [...data].sort(compareRoles) : [];
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -50,7 +54,7 @@ export default function TableInfoUser({ data }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data?.map((item) => {
+          {sortedData?.map((item) => {
             let result = (
               <StyledTableRow key={item?.id}>
                 <StyledTableCell component="th" scope="row">

@@ -7,6 +7,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import PropTypes from "prop-types";
+import ButtonUpdateCategory from "../../pages/AdminCategory/ButtonUpdateCategory";
+import ButtonDeleteCategory from "../../pages/AdminCategory/ButtonDeleteCategory";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -27,6 +29,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 export default function TableInfoCategory({ data }) {
+  const sortedData = Array.isArray(data)
+    ? [...data].sort((a, b) => a.id - b.id)
+    : [];
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -39,7 +44,7 @@ export default function TableInfoCategory({ data }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data?.map((item) => (
+          {sortedData?.map((item) => (
             <StyledTableRow key={item?.id}>
               <StyledTableCell align="center" component="th" scope="row">
                 {item?.id}
@@ -48,7 +53,22 @@ export default function TableInfoCategory({ data }) {
               <StyledTableCell align="center">
                 {item?.description}
               </StyledTableCell>
-              <StyledTableCell align="center"></StyledTableCell>
+              <StyledTableCell align="center">
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    width: "200px",
+                    alignItems: "center",
+                    textAlign: "center",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                  }}
+                >
+                  <ButtonUpdateCategory data={item} />
+                  <ButtonDeleteCategory data={item} />
+                </div>
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
