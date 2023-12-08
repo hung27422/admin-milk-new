@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import PropTypes from "prop-types";
 import ButtonDeleteDiscount from "../../pages/AdminDiscount/ButtonDeleteDiscount";
+import ButtonUpdateDiscount from "../../pages/AdminDiscount/ButtonUpdateDiscount";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -46,6 +47,7 @@ export default function TableInfoDiscount({ data }) {
               Special Day Condition
             </StyledTableCell>
             <StyledTableCell align="center">Quantity</StyledTableCell>
+            <StyledTableCell align="center">Amount</StyledTableCell>
             <StyledTableCell align="center">Code</StyledTableCell>
             <StyledTableCell align="center">Action</StyledTableCell>
           </TableRow>
@@ -69,12 +71,22 @@ export default function TableInfoDiscount({ data }) {
                 <StyledTableCell align="center">
                   {formatDate(item?.specialDayCondition)}
                 </StyledTableCell>
+                <StyledTableCell align="center">{item?.amount}</StyledTableCell>
                 <StyledTableCell align="center">
                   {item?.quantity}
                 </StyledTableCell>
                 <StyledTableCell align="center">{item?.code}</StyledTableCell>
                 <StyledTableCell align="center">
-                  <ButtonDeleteDiscount data={item} />
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-around",
+                    }}
+                  >
+                    <ButtonDeleteDiscount data={item} />
+                    <ButtonUpdateDiscount data={item} />
+                  </div>
                 </StyledTableCell>
               </StyledTableRow>
             );
