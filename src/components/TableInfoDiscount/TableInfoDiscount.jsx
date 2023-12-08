@@ -7,6 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import PropTypes from "prop-types";
+import ButtonDeleteDiscount from "../../pages/AdminDiscount/ButtonDeleteDiscount";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -37,6 +38,7 @@ export default function TableInfoDiscount({ data }) {
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
+            <StyledTableCell align="center">ID</StyledTableCell>
             <StyledTableCell align="center">Description</StyledTableCell>
             <StyledTableCell align="center">ActiveDate</StyledTableCell>
             <StyledTableCell align="center">ExpireDate</StyledTableCell>
@@ -53,6 +55,9 @@ export default function TableInfoDiscount({ data }) {
             return (
               <StyledTableRow key={item?.id}>
                 <StyledTableCell align="center" component="th" scope="row">
+                  {item?.id}
+                </StyledTableCell>
+                <StyledTableCell align="center" component="th" scope="row">
                   {item?.description}
                 </StyledTableCell>
                 <StyledTableCell align="center">
@@ -68,7 +73,9 @@ export default function TableInfoDiscount({ data }) {
                   {item?.quantity}
                 </StyledTableCell>
                 <StyledTableCell align="center">{item?.code}</StyledTableCell>
-                <StyledTableCell align="center">123</StyledTableCell>
+                <StyledTableCell align="center">
+                  <ButtonDeleteDiscount data={item} />
+                </StyledTableCell>
               </StyledTableRow>
             );
           })}
