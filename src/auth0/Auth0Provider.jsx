@@ -6,7 +6,7 @@ function AuthProvider({ children }) {
       domain="dev-726yamkp1xzya72d.us.auth0.com"
       clientId="ejDalqrZaOlHtEKE9cpyXfRlLwCQqV0I"
       authorizationParams={{
-        redirect_uri: "https://admin-milk-new.vercel.app/DashboardAdmin",
+        redirect_uri: "https://admin-milk-new.vercel.app/DashboardAdmin/",
       }}
     >
       {children}
