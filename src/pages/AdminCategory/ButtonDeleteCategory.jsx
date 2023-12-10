@@ -72,7 +72,10 @@ export default function ButtonDeleteCategory({ data }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <h2>Bạn có chắc chắn muốn xóa category có id là {data?.id} không?</h2>
+          <h2>
+            Bạn có chắc chắn muốn xóa category có id là{" "}
+            <span style={{ color: "red" }}>{data?.id}</span> không?
+          </h2>
           <div className={cx("btn-action")}>
             <Button
               style={{

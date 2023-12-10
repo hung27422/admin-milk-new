@@ -11,7 +11,7 @@ function AdminCategory() {
   // }, [data]);
   return (
     <div className={cx("wrapper")}>
-      <h2 className={cx("title")}>Information Inventory</h2>
+      <h2 className={cx("title")}>Information Category</h2>
       <div className={cx("btn-add-category")}>
         <ButtonAddCategory data={data?.categories} />
       </div>

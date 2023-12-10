@@ -142,22 +142,7 @@ export default function ButtonUpdateDiscount({ data }) {
                 onChange={(date) => handleDateChange("expireDate", date)}
               />
             </label>
-            {/* <label className={cx("form-item")}>
-              <span>Chọn BirthdayCondition </span>
-              <DatePicker
-                value={valueDate?.birthdayCondition}
-                onChange={(date) => handleDateChange("birthdayCondition", date)}
-              />
-            </label> */}
-            {/* <label className={cx("form-item")}>
-              <span>Chọn SpecialDayCondition </span>
-              <DatePicker
-                value={valueDate?.specialDayCondition}
-                onChange={(date) =>
-                  handleDateChange("specialDayCondition", date)
-                }
-              />
-            </label> */}
+
             <label className={cx("form-item")}>
               <TextField
                 id="description"

@@ -35,6 +35,7 @@ function useQueryOrders() {
           authorization: `Bearer ${apiTokenLocal}`,
         },
       },
+      pollInterval: 5000,
     }
   );
   return { data, error, refetch };

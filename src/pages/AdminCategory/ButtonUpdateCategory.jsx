@@ -10,6 +10,7 @@ import { useState } from "react";
 import useCategory from "../../hooks/useQuerryCategory";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
+import useValidate from "../../hooks/useValidate";
 const cx = classNames.bind(styles);
 const style = {
   position: "absolute",
@@ -37,9 +38,12 @@ const UPDATE_CATEGORY = gql`
 export default function ButtonUpdateCategory({ data }) {
   const apiTokenLocal = localStorage.getItem("apiToken");
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(null);
   const { refetch } = useCategory();
   const [updateCategory] = useMutation(UPDATE_CATEGORY);
+  const { categorySchema } = useValidate();
+  const [error, setError] = useState(null);
+
   const handleValueInput = (id, value) => {
     setValue((prev) => ({
       ...prev,
@@ -50,6 +54,15 @@ export default function ButtonUpdateCategory({ data }) {
     setValue(data);
   }, [data]);
   const handleUpdateCategory = async () => {
+    const validationResult = categorySchema.validate(value);
+    if (validationResult.error) {
+      setError(
+        validationResult.error.details
+          .map((detail) => detail.message)
+          .join(", ")
+      );
+      return; // Ngăn chặn thực hiện mutation khi có lỗi
+    }
     const productUpdateCategoryInput = {
       updateCategoryId: data?.id,
       input: {
@@ -114,6 +127,13 @@ export default function ButtonUpdateCategory({ data }) {
                 }
               />
             </label>
+            <div style={{ textAlign: "center" }}>
+              {error && (
+                <span style={{ color: "red", textAlign: "center" }}>
+                  {error}
+                </span>
+              )}
+            </div>
             <div className={cx("btn-action")}>
               <Button
                 style={{

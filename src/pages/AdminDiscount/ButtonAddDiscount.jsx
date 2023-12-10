@@ -10,6 +10,7 @@ import { gql, useMutation } from "@apollo/client";
 import { DatePicker } from "@mui/x-date-pickers";
 import { useState } from "react";
 import useQueryDiscount from "../../hooks/useQueryDiscount";
+import useValidate from "../../hooks/useValidate";
 const cx = classNames.bind(styles);
 
 const style = {
@@ -44,9 +45,12 @@ export default function ButtonAddDiscount() {
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
   const [createDiscount] = useMutation(CREATE_DISCOUNT);
-  const [value, setValue] = useState();
-  const [valueDate, setValueDate] = useState();
+  const [value, setValue] = useState({});
+  const [valueDate, setValueDate] = useState({});
   const { refetch } = useQueryDiscount();
+  const { discountSchema, discountSchemaDate } = useValidate();
+  const [error, setError] = useState(null);
+
   const handleDateChange = (id, selectedDate) => {
     if (selectedDate) {
       const formattedDate = formatDate(selectedDate);
@@ -63,8 +67,21 @@ export default function ButtonAddDiscount() {
       [id]: value,
     }));
   };
-
+  // React.useEffect(() => {
+  //   console.log(value, valueDate);
+  // }, [value, valueDate]);
   const handleAddDiscount = async () => {
+    const validationResultDate = discountSchemaDate.validate(valueDate);
+    const validationResult = discountSchema.validate(value);
+    const combinedErrors = [
+      ...(validationResultDate.error?.details || []),
+      ...(validationResult.error?.details || []),
+    ];
+
+    if (combinedErrors.length > 0) {
+      setError(combinedErrors.map((detail) => detail.message).join(", "));
+      return; // Ngăn chặn thực hiện mutation khi có lỗi
+    }
     const orderCreateDiscountInput = {
       input: {
         activeDate: new Date(valueDate?.activeDate),
@@ -168,6 +185,11 @@ export default function ButtonAddDiscount() {
                 onChange={(e) => handleValueInput("code", e.target.value)}
               />
             </label>
+          </div>
+          <div style={{ textAlign: "center" }}>
+            {error && (
+              <span style={{ color: "red", textAlign: "center" }}>{error}</span>
+            )}
           </div>
           <div className={cx("btn-action")}>
             <Button

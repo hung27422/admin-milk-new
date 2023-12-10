@@ -1,7 +1,7 @@
 import { gql, useMutation } from "@apollo/client";
 import { Button } from "@mui/material";
 import useQueryOrders from "../../../../hooks/useQueryOrders";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import PropTypes from "prop-types";
 
 const UPDATE_ORDER = gql`
@@ -16,9 +16,9 @@ function ButtonDoneShip({ data }) {
   const [updateOrder] = useMutation(UPDATE_ORDER);
   const apiTokenLocal = localStorage.getItem("apiToken");
   const { refetch } = useQueryOrders();
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  // useEffect(() => {
+  //   console.log(data);
+  // }, [data]);
   const handleUpdateDelivered = async () => {
     const orderUpdateOrderInput = {
       input: {
@@ -40,8 +40,8 @@ function ButtonDoneShip({ data }) {
         input: orderUpdateOrderInput.input,
       },
     });
-    console.log("Update giao đơn hàng thành công: ", result);
     refetch();
+    console.log("Update giao đơn hàng thành công: ", result);
   };
   return (
     <Button

@@ -8,6 +8,7 @@ import styles from "./AdminCategory.module.scss";
 import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 import useCategory from "../../hooks/useQuerryCategory";
+import useValidate from "../../hooks/useValidate";
 const cx = classNames.bind(styles);
 const style = {
   position: "absolute",
@@ -32,10 +33,13 @@ const CREATE_CATEGORY = gql`
 export default function ButtonAddCategory() {
   const apiTokenLocal = localStorage.getItem("apiToken");
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = useState();
+  const [value, setValue] = useState({});
   const { refetch } = useCategory();
   const [createCategory, { error: errMutaionCategory }] =
     useMutation(CREATE_CATEGORY);
+  const { categorySchema } = useValidate();
+  const [error, setError] = useState(null);
+
   if (errMutaionCategory)
     console.log("Lỗi mutation category", errMutaionCategory);
   const handleValueInput = (id, value) => {
@@ -45,6 +49,15 @@ export default function ButtonAddCategory() {
     }));
   };
   const handleAddCategory = async () => {
+    const validationResult = categorySchema.validate(value);
+    if (validationResult.error) {
+      setError(
+        validationResult.error.details
+          .map((detail) => detail.message)
+          .join(", ")
+      );
+      return; // Ngăn chặn thực hiện mutation khi có lỗi
+    }
     const productCreateCategoryInput = {
       input: {
         description: value?.description,
@@ -105,6 +118,13 @@ export default function ButtonAddCategory() {
                 }
               />
             </label>
+            <div style={{ textAlign: "center" }}>
+              {error && (
+                <span style={{ color: "red", textAlign: "center" }}>
+                  {error}
+                </span>
+              )}
+            </div>
             <div className={cx("btn-action")}>
               <Button
                 style={{
