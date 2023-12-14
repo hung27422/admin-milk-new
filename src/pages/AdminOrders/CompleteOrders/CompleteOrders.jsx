@@ -20,12 +20,16 @@ function CompleteOrders() {
             quantity
             sku
             subtotal
+            Product {
+              images
+            }
           }
           status
           total
           userId
           phone
           userName
+          pointDeductionAmount
         }
       }
     `,

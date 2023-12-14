@@ -10,6 +10,8 @@ import PropTypes from "prop-types";
 import useQueryOrders from "../../../../hooks/useQueryOrders";
 import { useContext } from "react";
 import { AdminMilkContext } from "../../../../components/AdminContextMilk/AdminContextMilk";
+import useQueryPoint from "../../../../hooks/useQueryPoint";
+// import { useEffect } from "react";
 const cx = classNames.bind(styles);
 const style = {
   position: "absolute",
@@ -49,19 +51,53 @@ const UPDATE_ORDER = gql`
     }
   }
 `;
+const ADD_POINT = gql`
+  mutation AddPoint($input: userAddPointInput!) {
+    addPoint(input: $input) {
+      string
+    }
+  }
+`;
 export default function ButtonCancelShip({ data }) {
-  console.log("data ne", data);
   const [open, setOpen] = React.useState(false);
   const apiTokenLocal = localStorage.getItem("apiToken");
   const [updateOrder] = useMutation(UPDATE_ORDER);
+  const [addPoint] = useMutation(ADD_POINT);
   const { roleName } = useContext(AdminMilkContext);
   const { refetch } = useQueryOrders();
-
+  const { data: dataPoint, refetch: refetchPoint } = useQueryPoint({
+    userId: data?.userId,
+  });
   const [reasonName, setReasonName] = useState();
   const [reasonId, setReasonId] = useState(1);
+  // const [point, setPoint] = useState();
+  // const [order, setOrder] = useState();
+  // const [orders, setOrders] = useState([]);
   const handleCancelReason = (value, id) => {
     setReasonName(value);
     setReasonId(id);
+  };
+  React.useEffect(() => {
+    if (data) {
+      console.log("data nè", data);
+    }
+  }, [data]);
+  const handleAddPoint = async () => {
+    const userAddPointInput = {
+      input: {
+        input: {
+          id: dataPoint.pointByUserId?.id,
+          point: data?.pointDeductionAmount,
+        },
+      },
+    };
+    const result = await addPoint({
+      variables: {
+        input: userAddPointInput.input,
+      },
+    });
+    refetchPoint();
+    console.log("Return Point Successful", result);
   };
   const handleCancelOrders = async () => {
     const orderUpdateOrderInput = {
@@ -87,6 +123,7 @@ export default function ButtonCancelShip({ data }) {
     refetch();
     console.log("Hủy đơn hàng thành công: ", result);
     setOpen(false);
+    handleAddPoint();
   };
   return (
     <div>
