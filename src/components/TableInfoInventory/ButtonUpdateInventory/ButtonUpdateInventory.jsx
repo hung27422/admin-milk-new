@@ -65,6 +65,7 @@ export default function ButtonUpdateInventory({ data }) {
     });
     console.log("Update số lượng kho thành công ", result);
     refetch();
+    setOpen(false);
   };
   return (
     <div>

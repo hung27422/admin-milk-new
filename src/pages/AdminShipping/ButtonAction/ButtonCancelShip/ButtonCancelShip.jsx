@@ -77,11 +77,11 @@ export default function ButtonCancelShip({ data }) {
     setReasonName(value);
     setReasonId(id);
   };
-  React.useEffect(() => {
-    if (data) {
-      console.log("data nè", data);
-    }
-  }, [data]);
+  // React.useEffect(() => {
+  //   if (data) {
+  //     console.log("data nè", data);
+  //   }
+  // }, [data]);
   const handleAddPoint = async () => {
     const userAddPointInput = {
       input: {

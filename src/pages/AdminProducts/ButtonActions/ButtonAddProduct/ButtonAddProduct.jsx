@@ -4,11 +4,13 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import classNames from "classnames/bind";
 import styles from "../ButtonAction.module.scss";
-import { TextField } from "@mui/material";
+import { MenuItem, TextField } from "@mui/material";
 import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 import UseQueryProduct from "../../../../hooks/useQuerryProduct";
 import useValidate from "../../../../hooks/useValidate";
+import useCategory from "../../../../hooks/useQuerryCategory";
+// import { useEffect } from "react";
 
 const cx = classNames.bind(styles);
 
@@ -41,6 +43,12 @@ export default function ButtonAddProduct() {
   const [value, setValue] = useState({});
   const [error, setError] = useState(null);
   const { refetch } = UseQueryProduct();
+  const { data: dataCategory } = useCategory();
+  // useEffect(() => {
+  //   if (dataCategory) {
+  //     console.log("2444", dataCategory);
+  //   }
+  // }, [dataCategory]);
   const handleValueInput = (id, value) => {
     setValue((prev) => ({
       ...prev,
@@ -51,7 +59,6 @@ export default function ButtonAddProduct() {
   const [createProduct] = useMutation(CREATE_PRODUCT);
   const handleAddProduct = async () => {
     const validationResult = productSchema.validate(value);
-
     if (validationResult.error) {
       // Cập nhật trạng thái lỗi
       setError(
@@ -115,11 +122,24 @@ export default function ButtonAddProduct() {
           <div className={cx("form-input")}>
             <label>
               <TextField
+                id="outlined-select-currency"
+                className={cx("value-input")}
+                select
+                label="Select"
+                onChange={(e) => handleValueInput("categoryId", e.target.value)}
+              >
+                {dataCategory?.categories.map((option) => (
+                  <MenuItem key={option.id} value={option.id}>
+                    {option.name}
+                  </MenuItem>
+                ))}
+              </TextField>
+              {/* <TextField
                 id="categoryId"
                 label="Nhập CategoryId"
                 variant="outlined"
                 onChange={(e) => handleValueInput("categoryId", e.target.value)}
-              />
+              /> */}
             </label>
             <label>
               <TextField

@@ -47,7 +47,7 @@ function ButtonShipping({ data }) {
     <div>
       <Button
         style={{
-          backgroundColor: "var(--secondary)",
+          backgroundColor: "green",
           color: "var(--white)",
           width: "100px",
         }}
