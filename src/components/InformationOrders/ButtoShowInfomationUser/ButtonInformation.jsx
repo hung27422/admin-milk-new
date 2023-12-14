@@ -187,9 +187,11 @@ export default function ButtonInformation({ data, reviewsPr }) {
                   Hủy với lí do: {data?.cancelReason}
                 </span>
               )}
-              <div className={cx("total-price")}>Tổng tiền: {total} VNĐ</div>
-              <div className={cx("final-total-price")}>
-                Thành tiền: {data?.total} VNĐ
+              <div className={cx("info-price")}>
+                <div className={cx("total-price")}>Tổng tiền: {total} VNĐ</div>
+                <div className={cx("final-total-price")}>
+                  Thành tiền: {data?.total} VNĐ
+                </div>
               </div>
             </div>
           </div>
