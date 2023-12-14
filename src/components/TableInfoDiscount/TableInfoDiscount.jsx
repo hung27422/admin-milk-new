@@ -46,9 +46,10 @@ export default function TableInfoDiscount({ data }) {
             <StyledTableCell align="center">
               Special Day Condition
             </StyledTableCell>
-            <StyledTableCell align="center">Quantity</StyledTableCell>
             <StyledTableCell align="center">Amount</StyledTableCell>
+            <StyledTableCell align="center">Quantity</StyledTableCell>
             <StyledTableCell align="center">Code</StyledTableCell>
+            <StyledTableCell align="center">Total</StyledTableCell>
             <StyledTableCell align="center">Action</StyledTableCell>
           </TableRow>
         </TableHead>
@@ -69,13 +70,18 @@ export default function TableInfoDiscount({ data }) {
                   {formatDate(item?.expireDate)}
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  {formatDate(item?.specialDayCondition)}
+                  {formatDate(item?.specialDayCondition) === "01-01-1"
+                    ? "None"
+                    : formatDate(item?.specialDayCondition)}
                 </StyledTableCell>
                 <StyledTableCell align="center">{item?.amount}</StyledTableCell>
                 <StyledTableCell align="center">
                   {item?.quantity}
                 </StyledTableCell>
                 <StyledTableCell align="center">{item?.code}</StyledTableCell>
+                <StyledTableCell align="center">
+                  {item?.totalOverCondition}
+                </StyledTableCell>
                 <StyledTableCell align="center">
                   <div
                     style={{

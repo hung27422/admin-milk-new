@@ -142,7 +142,6 @@ export default function ButtonUpdateDiscount({ data }) {
                 onChange={(date) => handleDateChange("expireDate", date)}
               />
             </label>
-
             <label className={cx("form-item")}>
               <TextField
                 id="description"

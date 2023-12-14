@@ -39,7 +39,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-const renderActionButtons = (isShowButton, items, roleName) => {
+const renderActionButtons = (isShowButton, items, roleName, reviewsPr) => {
   switch (isShowButton) {
     case "1":
       return roleName?.name !== "Admin" ? (
@@ -100,12 +100,12 @@ const renderActionButtons = (isShowButton, items, roleName) => {
       );
     case "4":
     case "5":
-      return <ButtonInformation data={items} />;
+      return <ButtonInformation reviewsPr={reviewsPr} data={items} />;
     default:
       return null;
   }
 };
-export default function TableInfo({ isShowButton, results }) {
+export default function TableInfo({ isShowButton, results, reviewsPr }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const { roleName } = React.useContext(AdminMilkContext);
@@ -165,7 +165,12 @@ export default function TableInfo({ isShowButton, results }) {
                       <DateOrders data={items} />
                     </StyledTableCell>
                     <StyledTableCell align="center">
-                      {renderActionButtons(isShowButton, items, roleName)}
+                      {renderActionButtons(
+                        isShowButton,
+                        items,
+                        roleName,
+                        reviewsPr
+                      )}
                     </StyledTableCell>
                   </StyledTableRow>
                 );
@@ -190,4 +195,5 @@ TableInfo.propTypes = {
   id: PropTypes.array,
   isShowButton: PropTypes.string,
   results: PropTypes.array,
+  reviewsPr: PropTypes.bool,
 };

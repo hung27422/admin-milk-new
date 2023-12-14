@@ -52,6 +52,8 @@ function useValidate() {
     amount: Joi.number().required(),
     quantity: Joi.number().required(),
     code: Joi.string().label("Code"),
+    total: Joi.number().optional(),
+    type: Joi.string().required(),
   });
   const discountSchemaDate = Joi.object({
     activeDate: Joi.required(),

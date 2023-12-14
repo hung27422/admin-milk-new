@@ -50,6 +50,7 @@ const UPDATE_ORDER = gql`
   }
 `;
 export default function ButtonCancelShip({ data }) {
+  console.log("data ne", data);
   const [open, setOpen] = React.useState(false);
   const apiTokenLocal = localStorage.getItem("apiToken");
   const [updateOrder] = useMutation(UPDATE_ORDER);
@@ -83,9 +84,9 @@ export default function ButtonCancelShip({ data }) {
         input: orderUpdateOrderInput.input,
       },
     });
+    refetch();
     console.log("Hủy đơn hàng thành công: ", result);
     setOpen(false);
-    refetch();
   };
   return (
     <div>

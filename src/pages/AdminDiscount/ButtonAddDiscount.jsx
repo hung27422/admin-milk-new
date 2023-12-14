@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import { TextField } from "@mui/material";
+import { MenuItem, TextField } from "@mui/material";
 // import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import styles from "../AdminDiscount/AdminDiscount.module.scss";
@@ -34,6 +34,16 @@ function formatDate(dateString) {
 
   return formattedDate;
 }
+const typeDiscount = [
+  {
+    value: "FIXED",
+    label: "FIXED",
+  },
+  {
+    value: "PERCENT",
+    label: "PERCENT",
+  },
+];
 const CREATE_DISCOUNT = gql`
   mutation CreateDiscount($input: orderCreateDiscountInput!) {
     createDiscount(input: $input) {
@@ -92,8 +102,8 @@ export default function ButtonAddDiscount() {
         expireDate: new Date(valueDate?.expireDate),
         quantity: Number(value?.quantity),
         specialDayCondition: new Date(valueDate?.specialDayCondition),
-        totalOverCondition: 0,
-        type: "FIXED",
+        totalOverCondition: parseFloat(value?.total),
+        type: value?.type,
       },
     };
     const result = await createDiscount({
@@ -104,6 +114,8 @@ export default function ButtonAddDiscount() {
     refetch();
     setOpen(false);
     console.log("Thêm discount thành công: ", result);
+    setValue({});
+    setError("");
   };
   return (
     <div>
@@ -184,6 +196,30 @@ export default function ButtonAddDiscount() {
                 variant="outlined"
                 onChange={(e) => handleValueInput("code", e.target.value)}
               />
+            </label>
+            <label className={cx("form-item")}>
+              <TextField
+                id="code"
+                label="Nhập điều kiện total"
+                variant="outlined"
+                onChange={(e) => handleValueInput("total", e.target.value)}
+              />
+            </label>
+            <label className={cx("form-item")}>
+              <TextField
+                id="outlined-select-currency"
+                select
+                label="Select"
+                value={value?.type}
+                onChange={(e) => handleValueInput("type", e.target.value)}
+                helperText="Please select your currency"
+              >
+                {typeDiscount.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
             </label>
           </div>
           <div style={{ textAlign: "center" }}>

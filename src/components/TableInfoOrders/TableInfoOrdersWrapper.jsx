@@ -19,7 +19,6 @@ function TableInfoUnconfirmed({ unconfirmed, status }) {
       );
     }
 
-    // Trả về một phần tử khác hoặc thông báo không có dữ liệu nếu không có item nào thỏa mãn điều kiện
     return <p>Không có dữ liệu để hiển thị.</p>;
   }
 }
@@ -96,6 +95,7 @@ function TableInfoComplete({ complete, status }) {
         <TableInfo
           results={createdStatusComplete.map((i) => i).flat()}
           isShowButton={"5"}
+          reviewsPr
         />
       );
     }

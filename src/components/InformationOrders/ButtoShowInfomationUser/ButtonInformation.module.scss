@@ -1,4 +1,5 @@
 .header {
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,14 +14,23 @@
   font-size: 30px;
   margin-bottom: 20px;
 }
+.box-main {
+  margin-top: 50px;
+  max-height: 550px;
+  overflow-y: overlay;
+}
 .box-product {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   padding: 12px 0;
   border: 1px solid #ccc;
   margin-bottom: 8px;
   padding: 0 12px;
+}
+.box-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .box-info-product {
   display: flex;
@@ -56,6 +66,14 @@
 .total-price {
   margin-top: 15px;
   text-align: right;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-color);
+  text-decoration: line-through;
+}
+.final-total-price {
+  margin-top: 15px;
+  text-align: right;
   font-size: 25px;
   font-weight: 700;
   color: var(--text-color);
@@ -64,6 +82,33 @@
   font-size: 20px;
   font-weight: 600;
   color: var(--text-color);
+}
+//reviews
+.review-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+.info-user {
+  display: flex;
+  align-items: center;
+  margin: 5px 0px;
+  span {
+    font-size: 18px;
+    margin: 0 12px;
+    color: blue;
+    font-weight: 600;
+  }
+}
+.info-review {
+  display: flex;
+  flex-direction: column;
+  margin-left: 24px;
+}
+.type-review {
+  font-size: 16px;
+  color: var(--secondary);
+  margin: 2px 0;
 }
 .reason-cancel {
   width: 300px;

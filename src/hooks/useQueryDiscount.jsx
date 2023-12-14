@@ -21,9 +21,10 @@ function useQueryDiscount() {
     `,
     {
       variables: {
-        amount: 6,
+        amount: 50,
         page: 1,
       },
+      pollInterval: 5000,
     }
   );
   return { data, error, refetch };
