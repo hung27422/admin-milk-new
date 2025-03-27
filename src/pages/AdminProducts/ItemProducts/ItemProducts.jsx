@@ -6,7 +6,7 @@ function ItemProducts({ data }) {
   return (
     <div className={cx("wrapper")}>
       <img className={cx("img-item")} src={data?.images} alt="" />
-      <span className={cx("name-item")}>{data?.name}</span>
+      <span id="name-product" className={cx("name-item")}>{data?.name}</span>
     </div>
   );
 }

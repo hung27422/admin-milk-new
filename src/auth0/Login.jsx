@@ -26,7 +26,7 @@ function Login() {
   const handleLogin = async () => {
     const userRenewTokenInput = {
       input: {
-        id: "f88edae9-f78b-46a1-93f0-2a7c2d095b0c",
+        id: "145515f6-e684-4635-94b1-28f68656630f",
       },
     };
 
@@ -41,7 +41,6 @@ function Login() {
       setApiTokenAdmin(token);
       localStorage.setItem("apiToken", token);
       console.log("kq", token);
-      
     } catch (error) {
       console.error("Lỗi tạo token:", error);
     } finally {
@@ -52,7 +51,7 @@ function Login() {
 
   return (
     <div className={"btn-login"}>
-      <div to={"/LoginAdmin"} className={cx("login")} onClick={handleLogin}>
+      <div id="login" to={"/LoginAdmin"} className={cx("login")} onClick={handleLogin}>
         Log in
       </div>
     </div>

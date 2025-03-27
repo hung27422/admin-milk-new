@@ -8,6 +8,7 @@ import { AdminMilkContext } from "../../../components/AdminContextMilk/AdminCont
 const cx = classNames.bind(styles);
 function Sidebar() {
   const { roleName } = useContext(AdminMilkContext);
+  console.log({ roleName });
 
   return (
     <div className={cx("wrapper")}>
@@ -18,15 +19,15 @@ function Sidebar() {
         {roleName?.name === "nvbh" && (
           <div className={cx("menu")}>
             <MenuItem to={"/AdminOrders"} title={"Order Management"} />
-            <MenuItem to={"/AdminProducts"} title={"Product Management"} />
+            <MenuItem id="product-manage" to={"/AdminProducts"} title={"Product Management"} />
           </div>
         )}
         {roleName?.name === "Admin" && (
           <div className={cx("menu")}>
             <MenuItem to={"/DashboardAdmin"} title={"Dashboard"} />
             <MenuItem to={"/AdminOrders"} title={"Order Management"} />
-            <MenuItem to={"/AdminProducts"} title={"Product Management"} />
-            <MenuItem to={"/AdminUsers"} title={"User Management"} />
+            <MenuItem id="product-manage" to={"/AdminProducts"} title={"Product Management"} />
+            <MenuItem id="user-manage" to={"/AdminUsers"} title={"User Management"} />
             <MenuItem to={"/AdminCategory"} title={"Category Management"} />
             <MenuItem to={"/AdminDiscount"} title={"Discount Management"} />
           </div>
@@ -34,7 +35,7 @@ function Sidebar() {
         {roleName?.name === "nvk" && (
           <div className={cx("menu")}>
             <MenuItem to={"/AdminInventory"} title={"Admin Inventory"} />
-            <MenuItem to={"/AdminProducts"} title={"Product Management"} />
+            <MenuItem id="product-manage" to={"/AdminProducts"} title={"Product Management"} />
           </div>
         )}
         {roleName?.name === "shipper" && (

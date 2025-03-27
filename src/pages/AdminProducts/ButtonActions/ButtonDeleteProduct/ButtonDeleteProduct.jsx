@@ -5,6 +5,7 @@ import Modal from "@mui/material/Modal";
 import { gql, useMutation } from "@apollo/client";
 import PropTypes from "prop-types";
 import UseQueryProduct from "../../../../hooks/useQuerryProduct";
+import { tokenAdmin } from "../../../../utils/tokenAdmin";
 // import UseQueryProduct from "../../../../hooks/useQuerryProduct";
 const style = {
   position: "absolute",
@@ -28,12 +29,14 @@ const DELETE_PRODUCT = gql`
 `;
 export default function ButtonDeleteProduct({ data }) {
   const [open, setOpen] = React.useState(false);
-  const apiTokenLocal = localStorage.getItem("apiToken");
+  // const apiTokenLocal = localStorage.getItem("apiToken");
   const [deleteProduct, { error }] = useMutation(DELETE_PRODUCT);
   const { refetch } = UseQueryProduct();
 
   if (error) console.log("Lỗi xóa product: ", error);
-
+  if (data?.id) {
+    console.log(typeof data.id);
+  }
   const handleDeleteProduct = async () => {
     const productDeleteProductInput = {
       input: {
@@ -43,7 +46,7 @@ export default function ButtonDeleteProduct({ data }) {
     const result = await deleteProduct({
       context: {
         headers: {
-          authorization: `Bearer ${apiTokenLocal}`,
+          authorization: `Bearer ${tokenAdmin}`,
         },
       },
       variables: {
@@ -69,8 +72,7 @@ export default function ButtonDeleteProduct({ data }) {
       >
         <Box sx={style}>
           <h3>
-            Bạn có muốn xóa sản phẩm với id:{" "}
-            <span style={{ color: "red" }}>{data?.id}</span> không?{" "}
+            Bạn có muốn xóa sản phẩm với id: <span style={{ color: "red" }}>{data?.id}</span> không?{" "}
           </h3>
           <div
             style={{

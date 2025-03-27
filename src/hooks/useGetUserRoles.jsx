@@ -15,12 +15,10 @@ function useGetUserRoles() {
   const fetchRoles = () =>
     isAuthenticated &&
     fetch(
-      `https://dev-726yamkp1xzya72d.us.auth0.com/api/v2/users/${user.sub}/roles`,
+      `https://dev-hnuclkrw5xevrosx.us.auth0.com/api/v2/users/${user.sub}/roles`,
       requestOptions
     )
       .then((res) => res?.json())
-      // .then((response) => response.text())
-      // .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
   return { fetchRoles };
 }

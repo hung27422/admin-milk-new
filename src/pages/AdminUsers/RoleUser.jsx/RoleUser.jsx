@@ -5,7 +5,9 @@ import PropTypes from "prop-types";
 function RoleUser({ data }) {
   return (
     <div>
-      <span className={cx("role-user")}>{data?.role.name}</span>
+      <span className={cx("role-user")} id="role-user">
+        {data?.role.name}
+      </span>
     </div>
   );
 }

@@ -44,11 +44,7 @@ export default function ButtonAddProduct() {
   const [error, setError] = useState(null);
   const { refetch } = UseQueryProduct();
   const { data: dataCategory } = useCategory();
-  // useEffect(() => {
-  //   if (dataCategory) {
-  //     console.log("2444", dataCategory);
-  //   }
-  // }, [dataCategory]);
+
   const handleValueInput = (id, value) => {
     setValue((prev) => ({
       ...prev,
@@ -61,11 +57,7 @@ export default function ButtonAddProduct() {
     const validationResult = productSchema.validate(value);
     if (validationResult.error) {
       // Cập nhật trạng thái lỗi
-      setError(
-        validationResult.error.details
-          .map((detail) => detail.message)
-          .join(", ")
-      );
+      setError(validationResult.error.details.map((detail) => detail.message).join(", "));
       return; // Ngăn chặn thực hiện mutation khi có lỗi
     }
     const productCreateProductInput = {
@@ -89,6 +81,7 @@ export default function ButtonAddProduct() {
           input: productCreateProductInput.input,
         },
       });
+      refetch();
       console.log("Đã tạo product thành công:", result);
     } catch (error) {
       console.error("Lỗi khi tạo product:", error);
@@ -104,6 +97,7 @@ export default function ButtonAddProduct() {
   return (
     <div>
       <Button
+        id="add-product"
         style={{
           backgroundColor: "var(--secondary)",
           color: "var(--white)",
@@ -134,21 +128,13 @@ export default function ButtonAddProduct() {
                   </MenuItem>
                 ))}
               </TextField>
-              {/* <TextField
-                id="categoryId"
-                label="Nhập CategoryId"
-                variant="outlined"
-                onChange={(e) => handleValueInput("categoryId", e.target.value)}
-              /> */}
             </label>
             <label>
               <TextField
                 id="description"
                 label="Nhập Description"
                 variant="outlined"
-                onChange={(e) =>
-                  handleValueInput("description", e.target.value)
-                }
+                onChange={(e) => handleValueInput("description", e.target.value)}
               />
             </label>
             <label>
@@ -195,6 +181,7 @@ export default function ButtonAddProduct() {
               Thoát
             </Button>
             <Button
+              id="add-product-submit"
               style={{
                 color: "var(--white)",
                 backgroundColor: "var(--secondary)",
@@ -205,11 +192,7 @@ export default function ButtonAddProduct() {
             </Button>
           </div>
           {error && (
-            <div
-              style={{ color: "red", textAlign: "center", marginTop: "20px" }}
-            >
-              {error}
-            </div>
+            <div style={{ color: "red", textAlign: "center", marginTop: "20px" }}>{error}</div>
           )}{" "}
           {/* Hiển thị lỗi */}
         </Box>

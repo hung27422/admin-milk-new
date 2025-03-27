@@ -4,14 +4,11 @@ import { NavLink, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import images from "../../assets/Images/Image";
 const cx = classNames.bind(styles);
-function MenuItem({ to, title }) {
+function MenuItem({ to, title, id }) {
   const location = useLocation();
   const now = "You're Here";
   return (
-    <NavLink
-      to={to}
-      className={cx("wrapper", { active: location.pathname === to })}
-    >
+    <NavLink to={to} id={id} className={cx("wrapper", { active: location.pathname === to })}>
       <h2 className={cx("title")}>{title}</h2>
       {location.pathname === to ? (
         <div className={cx("now")}>
@@ -26,5 +23,6 @@ function MenuItem({ to, title }) {
 MenuItem.propTypes = {
   to: PropTypes.string,
   title: PropTypes.string,
+  id: PropTypes.string,
 };
 export default MenuItem;

@@ -3,11 +3,12 @@ import PropTypes from "prop-types";
 function AuthProvider({ children }) {
   return (
     <Auth0Provider
-      domain="dev-726yamkp1xzya72d.us.auth0.com"
-      clientId="ejDalqrZaOlHtEKE9cpyXfRlLwCQqV0I"
+      domain="dev-hnuclkrw5xevrosx.us.auth0.com"
+      clientId="TcjYLbdOTIahgN9pDzHXwTWRFaqHdoII"
       authorizationParams={{
-        redirect_uri: "https://admin-milk-new.vercel.app/DashboardAdmin/",
+        redirect_uri: "http://localhost:5173/DashboardAdmin/",
       }}
+      cacheLocation="localstorage"
     >
       {children}
     </Auth0Provider>

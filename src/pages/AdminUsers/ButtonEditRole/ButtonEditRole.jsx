@@ -2,13 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import {
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-} from "@mui/material";
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import useQueryRoleUser from "../../../hooks/useQueryRoleUser";
 import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
@@ -71,6 +65,7 @@ export default function ButtonEditRole({ data: dataUser }) {
   return (
     <div>
       <Button
+        id="edit-role"
         style={{
           backgroundColor: "var(--secondary)",
           color: "var(--white)",
@@ -126,6 +121,7 @@ export default function ButtonEditRole({ data: dataUser }) {
                 Trở lại
               </Button>
               <Button
+                id="btn-submit"
                 style={{
                   backgroundColor: "var(--secondary)",
                   color: "var(--white)",

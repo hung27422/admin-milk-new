@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import Modal from "@mui/material/Modal";
 import { gql, useMutation } from "@apollo/client";
 import useQueryUser from "../../../hooks/useQueryUser";
-
+import { tokenAdmin } from "../../../utils/tokenAdmin";
 const style = {
   position: "absolute",
   top: "50%",
@@ -28,8 +28,9 @@ const DELETE_USER = gql`
 `;
 export default function ButtonDeleteUser({ data }) {
   const [open, setOpen] = React.useState(false);
-  const apiTokenLocal = localStorage.getItem("apiToken");
+  // const apiTokenLocal = localStorage.getItem("apiToken");
   const [deleteUser, { error }] = useMutation(DELETE_USER);
+
   const { refetch } = useQueryUser();
   if (error) console.log("Lỗi xóa user: ", error);
   const handleDeleteUser = async () => {
@@ -41,7 +42,7 @@ export default function ButtonDeleteUser({ data }) {
     const result = await deleteUser({
       context: {
         headers: {
-          authorization: `Bearer ${apiTokenLocal}`,
+          authorization: `Bearer ${tokenAdmin}`,
         },
       },
       variables: {
@@ -55,6 +56,7 @@ export default function ButtonDeleteUser({ data }) {
   return (
     <div>
       <Button
+        id="delete-role"
         style={{
           backgroundColor: "red",
           color: "var(--white)",
@@ -79,8 +81,7 @@ export default function ButtonDeleteUser({ data }) {
             }}
           >
             <h3 style={{ marginBottom: "15px" }}>
-              Bạn có chắc chắn muốn xóa user:{" "}
-              <span style={{ color: "red" }}>{data?.name}</span>
+              Bạn có chắc chắn muốn xóa user: <span style={{ color: "red" }}>{data?.name}</span>
             </h3>
             <div>
               <Button
@@ -95,6 +96,7 @@ export default function ButtonDeleteUser({ data }) {
                 Hủy
               </Button>
               <Button
+                id="btn-submit-delete"
                 style={{
                   width: "150px",
                   backgroundColor: "var(--secondary)",

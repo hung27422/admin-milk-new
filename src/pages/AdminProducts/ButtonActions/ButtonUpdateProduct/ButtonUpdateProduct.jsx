@@ -26,10 +26,7 @@ const style = {
   p: 4,
 };
 const UPDATE_PRODUCT = gql`
-  mutation UpdateProduct(
-    $updateProductId: Int!
-    $input: productUpdateProductInput!
-  ) {
+  mutation UpdateProduct($updateProductId: Int!, $input: productUpdateProductInput!) {
     updateProduct(id: $updateProductId, input: $input) {
       productUpdatedPayload {
         message
@@ -45,8 +42,7 @@ export default function ButtonUpdateProduct({ data }) {
   const [value, setValue] = useState({});
   const { refetch } = UseQueryProduct();
   const [error, setError] = useState(null);
-  const [updateProduct, { error: errUpdateProduct }] =
-    useMutation(UPDATE_PRODUCT);
+  const [updateProduct, { error: errUpdateProduct }] = useMutation(UPDATE_PRODUCT);
   if (errUpdateProduct) console.log(errUpdateProduct);
   useEffect(() => {
     if (data) {
@@ -63,11 +59,7 @@ export default function ButtonUpdateProduct({ data }) {
     const validationResult = productSchemaUpdate.validate(value);
 
     if (validationResult.error) {
-      setError(
-        validationResult.error.details
-          .map((detail) => detail.message)
-          .join(", ")
-      );
+      setError(validationResult.error.details.map((detail) => detail.message).join(", "));
       return; // Ngăn chặn thực hiện mutation khi có lỗi
     }
     const productUpdateProductInput = {
@@ -79,7 +71,7 @@ export default function ButtonUpdateProduct({ data }) {
         price: Number(value?.price) || data?.price,
         sku: value?.sku || data?.sku,
       },
-      updateProductId: data?.id,
+      updateProductId: data?.id || value?.id,
     };
     const result = await updateProduct({
       context: {
@@ -99,6 +91,7 @@ export default function ButtonUpdateProduct({ data }) {
   return (
     <div>
       <Button
+        id="update-product"
         style={{ backgroundColor: "var(--secondary)", color: "var(--white)" }}
         onClick={() => setOpen(true)}
       >
@@ -127,9 +120,7 @@ export default function ButtonUpdateProduct({ data }) {
                 label={"Description"}
                 value={value?.description}
                 variant="outlined"
-                onChange={(e) =>
-                  handleValueInput("description", e.target.value)
-                }
+                onChange={(e) => handleValueInput("description", e.target.value)}
               />
             </label>
             <label>
@@ -180,6 +171,8 @@ export default function ButtonUpdateProduct({ data }) {
               Thoát
             </Button>
             <Button
+              id="save-product"
+              disabled={errUpdateProduct}
               style={{
                 color: "var(--white)",
                 backgroundColor: "var(--secondary)",
@@ -190,11 +183,7 @@ export default function ButtonUpdateProduct({ data }) {
             </Button>
           </div>
           {error && (
-            <div
-              style={{ color: "red", textAlign: "center", marginTop: "20px" }}
-            >
-              {error}
-            </div>
+            <div style={{ color: "red", textAlign: "center", marginTop: "20px" }}>{error}</div>
           )}{" "}
         </Box>
       </Modal>

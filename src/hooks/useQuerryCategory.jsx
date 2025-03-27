@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
-
+import { tokenAdmin } from "../utils/tokenAdmin";
 function useCategory() {
-  const apiTokenLocal = localStorage.getItem("apiToken");
+  // const apiTokenLocal = localStorage.getItem("apiToken");
   const { data, error, refetch } = useQuery(
     gql`
       query Categories($amount: Int!, $page: Int!) {
@@ -19,7 +19,7 @@ function useCategory() {
       },
       context: {
         headers: {
-          authorization: `Bearer ${apiTokenLocal}`,
+          authorization: `Bearer ${tokenAdmin}`,
         },
       },
     }

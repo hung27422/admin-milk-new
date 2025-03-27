@@ -7,6 +7,7 @@ function ImageUser({ data }) {
     return (
       <div>
         <img
+          id="img-user"
           className={cx("img-user")}
           src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
           alt=""
@@ -16,7 +17,7 @@ function ImageUser({ data }) {
   }
   return (
     <div>
-      <img className={cx("img-user")} src={data?.imageURL} alt="" />
+      <img id="img-user" className={cx("img-user")} src={data?.imageURL} alt="" />
     </div>
   );
 }
