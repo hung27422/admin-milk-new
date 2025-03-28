@@ -64,7 +64,9 @@ export default function Profile() {
               </NavLink>
             </div>
             <div className={cx("box-item")}>
-              <div onClick={handleLogout}>Logout</div>
+              <div id="logout" onClick={handleLogout}>
+                Logout
+              </div>
             </div>
           </React.Fragment>
         }

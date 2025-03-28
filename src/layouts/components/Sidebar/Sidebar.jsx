@@ -18,13 +18,13 @@ function Sidebar() {
       <div className={cx("container")}>
         {roleName?.name === "nvbh" && (
           <div className={cx("menu")}>
-            <MenuItem to={"/AdminOrders"} title={"Order Management"} />
+            <MenuItem id="order-mangage" to={"/AdminOrders"} title={"Order Management"} />
             <MenuItem id="product-manage" to={"/AdminProducts"} title={"Product Management"} />
           </div>
         )}
         {roleName?.name === "Admin" && (
           <div className={cx("menu")}>
-            <MenuItem to={"/DashboardAdmin"} title={"Dashboard"} />
+            <MenuItem id="dashboard" to={"/DashboardAdmin"} title={"Dashboard"} />
             <MenuItem to={"/AdminOrders"} title={"Order Management"} />
             <MenuItem id="product-manage" to={"/AdminProducts"} title={"Product Management"} />
             <MenuItem id="user-manage" to={"/AdminUsers"} title={"User Management"} />
@@ -34,13 +34,13 @@ function Sidebar() {
         )}
         {roleName?.name === "nvk" && (
           <div className={cx("menu")}>
-            <MenuItem to={"/AdminInventory"} title={"Admin Inventory"} />
+            <MenuItem id="inventory-manage" to={"/AdminInventory"} title={"Admin Inventory"} />
             <MenuItem id="product-manage" to={"/AdminProducts"} title={"Product Management"} />
           </div>
         )}
         {roleName?.name === "shipper" && (
           <div className={cx("menu")}>
-            <MenuItem to={"/AdminShipping"} title={"Admin Shipping"} />
+            <MenuItem id="ship-manage" to={"/AdminShipping"} title={"Admin Shipping"} />
           </div>
         )}
         <div className={cx("menu")}>

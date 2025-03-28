@@ -1,8 +1,9 @@
 import { gql, useQuery } from "@apollo/client";
 import { TableInfoUnconfirmed } from "../../../components/TableInfoOrders/TableInfoOrdersWrapper";
+import { tokenAdmin } from "../../../utils/tokenAdmin";
 
 function Unconfirmed() {
-  const apiTokenLocal = localStorage.getItem("apiToken");
+  // const apiTokenLocal = localStorage.getItem("apiToken");
   const { data, error } = useQuery(
     gql`
       query Orders($amount: Int!, $page: Int!) {
@@ -37,7 +38,7 @@ function Unconfirmed() {
       variables: { amount: 50, page: 1 },
       context: {
         headers: {
-          authorization: `Bearer ${apiTokenLocal}`,
+          authorization: `Bearer ${tokenAdmin}`,
         },
       },
     }

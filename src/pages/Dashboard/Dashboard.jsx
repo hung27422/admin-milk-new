@@ -158,32 +158,27 @@ function Dashboard() {
   const handleEndDateChange = (date) => {
     setSelectedEndDate(formatDateString(date.toISOString()));
   };
-  if (roleName?.name === "nvbh")
-    return <Navigate to="/AdminOrders" replace={true} />;
-  if (roleName?.name === "shipper")
-    return <Navigate to="/AdminShipping" replace={true} />;
+  if (roleName?.name === "nvbh") return <Navigate to="/AdminOrders" replace={true} />;
+  if (roleName?.name === "shipper") return <Navigate to="/AdminShipping" replace={true} />;
   else {
     return (
       <div className={cx("wrapper")}>
         <h2 className={cx("title")}>Báo cáo thống kê</h2>
         <div className={cx("header")}>
           <span className={cx("des")}>Từ</span>
-          <DatePicker onChange={handleStartDateChange} />
+          <DatePicker id="start-date" onChange={handleStartDateChange} />
           <span className={cx("des")}>Đến</span>
           <DatePicker onChange={handleEndDateChange} />
         </div>
         {orders?.length !== 0 ? (
           <h2 className={cx("des-date")}>
-            Thống kê từ ngày:{" "}
-            <span className={cx("date-choose")}>{selectedStartDate}</span> đến
+            Thống kê từ ngày: <span className={cx("date-choose")}>{selectedStartDate}</span> đến
             ngày: <span className={cx("date-choose")}>{selectedEndDate}</span>
           </h2>
         ) : (
           <h2 className={cx("des-date")}>
             Thống kê của ngày hôm nay:{" "}
-            <span className={cx("date-choose")}>
-              {formatDateString(dateNow)}
-            </span>
+            <span className={cx("date-choose")}>{formatDateString(dateNow)}</span>
           </h2>
         )}
         <div className={cx("content")}>
@@ -277,48 +272,32 @@ function Dashboard() {
               >
                 <BoxReport
                   title={"Chờ xác nhận"}
-                  quantity={
-                    ordersNow.filter((item) => item.status === "CREATED").length
-                  }
+                  quantity={ordersNow.filter((item) => item.status === "CREATED").length}
                   widthSecondary
                 />
                 <BoxReport
                   title={"Đã xác nhận"}
-                  quantity={
-                    ordersNow.filter((item) => item.status === "CONFIRMED")
-                      .length
-                  }
+                  quantity={ordersNow.filter((item) => item.status === "CONFIRMED").length}
                   widthSecondary
                 />
                 <BoxReport
                   title={"Đang giao"}
-                  quantity={
-                    ordersNow.filter((item) => item.status === "SHIPPING")
-                      .length
-                  }
+                  quantity={ordersNow.filter((item) => item.status === "SHIPPING").length}
                   widthSecondary
                 />
                 <BoxReport
                   title={"Đã giao"}
-                  quantity={
-                    ordersNow.filter((item) => item.status === "DELIVERED")
-                      .length
-                  }
+                  quantity={ordersNow.filter((item) => item.status === "DELIVERED").length}
                   widthSecondary
                 />
                 <BoxReport
                   title={"Hoàn thành"}
-                  quantity={
-                    ordersNow.filter((item) => item.status === "DONE").length
-                  }
+                  quantity={ordersNow.filter((item) => item.status === "DONE").length}
                   widthSecondary
                 />
                 <BoxReport
                   title={"Số đơn hủy"}
-                  quantity={
-                    ordersNow.filter((item) => item.status === "CANCELLED")
-                      .length
-                  }
+                  quantity={ordersNow.filter((item) => item.status === "CANCELLED").length}
                   widthSecondary
                 />
               </div>

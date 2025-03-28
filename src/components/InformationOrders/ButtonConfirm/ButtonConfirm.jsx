@@ -56,6 +56,7 @@ function ButtonConfirm({ data }) {
   return (
     <div className={cx("wrapper")}>
       <Button
+        id="confirmed"
         style={{
           backgroundColor: "green",
           color: "var(--white)",

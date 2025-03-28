@@ -7,6 +7,8 @@ function TableInfoUnconfirmed({ unconfirmed, status }) {
     const createdStatusUnconfirmed = unconfirmed?.filter(
       (item) => item.status === "CREATED"
     );
+    console.log(createdStatusUnconfirmed);
+    
     if (
       Array.isArray(createdStatusUnconfirmed) &&
       createdStatusUnconfirmed.length > 0

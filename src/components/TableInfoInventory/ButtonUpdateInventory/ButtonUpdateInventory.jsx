@@ -10,6 +10,7 @@ import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import useGetQueryInventory from "../../../hooks/useGetQueryInventory";
+import { tokenAdmin } from "../../../utils/tokenAdmin";
 const cx = classNames.bind(styles);
 
 const style = {
@@ -24,10 +25,7 @@ const style = {
   p: 4,
 };
 const UPDATE_INVENTORY = gql`
-  mutation UpdateInventory(
-    $updateInventoryId: Int!
-    $input: inventoryUpdateInventoryInput!
-  ) {
+  mutation UpdateInventory($updateInventoryId: Int!, $input: inventoryUpdateInventoryInput!) {
     updateInventory(id: $updateInventoryId, input: $input) {
       inventoryUpdatedPayload {
         message
@@ -37,7 +35,7 @@ const UPDATE_INVENTORY = gql`
 `;
 export default function ButtonUpdateInventory({ data }) {
   const [open, setOpen] = React.useState(false);
-  const apiTokenLocal = localStorage.getItem("apiToken");
+  // const apiTokenLocal = localStorage.getItem("apiToken");
   const [updateInventory] = useMutation(UPDATE_INVENTORY);
   const [quantity, setQuantity] = useState();
   const { refetch } = useGetQueryInventory();
@@ -55,7 +53,7 @@ export default function ButtonUpdateInventory({ data }) {
     const result = await updateInventory({
       context: {
         headers: {
-          authorization: `Bearer ${apiTokenLocal}`,
+          authorization: `Bearer ${tokenAdmin}`,
         },
       },
       variables: {
@@ -70,6 +68,7 @@ export default function ButtonUpdateInventory({ data }) {
   return (
     <div>
       <Button
+        id="update-inventory"
         style={{
           backgroundColor: "var(--secondary)",
           color: "var(--white)",
@@ -89,12 +88,13 @@ export default function ButtonUpdateInventory({ data }) {
           <h2 className={cx("title")}>Cập nhật số lượng kho</h2>
           <div className={cx("btn-action")}>
             <TextField
-              id="update-inventory"
+              id="update-inventory-input"
               label="Nhập số lượng"
               variant="outlined"
               onChange={(e) => handleChangeQuantity(e.target.value)}
             />
             <Button
+              id="btn-submit-inventory"
               style={{
                 backgroundColor: "var(--secondary)",
                 color: "var(--white)",

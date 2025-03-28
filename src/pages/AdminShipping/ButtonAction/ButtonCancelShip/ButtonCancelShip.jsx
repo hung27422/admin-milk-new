@@ -11,6 +11,7 @@ import useQueryOrders from "../../../../hooks/useQueryOrders";
 import { useContext } from "react";
 import { AdminMilkContext } from "../../../../components/AdminContextMilk/AdminContextMilk";
 import useQueryPoint from "../../../../hooks/useQueryPoint";
+import { tokenAdmin } from "../../../../utils/tokenAdmin";
 // import { useEffect } from "react";
 const cx = classNames.bind(styles);
 const style = {
@@ -60,7 +61,7 @@ const ADD_POINT = gql`
 `;
 export default function ButtonCancelShip({ data }) {
   const [open, setOpen] = React.useState(false);
-  const apiTokenLocal = localStorage.getItem("apiToken");
+  // const apiTokenLocal = localStorage.getItem("apiToken");
   const [updateOrder] = useMutation(UPDATE_ORDER);
   const [addPoint] = useMutation(ADD_POINT);
   const { roleName } = useContext(AdminMilkContext);
@@ -113,7 +114,7 @@ export default function ButtonCancelShip({ data }) {
     const result = await updateOrder({
       context: {
         headers: {
-          authorization: `Bearer ${apiTokenLocal}`,
+          authorization: `Bearer ${tokenAdmin}`,
         },
       },
       variables: {
@@ -128,6 +129,7 @@ export default function ButtonCancelShip({ data }) {
   return (
     <div>
       <Button
+        id="canceled"
         style={{
           backgroundColor: "red",
           color: "var(--white)",
@@ -145,9 +147,7 @@ export default function ButtonCancelShip({ data }) {
       >
         <Box sx={style}>
           <h2 className={cx("title")}>Hủy đơn hàng</h2>
-          <span style={{ fontSize: "20px", fontWeight: "600" }}>
-            Hủy với lí do:
-          </span>
+          <span style={{ fontSize: "20px", fontWeight: "600" }}>Hủy với lí do:</span>
           {roleName?.name === "shipper" && (
             <div style={{ textAlign: "center" }}>
               {cancelReasonShipper.map((item) => {
@@ -161,9 +161,7 @@ export default function ButtonCancelShip({ data }) {
                         id={item.id}
                         checked={item.id === reasonId}
                         value={item?.name}
-                        onChange={(e) =>
-                          handleCancelReason(e.target.value, item.id)
-                        }
+                        onChange={(e) => handleCancelReason(e.target.value, item.id)}
                       ></input>
                       <span className={cx("name-cancel")}>{item?.name}</span>
                     </div>
@@ -182,6 +180,7 @@ export default function ButtonCancelShip({ data }) {
                 Trở lại
               </Button>
               <Button
+                id="btn-submit-canceled"
                 style={{
                   backgroundColor: "var(--secondary)",
                   color: "var(--white)",
@@ -207,9 +206,7 @@ export default function ButtonCancelShip({ data }) {
                         id={item.id}
                         checked={item.id === reasonId}
                         value={item?.name}
-                        onChange={(e) =>
-                          handleCancelReason(e.target.value, item.id)
-                        }
+                        onChange={(e) => handleCancelReason(e.target.value, item.id)}
                       ></input>
                       <span className={cx("name-cancel")}>{item?.name}</span>
                     </div>
@@ -228,6 +225,7 @@ export default function ButtonCancelShip({ data }) {
                 Trở lại
               </Button>
               <Button
+                id="btn-submit-canceled"
                 style={{
                   backgroundColor: "var(--secondary)",
                   color: "var(--white)",

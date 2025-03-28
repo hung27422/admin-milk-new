@@ -34,9 +34,7 @@ export default function ButtonDeleteProduct({ data }) {
   const { refetch } = UseQueryProduct();
 
   if (error) console.log("Lỗi xóa product: ", error);
-  if (data?.id) {
-    console.log(typeof data.id);
-  }
+
   const handleDeleteProduct = async () => {
     const productDeleteProductInput = {
       input: {
@@ -60,6 +58,7 @@ export default function ButtonDeleteProduct({ data }) {
   return (
     <div>
       <Button
+        id="delete-product"
         style={{ backgroundColor: "red", color: "var(--white)" }}
         onClick={() => setOpen(true)}
       >
@@ -93,6 +92,7 @@ export default function ButtonDeleteProduct({ data }) {
               Hủy
             </Button>
             <Button
+              id="btn-submit-delete"
               style={{
                 backgroundColor: "var(--secondary)",
                 color: "var(--white)",

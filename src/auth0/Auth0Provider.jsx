@@ -6,7 +6,7 @@ function AuthProvider({ children }) {
       domain="dev-hnuclkrw5xevrosx.us.auth0.com"
       clientId="TcjYLbdOTIahgN9pDzHXwTWRFaqHdoII"
       authorizationParams={{
-        redirect_uri: "http://localhost:5173/DashboardAdmin/",
+        redirect_uri: `${window.location.origin}/DashboardAdmin/`,
       }}
       cacheLocation="localstorage"
     >
