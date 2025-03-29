@@ -1,11 +1,13 @@
 // import { useAuth0 } from "@auth0/auth0-react";
 import { gql, useMutation } from "@apollo/client";
-import DefaultLayout from "./layouts/DefaultLayout/DefaultLayout";
-import { publicRouter } from "./routers/routes";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useContext, useEffect, useState } from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { AdminMilkContext } from "./components/AdminContextMilk/AdminContextMilk";
+import DefaultLayout from "./layouts/DefaultLayout/DefaultLayout";
+import { publicRouter } from "./routers/routes";
+import { tokenAdmin } from "./utils/tokenAdmin";
+
 const CREATE_USER = gql`
   mutation LoginUser($input: userLoginUserInput!) {
     loginUser(input: $input) {
@@ -19,10 +21,12 @@ const CREATE_USER = gql`
 `;
 
 function App() {
+  localStorage.setItem("apiToken", tokenAdmin);
+
   const [createUser, { error }] = useMutation(CREATE_USER, {
     fetchPolicy: "network-only",
   });
- 
+
   if (error) console.log("Lỗi tạo user: ", error);
   const { user, isAuthenticated } = useAuth0();
   const [idRole, setIdRole] = useState(1);
